@@ -9,7 +9,7 @@ export default function UserMonsters({ monsters }) {
     let monstra = monsters.map((mon) => {
         return (
             
-                <Col className="card bg-black col-2 my-5" style={{maxWidth: 50 + 'vw'}} id="user-monsters">
+                <Col className="card col-2 my-5" style={{maxWidth: 50 + 'vw'}} id="user-monsters">
                 <img src={process.env.PUBLIC_URL + '/images/' + mon.index + '.jpg'} key={mon.index} alt={mon.name} style={{maxWidth: 30 + 'vw', height: 30 + 'vh'}} id="monster-image" />
                 <div className="card-body bg-warning">
                 <h3 className="card-title">{mon.name}</h3>

@@ -5,6 +5,7 @@ import * as monstersAPI from '../../utils/monsterApi';
 import UserMonsters from '../../components/UserMonsters/UserMonsters';
 import NavBar from '../../components/NavBar/NavBar';
 
+
 export default function UserProfile({ loggedUser, handleLogout }) {
     const [monsters, setMonsters] = useState([]);
     const [error, setError] = useState('');
@@ -24,7 +25,9 @@ export default function UserProfile({ loggedUser, handleLogout }) {
     
 
     return (
-        <div className="border border-black">
+        <div style={{ backgroundImage: 'url(/images/dungeon-background.png)' }}>
+            {/* <img src={process.env.PUBLIC_URL + '/images/dungeon-background.png'} className="overlay" alt="ancient-black-dragon" id="background" /> */}
+            {/* <div className="overlay" style={{background: process.env.PUBLIC_URL + '/images/dungeon-background.png'}} /> */}
             <h5>{loggedUser.email}</h5>
             <h2>Hello, {loggedUser.username}</h2>
             <h3>Bio: {loggedUser.bio}</h3>

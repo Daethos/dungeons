@@ -83,3 +83,9 @@ code {
 #tooltip[data-popper-placement^='right'] > #arrow {
   left: -4px;
 }
+
+#background {
+  /* z-index: 9; */
+  width: 100vw;
+  height: 100vh;
+}
