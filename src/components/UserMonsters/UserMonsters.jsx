@@ -4,77 +4,76 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 export default function UserMonsters({ monsters }) {
-    const [userCharactersState, setUserCharactersState] = useState(null);
+    // const [userCharactersState, setUserCharactersState] = useState(null);
 
     let monstra = monsters.map((mon) => {
         return (
-            <Row>
-                <Col>
-            <div className="card bg-black col-1 offset-1 my-5" style={{width: 30 + 'vw'}}>
-                <img src={process.env.PUBLIC_URL + '/images/' + mon.index + '.jpg'} key={mon.index} alt={mon.name} style={{width: 30 + 'vw', height: 30 + 'vh'}} id="monster-image" />
+            
+                <Col className="card bg-black col-2 my-5" style={{maxWidth: 50 + 'vw'}} id="user-monsters">
+                <img src={process.env.PUBLIC_URL + '/images/' + mon.index + '.jpg'} key={mon.index} alt={mon.name} style={{maxWidth: 30 + 'vw', height: 30 + 'vh'}} id="monster-image" />
                 <div className="card-body bg-warning">
-                <h1 className="card-title">{mon.name}</h1>
+                <h3 className="card-title">{mon.name}</h3>
                 <div className="card-text">
-                <h2>{mon.size}</h2>
-                <h2>{mon.type}</h2>
-                <h2>Hit Points: {mon.hit_points}</h2>
-                <h2>Hit Dice: {mon.hit_dice}</h2>
-                <h2>Hit Points Roll: {mon.hit_points_roll}</h2>
-                <h2>Armor Class: {mon.armor_class}</h2>
-                <h2>Challenge Rating: {mon.challenge_rating}</h2>
-                <h2>Languages: {mon.languages}</h2>
+                <h5>{mon.size}</h5>
+                <h5>{mon.type}</h5>
+                <h5>Hit Points: {mon.hit_points}</h5>
+                <h5>Hit Dice: {mon.hit_dice}</h5>
+                <h5>Hit Points Roll: {mon.hit_points_roll}</h5>
+                <h5>Armor Class: {mon.armor_class}</h5>
+                <h5>Challenge Rating: {mon.challenge_rating}</h5>
+                <h5>Languages: {mon.languages}</h5>
                 {
                 mon.speed
-                ? <h2>Speed (Burrow): {
+                ? <h5>Speed (Burrow): {
                     mon.speed.burrow
                     ? mon.speed.burrow
                     : 'No Relevant Information'
-                }</h2>
-                : <h2>Speed (Climb): Error</h2>
+                }</h5>
+                : <h5>''</h5>
                 }
                 {
                 mon.speed
-                ? <h2>Speed (Climb): {
+                ? <h5>Speed (Climb): {
                     mon.speed.climb
                     ? mon.speed.climb
                     : 'No Relevant Information'
-                }</h2>
-                : <h2>Speed (Climb): Error</h2>
+                }</h5>
+                : <h5>''</h5>
                 }
                 {
                 mon.speed
-                ? <h2>Speed (Flight): {
+                ? <h5>Speed (Flight): {
                     mon.speed.fly
                     ? mon.speed.fly
                     : 'No Relevant Information'
-                }</h2>
-                : <h2>Speed (Flight): Error</h2>
+                }</h5>
+                : <h5>''</h5>
                 }
                 {
                 mon.speed 
-                ? <h2>Speed (Swim): {
+                ? <h5>Speed (Swim): {
                     mon.speed.swim
                     ? mon.speed.swim
                     : 'No Relevant Information'
-                    }</h2>
-                : <h2>Speed (Swim): Error</h2>
+                    }</h5>
+                : <h5>''</h5>
                 }
                 {
                 mon.speed 
-                ? <h2>Speed (Walk): {
+                ? <h5>Speed (Walk): {
                     mon.speed.walk
                     ? mon.speed.walk
                     : 'No Relevant Information'
-                    }</h2>
-                : <h2>Speed (Walk): Error</h2>
+                    }</h5>
+                : <h5>''</h5>
                 }
-                <h2>Attributes</h2>
-                <h2>Strength: {mon.strength}</h2>
-                <h2>Dexterity: {mon.dexterity}</h2>
-                <h2>Constitution: {mon.constitution}</h2>
-                <h2>Intelligence: {mon.intelligence}</h2>
-                <h2>Wisdom: {mon.wisdom}</h2>
-                <h2>Charisma: {mon.charisma}</h2>
+                <h5>Attributes</h5>
+                <h5>Strength: {mon.strength}</h5>
+                <h5>Dexterity: {mon.dexterity}</h5>
+                <h5>Constitution: {mon.constitution}</h5>
+                <h5>Intelligence: {mon.intelligence}</h5>
+                <h5>Wisdom: {mon.wisdom}</h5>
+                <h5>Charisma: {mon.charisma}</h5>
                 {/* {
                 mon.actions
                 ? <h2> {
@@ -140,16 +139,17 @@ export default function UserMonsters({ monsters }) {
                 } */}
                 </div>
                 </div>
-            </div>
-            </Col>
-            </Row>
+                </Col>
         )
     })
 
     return (
-        <div className="border border-black">
-        {monstra}
-        
-        </div>
+        <Row>
+            
+                {/* <div className="card bg-black col-1 offset-1 my-5" style={{width: 30 + 'vw'}}> */}
+                    {monstra}
+                {/* </div> */}
+            
+        </Row>
     );
 }

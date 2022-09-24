@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import userService from "../../utils/userService";
@@ -94,7 +94,9 @@ export default function SignUpPage(props) {
   return (
     <div id="signup" className="border border-black bg-black text-white">
         <div className="form-container">
+        <img src={process.env.PUBLIC_URL + '/images/ancient-silver-dragon.jpg'} alt="ancient-black-dragon" id="monster-image" />
         <h2>Sign Up</h2>
+        
       <Form onSubmit={handleSubmit}>
       {/* <form autoComplete="off" onSubmit={handleSubmit}> */}
       <Form.Group className="my-2" controlId="formBasicUsername">
@@ -161,7 +163,7 @@ export default function SignUpPage(props) {
               onChange={handleFileInput}
             />
           </Form.Group>
-          <Button type="submit" variant="info" disabled={disable} className="btn">
+          <Button type="submit" variant="success" disabled={disable} className="btn btn-lg">
             SIGN UP
           </Button>
       {/* </form> */}

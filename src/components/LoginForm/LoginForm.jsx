@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import "./LoginPage.css";
-import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
+import "./LoginForm.css";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import userService from "../../utils/userService";
 import { useNavigate, Link } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
@@ -37,7 +37,8 @@ export default function LoginPage(props) {
     }
   }
   return (
-    <div>
+    <div className="border border-black bg-black text-white">
+      <img src={process.env.PUBLIC_URL + '/images/ancient-black-dragon.jpg'} alt="ancient-black-dragon" id="monster-image" />
       <div className="form-container">
         <Form onSubmit={handleSubmit}>
         <Form.Group className="my-2" controlId="formBasicEmail">
@@ -62,8 +63,8 @@ export default function LoginPage(props) {
             required
           />
           </Form.Group>
-          <Button type="submit" variant="info" className="btn">
-            SIGN UP
+          <Button type="submit" variant="success" className="btn btn-lg">
+            Login!
           </Button>
           </Form>
       </div>
