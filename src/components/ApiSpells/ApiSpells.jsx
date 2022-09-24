@@ -1,9 +1,8 @@
-import './UserCharacters.css';
 import React, { useEffect, useState } from 'react';
 import Loading from "../Loading/Loading";
 
-export default function UserCharacters({ user }) {
-    const [userCharactersState, setUserCharactersState] = useState(null);
+export default function ApiSpells({ user }) {
+    const [spellState, setSpellState] = useState(null);
     const [loading, setLoading] = useState(true);
 
     if (loading) {
@@ -17,7 +16,7 @@ export default function UserCharacters({ user }) {
 
     return (
         <div className="border border-black">
-            <Loading user={user}/>
+            
         </div>
     );
 }

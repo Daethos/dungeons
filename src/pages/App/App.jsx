@@ -11,6 +11,7 @@ import ApiMonsters from "../../components/ApiMonsters/ApiMonsters";
 import UserMonsters from "../../components/UserMonsters/UserMonsters";
 import ApiMonsterDetails from "../../components/ApiMonsterDetails/ApiMonsterDetails";
 import ApiMonsterData from "../../components/ApiMonsterData/ApiMonsterData";
+import ApiSpells from "../../components/ApiSpells/ApiSpells";
 import AuthPage from "../AuthPage/AuthPage";
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
         <Route path="/Monsters/Data" element={<ApiMonsterData user={user} handleLogout={handleLogout} />} />
         <Route path="/Monsters/:monsterName" element={<ApiMonsterDetails user={user} handleLogout={handleLogout} getMonstahUrl={getMonstahUrl} />} />
         <Route path="/:id/monster" element={<UserMonsters loggedUser={user} />} />
+        <Route path="/Spells" element={<ApiSpells user={user} handleLogout={handleLogout} />} />
         {/* <Route
           path="/login"
           element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}
