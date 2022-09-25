@@ -15,7 +15,7 @@ export default function ApiSpells({ user }) {
     }
 
     return (
-        <div className="border border-black">
+        <div className="border border-black" style={{ backgroundImage: 'url(/images/R13.png)' }}>
             
         </div>
     );

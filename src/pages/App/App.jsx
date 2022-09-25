@@ -1,24 +1,32 @@
 import React, { useState } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NavBar from '../../components/NavBar/NavBar';
 import UserProfile from '../UserProfile/UserProfile';
-// import SignupPage from "../../components/SignupPage/SignupPage";
-// import LoginPage from "../../components/LoginForm/LoginForm";
+import './App.css';
 import userService from "../../utils/userService";
 import ApiMonsters from "../../components/ApiMonsters/ApiMonsters";
 import UserMonsters from "../../components/UserMonsters/UserMonsters";
+// import UserCharacters from '../../components/UserCharacters/UserCharacters'
 import ApiMonsterDetails from "../../components/ApiMonsterDetails/ApiMonsterDetails";
 import ApiMonsterData from "../../components/ApiMonsterData/ApiMonsterData";
 import ApiSpells from "../../components/ApiSpells/ApiSpells";
 import AuthPage from "../AuthPage/AuthPage";
+import ApiCharacters from "../../components/ApiCharacters/ApiCharacters";
+import Container from 'react-bootstrap/Container';
+import Loading from "../../components/Loading/Loading";
+import NewApiMonsters from "../../components/NewApiMonsters/NewApiMonsters";
+import NewApiMonsterData from "../../components/NewApiMonsterData/NewApiMonsterData";
 
 function App() {
   const [user, setUser] = useState(userService.getUser()); // getUser decodes our JWT token, into a javascript object
   // this object corresponds to the jwt payload which is defined in the server signup or login function that looks like
   // this  const token = createJWT(user); // where user was the document we created from mongo
   const [monstahUrl, setMonstahUrl] = useState('');
+  const [backgroundState, setBackgroundState] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  
 
 
   function handleSignUpOrLogin() {
@@ -34,17 +42,75 @@ function App() {
     setMonstahUrl(url);
   }
 
+  const userBackground = document.getElementById('user-background');
+
+  async function colores(background) {
+    try {
+      setBackgroundState(background);
+    } catch (err) {
+      console.log(err.message, '<- Error in colores')
+    }
+  }
+
+
+  async function handleColor(e) {
+    setLoading(true);
+    e.preventDefault();
+    console.log(e.target.name, '<- New Png?')
+    const background = 'url(/images/' + e.target.name + '.png)'
+    try {
+      await colores(background);
+      setLoading(false);
+    } catch (err) {
+      console.log(err.message, ' <- Error handling Color!')
+      setLoading(false);
+    }
+  }
+
+  // background-image: url(../public/images/Y13.png);
+
+  const myStyle = {
+      
+      height: 100 + 'vh',
+      width: 100 + 'vw',
+      backgroundSize: 'cover',
+      backgroundRepeat: 'repeat',
+};
+
+  if (loading) {
+    return (
+        <Loading user={user} handleLogout={handleLogout} />
+    );
+}
+  
+
   if (user) {
     return (
-      <>
-      <NavBar user={user} setUser={setUser} handleLogout={handleLogout} getMonstahUrl={getMonstahUrl} />
+      // <div style={{
+      // { backgroundState 
+      //   ? backgroundImage: 'url(/images/' + backgroundState + ')'
+      //   : backgroundImage: 'url(/images/Y13.png)' 
+      // }
+      // }} id="user-background">
+      <div 
+      style={
+        backgroundState 
+        ? { backgroundImage: backgroundState, myStyle }
+        : { backgroundImage: 'url(/images/Y13.png)', myStyle }
+    } 
+      id="user-background"
+      > 
+      <NavBar user={user} setUser={setUser} handleLogout={handleLogout} getMonstahUrl={getMonstahUrl} handleColor={handleColor} />
       <Routes>
-        <Route path="/" element={<UserProfile loggedUser={user} handleSignUpOrLogin={handleSignUpOrLogin} handleLogout={handleLogout} />} />
+        <Route path="/" element={<UserProfile loggedUser={user}  setUser={setUser} handleSignUpOrLogin={handleSignUpOrLogin} handleLogout={handleLogout} />} />
         <Route path="/Monsters" element={<ApiMonsters user={user} handleLogout={handleLogout} />} />
         <Route path="/Monsters/Data" element={<ApiMonsterData user={user} handleLogout={handleLogout} />} />
         <Route path="/Monsters/:monsterName" element={<ApiMonsterDetails user={user} handleLogout={handleLogout} getMonstahUrl={getMonstahUrl} />} />
         <Route path="/:id/monster" element={<UserMonsters loggedUser={user} />} />
-        <Route path="/Spells" element={<ApiSpells user={user} handleLogout={handleLogout} />} />
+        <Route path="/Spells" element={<ApiSpells user={user}/>} />
+        <Route path="/Characters" element={<ApiCharacters user={user} />} />
+        <Route path="/MonsterSearch" element={<NewApiMonsters user={user} setUser={setUser} handleSignUpOrLogin={handleSignUpOrLogin} handleLogout={handleLogout} /> } />
+        <Route path="/MonsterSearch/Data" element={<NewApiMonsterData user={user} handleLogout={handleLogout} />} />
         {/* <Route
           path="/login"
           element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}
@@ -55,7 +121,8 @@ function App() {
         /> */}
         <Route path="/Authorization" element={<AuthPage setUser={setUser} handleSignUpOrLogin={handleSignUpOrLogin} />} />
       </Routes>
-      </>
+      </div>
+      
     );
   }
 

@@ -1,6 +1,6 @@
 #monster-image {
-    border-radius: 5%;
-    border: 2px solid black;
-    max-width: 50vw;
-    max-height: 50vh;
+    /* border-radius: 1%; */
+    /* border: 1px solid black; */
+    max-width: 100vw;
+    max-height: 100vh;
 }

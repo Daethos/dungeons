@@ -1,143 +1,161 @@
 import './UserMonsters.css';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
+// import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import Container from 'react-bootstrap/Container';
 
 export default function UserMonsters({ monsters }) {
     // const [userCharactersState, setUserCharactersState] = useState(null);
-
+    // style={{maxWidth: 50 + 'vw'}}
+    //  style={{maxWidth: 25 + 'vw'}}
+    // style={{maxWidth: 100 + 'vw', height: 100 + 'vh'}}
     let monstra = monsters.map((mon) => {
         return (
-            <Col className="card col-3 my-5" id="user-monsters">
-            <Card style={{maxWidth: 50 + 'vw'}}>
-                <Card.Img src={process.env.PUBLIC_URL + '/images/' + mon.index + '.jpg'} key={mon.index} alt={mon.name} style={{maxWidth: 30 + 'vw', height: 30 + 'vh'}} id="monster-image" />
-                <Card.Body className="bg-warning">
+            <Col className="my-3" id="user-monsters" >
+            <Card style={{maxWidth: 100 + 'vw', maxHeight: 100 + 'vh'}} className="p-1" bg="danger" id="user-monster-card">
+                <Card.Img src={process.env.PUBLIC_URL + '/images/' + mon.index + '.jpg'} key={mon.index} alt={mon.name} id="monster-image" />
+                <Card.Body style={{ backgroundImage: 'url(/images/dungeon-background.png)' }}>
                     <Card.Title>{mon.name}</Card.Title>
                     <Card.Text>
-                    <h5>{mon.size}</h5>
-                    <h5>{mon.type}</h5>
-                    <h5>Hit Points: {mon.hit_points}</h5>
-                    <h5>Hit Dice: {mon.hit_dice}</h5>
-                    <h5>Hit Points Roll: {mon.hit_points_roll}</h5>
-                    <h5>Armor Class: {mon.armor_class}</h5>
-                    <h5>Challenge Rating: {mon.challenge_rating}</h5>
-                    <h5>Languages: {mon.languages}</h5>
+                    <Card.Subtitle>{mon.size} {mon.type}</Card.Subtitle>
+                    <br />
+                    Hit Points: {mon.hit_points}
+                    <br />
+                    Hit Dice: {mon.hit_dice}
+                    <br />
+                    Hit Points Roll: {mon.hit_points_roll}
+                    <br />
+                    Armor Class: {mon.armor_class}
+                    <br />
+                    Challenge Rating: {mon.challenge_rating}
+                    <br />
+                    Languages: {mon.languages}
+                    <br />
                     {
                     mon.speed
-                    ? <h5>Speed (Burrow): {
+                    ? <>Speed (Burrow): {
                         mon.speed.burrow
                         ? mon.speed.burrow
-                        : 'No Relevant Information'
-                    }</h5>
-                    : <h5>''</h5>
+                        : 'No Info'
+                    }</>
+                    : ''
                     }
+                    <br />
                     {
                     mon.speed
-                    ? <h5>Speed (Climb): {
+                    ? <>Speed (Climb): {
                         mon.speed.climb
                         ? mon.speed.climb
-                        : 'No Relevant Information'
-                    }</h5>
-                    : <h5>''</h5>
+                        : 'No Info'
+                    }</>
+                    : ''
                     }
+                    <br />
                     {
                     mon.speed
-                    ? <h5>Speed (Flight): {
+                    ? <>Speed (Flight): {
                         mon.speed.fly
                         ? mon.speed.fly
-                        : 'No Relevant Information'
-                    }</h5>
-                    : <h5>''</h5>
+                        : 'No Info'
+                    }</>
+                    : ''
                     }
+                    <br />
                     {
                     mon.speed 
-                    ? <h5>Speed (Swim): {
+                    ? <>Speed (Swim): {
                         mon.speed.swim
                         ? mon.speed.swim
-                        : 'No Relevant Information'
-                        }</h5>
-                    : <h5>''</h5>
+                        : 'No Info'
+                        }</>
+                    : ''
                     }
+                    <br />
                     {
                     mon.speed 
-                    ? <h5>Speed (Walk): {
+                    ? <>Speed (Walk): {
                         mon.speed.walk
                         ? mon.speed.walk
-                        : 'No Relevant Information'
-                        }</h5>
-                    : <h5>''</h5>
+                        : 'No Info'
+                        }</>
+                    : ''
                     }
-                    <h5>Attributes</h5>
-                    <h5>Strength: {mon.strength}</h5>
-                    <h5>Dexterity: {mon.dexterity}</h5>
-                    <h5>Constitution: {mon.constitution}</h5>
-                    <h5>Intelligence: {mon.intelligence}</h5>
-                    <h5>Wisdom: {mon.wisdom}</h5>
-                    <h5>Charisma: {mon.charisma}</h5>
+                    <br />
+                    Strength: {mon.strength}
+                    <br />
+                    Dexterity: {mon.dexterity}
+                    <br />
+                    Constitution: {mon.constitution}
+                    <br />
+                    Intelligence: {mon.intelligence}
+                    <br />
+                    Wisdom: {mon.wisdom}
+                    <br />
+                    Charisma: {mon.charisma}
                     {/* {
                     mon.actions
-                    ? <h2> {
+                    ? <> {
                         mon.actions[0]
                         ? 'Actions (1): ' + mon.actions[0].name + ' - ' + mon.actions[0].desc
                         : ''
-                    }</h2>
-                    : <h2>Actions (1): Error</h2>
+                    }</>
+                    : <>Actions (1): Error</>
                     }
                     {
                     mon.actions
-                    ? <h2> {
+                    ? <> {
                         mon.actions[1]
                         ? 'Actions (2): ' + mon.actions[1].name + ' - ' + mon.actions[1].desc
                         : ''
-                    }</h2>
-                    : <h2>Actions (2): Error</h2>
+                    }</>
+                    : <>Actions (2): Error</>
                     }
                     {
                     mon.actions
-                    ? <h2> {
+                    ? <> {
                         mon.actions[2]
                         ? 'Actions (3): ' + mon.actions[2].name + ' - ' + mon.actions[2].desc
                         : ''
-                    }</h2>
-                    : <h2>Actions (3): Error</h2>
+                    }</>
+                    : <>Actions (3): Error</>
                     }
                     {
                     mon.actions
-                    ? <h2> {
+                    ? <> {
                         mon.actions[3]
                         ? 'Actions (4): ' + mon.actions[3].name + ' - ' + mon.actions[3].desc
                         : ''
-                    }</h2>
-                    : <h2>Actions (4): Error</h2>
+                    }</>
+                    : <>Actions (4): Error</>
                     }
                     {
                     mon.legendary_actions
-                    ? <h2> {
+                    ? <> {
                         mon.legendary_actions[0]
                         ? 'Legendary Action (1): ' + mon.legendary_actions[0].one.name + ' - ' + mon.legendary_actions[0].one.desc
                         : ''
-                    }</h2>
-                    : <h2>legendary_actions (1): Error</h2>
+                    }</>
+                    : <>legendary_actions (1): Error</>
                     }
                     {
                     mon.legendary_actions
-                    ? <h2> {
+                    ? <> {
                         mon.legendary_actions[0]
                         ? 'Legendary Action (2): ' + mon.legendary_actions[0].two.name + ' - ' + mon.legendary_actions[0].two.desc
                         : ''
-                    }</h2>
-                    : <h2>legendary_actions (2): Error</h2>
+                    }</>
+                    : <>legendary_actions (2): Error</>
                     }
                     {
                     mon.legendary_actions
-                    ? <h2> {
+                    ? <> {
                         mon.legendary_actions[0]
                         ? 'Legendary Action (3): ' + mon.legendary_actions[0].three.name + ' - ' + mon.legendary_actions[0].three.desc
                         : ''
-                    }</h2>
-                    : <h2>legendary_actions (3): Error</h2>
+                    }</>
+                    : <>legendary_actions (3): Error</>
                     } */}
                     </Card.Text>
                     </Card.Body>
@@ -147,12 +165,10 @@ export default function UserMonsters({ monsters }) {
     })
 
     return (
-        <Row>
-            
-            {/* <div className="card bg-black col-1 offset-1 my-5" style={{width: 30 + 'vw'}}> */}
+        <React.Fragment>
+            <Row className="justify-content-md-center" style={{maxWidth: 100 + 'vw', maxHeight: 100 + 'vh'}} xs={1 | 'auto'} sm={1 | 'auto'} md={2 | 'auto'} lg={2 | 'auto'} xl={2 | 'auto'} xxl={3 | 'auto'}>
                 {monstra}
-            {/* </div> */}
-            
-        </Row>
+            </Row>
+        </React.Fragment>
     );
 }

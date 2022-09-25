@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
 import ApiMonsterDetails from '../ApiMonsterDetails/ApiMonsterDetails';
 
-export default function ApiMonsterData({ monsters, getMonstahUrl }) {
+export default function ApiMonsterData({ monsters }) {
     const [monstahUrl, setMonstahUrl] = useState('');
     function getMonstahUrl(url) {
         setMonstahUrl(url);
     }
 
     return (
-        <div>
+        <React.Fragment>
         {monsters.map((monster) => {
             return (
                 // <ApiMonsterDetails 
@@ -27,6 +27,6 @@ export default function ApiMonsterData({ monsters, getMonstahUrl }) {
                 </Link>
                 );
         })}
-        </div>
+        </React.Fragment>
     )
 }

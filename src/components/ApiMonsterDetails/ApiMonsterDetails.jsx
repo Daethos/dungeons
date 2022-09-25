@@ -3,6 +3,11 @@ import './ApiMonsterDetails.css';
 import { useParams, Navigate } from 'react-router-dom';
 import * as monstersAPI from '../../utils/monsterApi';
 import AddMonster from '../AddMonster/AddMonster';
+import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import Row from 'react-bootstrap/Row';
+import Form from 'react-bootstrap/Form';
 
 
 
@@ -61,11 +66,11 @@ export default function ApiMonsterDetails({ monster, key, getMonstahUrl, loggedU
             console.log(monsterName, '<- Monster Data in Monster Detail')
             try {
                 
-                const res = await fetch(url);
-                    console.log(res);
-                    if (res.ok) {
-                        const newData = await res.json();
-                        console.log(newData, '<- Can you be my favorite Monster?');
+                // const res = await fetch(url);
+                //     console.log(res);
+                //     if (res.ok) {
+                        // const newData = await res.json();
+                        // console.log(newData, '<- Can you be my favorite Monster?');
                         const formData = new FormData();
                         let required = ['special_abilities', 'proficiencies', 'damage_vulnerabilities', 'damage_resistances',  'damage_immunities', 'condition_immunities', 'actions', 'senses', 'legendary_actions', 'speed', 'index', 'name', 'size', 'type', 'alignment', 'armor_class', 'hit_points', 'hit_dice', 'hit_points_roll', 'strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma', 'languages', 'challenge_rating', 'xp']
                         for (let key in monstroso) {
@@ -77,134 +82,198 @@ export default function ApiMonsterDetails({ monster, key, getMonstahUrl, loggedU
                             formData.forEach((item) => console.log(item)),
                             '<- The current spec of formData');
                             handleMonster(formData); // formData is the data we want to send to the server!
-                    }
+                    // }
             } catch (err) {
                 console.log(err);
             }
         }
         fetchUrls();
     }
+
+    // <Col className="my-3" id="user-monsters">
+    //         <Card style={{maxWidth: 100 + 'vw', maxHeight: 100 + 'vh'}} bg="black" id="user-monster-card">
+    //             <Card.Img src={process.env.PUBLIC_URL + '/images/' + mon.index + '.jpg'} key={mon.index} alt={mon.name} id="monster-image" />
+    //             <Card.Body style={{ backgroundImage: 'url(/images/dungeon-background.png)' }}>
+    //                 <Card.Title>{mon.name}</Card.Title>
+    //                 <Card.Text>
+    //                 <Card.Subtitle>{mon.size} {mon.type}</Card.Subtitle>
+
+    // </Card.Text>
+    //                 </Card.Body>
+    //             </Card>
+    //             </Col>
     
     return (
-    <div className="border border-black">
+    <div>
+        <Col md={{span: 6, offset: 3}}>
         {/* <AddMonster monstroso={monstroso} handleMonster={handleMonster} /> */}
         {
             monstra
             ? <button value={monstroso} type="submit" className="btn btn-danger" disabled>
             {monstroso.name} Is Yours Now!
             </button>
-            : <form onSubmit={handleSubmit}>
+            : <Form onSubmit={handleSubmit}>
             <button value={monstroso} type="submit" className="btn btn-success">
             Add {monstroso.name} ?
             </button>
-        </form>
+        </Form>
         }
-        <form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit}>
             <button value={monstroso} type="submit" className="btn btn-success">
             Add {monstroso.name} ?
             </button>
-        </form>
-        <h1>Monster: {monstroso.name}</h1>
-        <h2>Type: {monstroso.type}</h2>
-        <h2>Alignment: {monstroso.alignment}</h2>
-        <img src={process.env.PUBLIC_URL + monsterImage} alt={monstroso.name} id="monster-image" />
-        <h2>Size: {monstroso.size}</h2>
-        {
-            monstroso.speed
-            ? <h2>Speed (Burrow): {
-                monstroso.speed.burrow
-                ? monstroso.speed.burrow
-                : 'No Relevant Information'
-            }</h2>
-            : <h2>Speed (Climb): Error</h2>
-        }
-        {
-            monstroso.speed
-            ? <h2>Speed (Climb): {
-                monstroso.speed.climb
-                ? monstroso.speed.climb
-                : 'No Relevant Information'
-            }</h2>
-            : <h2>Speed (Climb): Error</h2>
-        }
-        {
-            monstroso.speed
-            ? <h2>Speed (Flight): {
-                monstroso.speed.fly
-                ? monstroso.speed.fly
-                : 'No Relevant Information'
-            }</h2>
-            : <h2>Speed (Flight): Error</h2>
-        }
-        {
-            monstroso.speed 
-            ? <h2>Speed (Swim): {
-                monstroso.speed.swim
-                ? monstroso.speed.swim
-                : 'No Relevant Information'
-                }</h2>
-            : <h2>Speed (Swim): Error</h2>
-        }
-        {
-            monstroso.speed 
-            ? <h2>Speed (Walk): {
-                monstroso.speed.walk
-                ? monstroso.speed.walk
-                : 'No Relevant Information'
-                }</h2>
-            : <h2>Speed (Walk): Error</h2>
-        }
-        <h2>Hit Points: {monstroso.hit_points}</h2>
-        <h2>Hit Dice: {monstroso.hit_dice}</h2>
-        <h2>Armor Class: {monstroso.armor_class}</h2>
-        <h2>Challenge Rating: {monstroso.challenge_rating}</h2>
-        <h2>Languages: {monstroso.languages}</h2>
-
-        <h2>Attributes</h2>
-        <h2>Strength: {monstroso.strength}</h2>
-        <h2>Dexterity: {monstroso.dexterity}</h2>
-        <h2>Constitution: {monstroso.constitution}</h2>
-        <h2>Intelligence: {monstroso.intelligence}</h2>
-        <h2>Wisdom: {monstroso.wisdom}</h2>
-        <h2>Charisma: {monstroso.charisma}</h2>
-
-        {
-            monstroso.actions
-            ? <h2> {
-                monstroso.actions[0]
-                ? 'Actions (1): ' + monstroso.actions[0].name + ' - ' + monstroso.actions[0].desc
+        </Form>
+        </Col>
+        <Row className="justify-content-md-center" style={{maxWidth: 100 + 'vw', maxHeight: 100 + 'vh'}} xs={1 | 'auto'} sm={1 | 'auto'} md={1 | 'auto'} lg={1 | 'auto'} xl={1 | 'auto'} xxl={2 | 'auto'}>
+        <Col id="user-monsters">
+            <Card className="" id="user-monster-card" bg="danger" style={{maxWidth: 100 + 'vw', maxHeight: 100 + 'vh'}}>
+            <Card.Img src={process.env.PUBLIC_URL + monsterImage} key={monstroso.index} alt={monstroso.name} style={{maxWidth: 100 + 'vw', height: 100 + 'vh'}} id="monster-image" />
+            <Card.Body style={{ backgroundImage: 'url(/images/dungeon-background.png)' }}>
+            <Card.Title>{monstroso.name}</Card.Title>
+            <Card.Text>
+            <Card.Subtitle>{monstroso.size} {monstroso.type}</Card.Subtitle>
+                <br />
+                Hit Points: {monstroso.hit_points}
+                <br />
+                Hit Dice: {monstroso.hit_dice}
+                <br />
+                Hit Points Roll: {monstroso.hit_points_roll}
+                <br />
+                Armor Class: {monstroso.armor_class}
+                <br />
+                Challenge Rating: {monstroso.challenge_rating}
+                <br />
+                Languages: {monstroso.languages}
+                <br />
+                {
+                monstroso.speed
+                ? <>Speed (Burrow): {
+                    monstroso.speed.burrow
+                    ? monstroso.speed.burrow
+                    : 'No Info'
+                }</>
                 : ''
-            }</h2>
-            : <h2>Actions (1): Error</h2>
-        }
-        {
-            monstroso.actions
-            ? <h2> {
-                monstroso.actions[1]
-                ? 'Actions (2): ' + monstroso.actions[1].name + ' - ' + monstroso.actions[1].desc
+                }
+                <br />
+                {
+                monstroso.speed
+                ? <>Speed (Climb): {
+                    monstroso.speed.climb
+                    ? monstroso.speed.climb
+                    : 'No Info'
+                }</>
                 : ''
-            }</h2>
-            : <h2>Actions (2): Error</h2>
-        }
-        {
-            monstroso.actions
-            ? <h2> {
-                monstroso.actions[2]
-                ? 'Actions (3): ' + monstroso.actions[2].name + ' - ' + monstroso.actions[2].desc
+                }
+                <br />
+                {
+                monstroso.speed
+                ? <>Speed (Flight): {
+                    monstroso.speed.fly
+                    ? monstroso.speed.fly
+                    : 'No Info'
+                }</>
                 : ''
-            }</h2>
-            : <h2>Actions (3): Error</h2>
-        }
-        {
-            monstroso.actions
-            ? <h2> {
-                monstroso.actions[3]
-                ? 'Actions (4): ' + monstroso.actions[3].name + ' - ' + monstroso.actions[3].desc
+                }
+                <br />
+                {
+                monstroso.speed 
+                ? <>Speed (Swim): {
+                    monstroso.speed.swim
+                    ? monstroso.speed.swim
+                    : 'No Info'
+                    }</>
                 : ''
-            }</h2>
-            : <h2>Actions (4): Error</h2>
-        }
-                
+                }
+                <br />
+                {
+                monstroso.speed 
+                ? <>Speed (Walk): {
+                    monstroso.speed.walk
+                    ? monstroso.speed.walk
+                    : 'No Info'
+                    }</>
+                : ''
+                }
+                <br />
+                Strength: {monstroso.strength}
+                <br />
+                Dexterity: {monstroso.dexterity}
+                <br />
+                Constitution: {monstroso.constitution}
+                <br />
+                Intelligence: {monstroso.intelligence}
+                <br />
+                Wisdom: {monstroso.wisdom}
+                <br />
+                Charisma: {monstroso.charisma}
+                {/* {
+                monstroso.actions
+                ? <> {
+                    monstroso.actions[0]
+                    ? 'Actions (1): ' + monstroso.actions[0].name + ' - ' + monstroso.actions[0].desc
+                    : ''
+                }</>
+                : <>Actions (1): Error</>
+                }
+                {
+                monstroso.actions
+                ? <> {
+                    monstroso.actions[1]
+                    ? 'Actions (2): ' + monstroso.actions[1].name + ' - ' + monstroso.actions[1].desc
+                    : ''
+                }</>
+                : <>Actions (2): Error</>
+                }
+                {
+                monstroso.actions
+                ? <> {
+                    monstroso.actions[2]
+                    ? 'Actions (3): ' + monstroso.actions[2].name + ' - ' + monstroso.actions[2].desc
+                    : ''
+                }</>
+                : <>Actions (3): Error</>
+                }
+                {
+                monstroso.actions
+                ? <> {
+                    monstroso.actions[3]
+                    ? 'Actions (4): ' + monstroso.actions[3].name + ' - ' + monstroso.actions[3].desc
+                    : ''
+                }</>
+                : <>Actions (4): Error</>
+                }
+                {
+                monstroso.legendary_actions
+                ? <> {
+                    monstroso.legendary_actions[0]
+                    ? 'Legendary Action (1): ' + monstroso.legendary_actions[0].one.name + ' - ' + monstroso.legendary_actions[0].one.desc
+                    : ''
+                }</>
+                : <>legendary_actions (1): Error</>
+                }
+                {
+                monstroso.legendary_actions
+                ? <> {
+                    monstroso.legendary_actions[0]
+                    ? 'Legendary Action (2): ' + monstroso.legendary_actions[0].two.name + ' - ' + monstroso.legendary_actions[0].two.desc
+                    : ''
+                }</>
+                : <>legendary_actions (2): Error</>
+                }
+                {
+                monstroso.legendary_actions
+                ? <> {
+                    monstroso.legendary_actions[0]
+                    ? 'Legendary Action (3): ' + monstroso.legendary_actions[0].three.name + ' - ' + monstroso.legendary_actions[0].three.desc
+                    : ''
+                }</>
+                : <>legendary_actions (3): Error</>
+                } */}
+            </Card.Text>
+            </Card.Body>
+            </Card>
+            </Col>
+            </Row>
     </div>
     );
 }
