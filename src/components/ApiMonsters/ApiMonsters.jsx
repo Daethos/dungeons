@@ -163,13 +163,13 @@ export default function ApiMonsters({ user, handleLogout }) {
 
     return (
         <Container fluid>
-            <Row>
-                <Col>
+            
             {
                 monsterData 
-                ? <Col> <ApiMonsterData monsters={monsterData} getMonstahUrl={getMonstahUrl} /> </Col>
-                :
-                <Col>
+                ? <ApiMonsterData monsters={monsterData} getMonstahUrl={getMonstahUrl} />
+                : // ''
+            // }
+            <React.Fragment>
                 <Row>
                     <Col md={{span: 4, offset: 4}} className="my-5">
                 <Form onSubmit={handleSubmit} >
@@ -177,6 +177,7 @@ export default function ApiMonsters({ user, handleLogout }) {
                 </Form>
                     </Col>
                 </Row>
+
                 <Row>
                     <Col md={{span: 6, offset: 3}}>
                 <Carousel  activeIndex={index} id="carousel" onSelect={handleSelect} fade>
@@ -224,12 +225,12 @@ export default function ApiMonsters({ user, handleLogout }) {
                         </Carousel.Caption>
                     </Carousel.Item>
                 </Carousel>
+                
+            {/* // } */}
                 </Col>
                 </Row>
-                </Col>
+                </React.Fragment>
             }
-                </Col>
-            </Row>
         </Container>
     )
     
