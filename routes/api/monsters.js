@@ -6,6 +6,7 @@ const monstersCtrl = require('../../controllers/monsters');
 router.post('/', monstersCtrl.create);
 // GET /api/monsters
 router.get('/', monstersCtrl.index);
+// UPDATE /api/monsters
 
 /*---------- Protected Routes ----------*/
 

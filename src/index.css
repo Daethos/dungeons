@@ -6,7 +6,7 @@ html, body {
   
   /* margin: auto 0; */
   /* justify-content: center; */
-  font-family: 'Cinzel' !important;
+  font-family: 'Cinzel';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

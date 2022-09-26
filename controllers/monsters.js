@@ -37,10 +37,38 @@ async function create(req, res) {
                 wisdom: req.body.wisdom,
                 charisma: req.body.charisma,
                 proficiencies: [...req.body.proficiencies],
-                damage_vulnerabilities: [...req.body.damage_vulnerabilities],
-                damage_resistances: [...req.body.damage_resistances],
-                damage_immunities: [...req.body.damage_immunities],
-                condition_immunities: [...req.body.condition_immunities],
+                damage_vulnerabilities: 
+                req.body.damage_vulnerabilities.length > 0
+                ?
+                [...req.body.damage_vulnerabilities]
+                :
+                'Nothing of Note'
+                ,
+                damage_resistances: 
+                req.body.damage_resistances.length > 0
+                ?
+                [...req.body.damage_resistances]
+                :
+                'Nothing of Note'
+                ,
+                damage_immunities: 
+                    req.body.damage_immunities.length > 0
+                    ?
+                    [...req.body.damage_immunities]
+                    :
+                    'Nothing of Note'
+                    ,
+                condition_immunities:
+                    req.body.condition_immunities.length > 0
+                    ?
+                    [...req.body.condition_immunities]
+                    :
+                    {
+                        name: 'Nothing of Note',
+                        index: 'Nothing',
+                        url: 'api/conditions/nothing'
+                    }
+                    ,
                 senses: {
                     blindsight: req.body.senses.blindsight,
                     darkvision: req.body.senses.darkvision,

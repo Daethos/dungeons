@@ -10,7 +10,7 @@ import UserMonsters from '../../components/UserMonsters/UserMonsters';
 import Container from 'react-bootstrap/Container';
 
 
-export default function UserProfile({ loggedUser, handleLogout, setUser, monstra, setMonstra }) {
+export default function UserProfile({ loggedUser, handleLogout, setUser }) {
     const [monsters, setMonsters] = useState([]);
     // const [error, setError] = useState('');
     const [searchText, setSearchText] = useState('');
@@ -86,7 +86,7 @@ export default function UserProfile({ loggedUser, handleLogout, setUser, monstra
             try {
                 const response = await monstersAPI.getAll();
                 console.log(response, ' <- the response in getMonsters')
-                setMonstra([...response.data])
+                // setMonstra([...response.data])
                 setMonsters([...response.data])
             } catch (err) {
                 console.log(err.message);

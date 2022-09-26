@@ -15,7 +15,8 @@ export default function MonsterCard({ monsters }) {
     
     
 
-    let monstras = monsters.map((monster) => {
+    let monstras = monsters.filter(monster => (monster.is_active === undefined || monster.is_active === 1)).map((monster) => {
+        console.log(monster.condition_immunities, "What's going on, condition immunities for", monster.name)
         return (
             <React.Fragment>
             <div class="stat-block wide">
@@ -31,15 +32,40 @@ export default function MonsterCard({ monsters }) {
                 <div class="top-stats">
                     <div class="property-line first">
                         <h4>Armor Class</h4>
-                        <p>{monster.armor_class}</p>
+                        <p> {monster.armor_class}</p>
                     </div> 
                     <div class="property-line">
                         <h4>Hit Points</h4>
-                        <p>{monster.hit_points} ({monster.hit_dice})</p>
+                        <p> {monster.hit_points} ({monster.hit_dice})</p>
                     </div> 
                     <div class="property-line last">
                         <h4>Speed</h4>
                         {/* <p>{monster.speed}</p> */}
+                        {
+                        monster.speed?.burrow
+                        ? <p> Burrow: {monster.speed.burrow}</p>
+                        : ''
+                        }
+                        {
+                        monster.speed?.climb
+                        ? <p> Climb: {monster.speed.climb}</p>
+                        : ''
+                        }
+                        {
+                        monster.speed?.fly
+                        ? <p> Flight: {monster.speed.fly}</p>
+                        : ''
+                        }
+                        {
+                        monster.speed?.swim
+                        ? <p> Swim: {monster.speed.swim}</p>
+                        : ''
+                        }
+                        {
+                        monster.speed?.walk
+                        ? <p> Walk: {monster.speed.walk}</p>
+                        : ''
+                        }
                     </div> 
                     <svg height="5" width="100%" class="tapered-rule">
                 <polyline points="0,0 400,2.5 0,5"></polyline>
@@ -71,46 +97,374 @@ export default function MonsterCard({ monsters }) {
                         </div> 
                     </div>
                     <svg height="5" width="100%" class="tapered-rule">
+                    <polyline points="0,0 400,2.5 0,5"></polyline>
+                    </svg>
+                    <div class="property-line first last">
+                        <h4>Proficiencies</h4>
+                        {
+                        monster.proficiencies[0].proficiency?.name
+                        ? <p> {monster.proficiencies[0].proficiency.name} </p>
+                        : ''
+                        }
+                        {
+                        monster.proficiencies[0]?.value
+                        ? <p> {monster.proficiencies[0].value}, </p>
+                        : ''
+                        }
+                        
+                        {
+                        monster.proficiencies[1]?.proficiency.name
+                        ? <p> {monster.proficiencies[1].proficiency.name} </p>
+                        : ''
+                        }
+                        {
+                        monster.proficiencies[1]?.value
+                        ? <p> {monster.proficiencies[1].value}, </p>
+                        : ''
+                        }
+                        
+                        {
+                        monster.proficiencies[2]?.proficiency.name
+                        ? <p> {monster.proficiencies[2].proficiency.name} </p>
+                        : ''
+                        }
+                        {
+                        monster.proficiencies[2]?.value
+                        ? <p> {monster.proficiencies[2].value}, </p>
+                        : ''
+                        }
+                        
+                        {
+                        monster.proficiencies[3]?.proficiency.name
+                        ? <p> {monster.proficiencies[3].proficiency.name} </p>
+                        : ''
+                        }
+                        {
+                        monster.proficiencies[3]?.value
+                        ? <p> {monster.proficiencies[3].value}, </p>
+                        : ''
+                        }
+                        
+                        {
+                        monster.proficiencies[4]?.proficiency.name
+                        ? <p> {monster.proficiencies[4].proficiency.name} </p>
+                        : ''
+                        }
+                        {
+                        monster.proficiencies[4]?.value
+                        ? <p> {monster.proficiencies[4].value}, </p>
+                        : ''
+                        }
+                        
+                        {
+                        monster.proficiencies[5]?.proficiency.name
+                        ? <p> {monster.proficiencies[5].proficiency.name} </p>
+                        : ''
+                        }
+                        {
+                        monster.proficiencies[5]?.value
+                        ? <p> {monster.proficiencies[5].value}, </p>
+                        : ''
+                        }
+                        
+                        {
+                        monster.proficiencies[6]?.proficiency.name
+                        ? <p> {monster.proficiencies[6].proficiency.name} </p>
+                        : ''
+                        }
+                        {
+                        monster.proficiencies[6]?.value
+                        ? <p> {monster.proficiencies[6].value}, </p>
+                        : ''
+                        }
+                        
+                        {
+                        monster.proficiencies[7]?.proficiency.name
+                        ? <p> {monster.proficiencies[7].proficiency.name} </p>
+                        : ''
+                        }
+                        {
+                        monster.proficiencies[7]?.value
+                        ? <p> {monster.proficiencies[7].value} </p>
+                        : ''
+                        }
+                    </div> 
+                    <svg height="5" width="100%" class="tapered-rule">
                         <polyline points="0,0 400,2.5 0,5"></polyline>
                     </svg>
                     <div class="property-line first">
+                        <h4>Condition Immunities</h4>
+                        {/* <p>{monster.condition_immunities[0]}</p> */}
+                        {
+                        monster.condition_immunities[0]?.name 
+                        ?  <p> {monster.condition_immunities[0].name} </p>
+                        : ''
+                        }
+                        {
+                        monster.condition_immunities[1]?.name 
+                        ?  <p> {monster.condition_immunities[1].name} </p>
+                        : ''
+                        }
+                        {
+                        monster.condition_immunities[2]?.name 
+                        ?  <p> {monster.condition_immunities[2].name} </p>
+                        : ''
+                        }
+                        {
+                        monster.condition_immunities[3]?.name 
+                        ?  <p> {monster.condition_immunities[3].name} </p>
+                        : ''
+                        }
+                        {
+                        monster.condition_immunities[4]?.name 
+                        ?  <p> {monster.condition_immunities[4].name} </p>
+                        : ''
+                        }
+                        {
+                        monster.condition_immunities[5]?.name 
+                        ?  <p> {monster.condition_immunities[5].name} </p>
+                        : ''
+                        }
+                        {
+                        monster.condition_immunities[6]?.name 
+                        ?  <p> {monster.condition_immunities[6].name} </p>
+                        : ''
+                        }
+                        {
+                        monster.condition_immunities[7]?.name 
+                        ?  <p> {monster.condition_immunities[7].name} </p>
+                        : ''
+                        }
+                        {
+                        monster.condition_immunities[8]?.name 
+                        ?  <p> {monster.condition_immunities[8].name} </p>
+                        : ''
+                        }
+                    </div>
+                    <div class="property-line">
                         <h4>Damage Immunities</h4>
                         {/* <p>{monster.damage_immunities}</p> */}
+                        {
+                        monster.damage_immunities[0]
+                        ? <p> {monster.damage_immunities[0].charAt(0).toUpperCase() + monster.damage_immunities[0].slice(1)} </p>
+                        : ''
+                        }
                     </div> 
                     <div class="property-line">
-                        <h4>Condition Immunities</h4>
-                        {/* <p>{monster.condition_immunities}</p> */}
+                        <h4>Damage Resistances</h4>
+                        {/* <p>{monster.damage_resistances[0]}</p> */}
+                        {
+                        monster.damage_resistances?.[0] 
+                        ?  <p> {monster.damage_resistances[0].charAt(0).toUpperCase() + monster.damage_resistances[0].slice(1)} </p>
+                        : ''
+                        }
+                        {
+                        monster.damage_resistances?.[1] 
+                        ?  <p> {monster.damage_resistances[1].charAt(0).toUpperCase() + monster.damage_resistances[1].slice(1)} </p>
+                        : ''
+                        }
+                        {
+                        monster.damage_resistances?.[2] 
+                        ?  <p> {monster.damage_resistances[2].charAt(0).toUpperCase() + monster.damage_resistances[2].slice(1)} </p>
+                        : ''
+                        }
+                    </div>
+                    <div class="property-line">
+                        <h4>Damage Vulnerabilities</h4>
+                        {/* <p>{monster.damage_vulnerabilities[0]}</p> */}
+                        {
+                        monster.damage_vulnerabilities?.[0] 
+                        ?  <p> {monster.damage_vulnerabilities[0]} </p>
+                        : ''
+                        }
+                        {
+                        monster.damage_vulnerabilities?.[1] 
+                        ?  <p> {monster.damage_vulnerabilities[1]} </p>
+                        : ''
+                        }
                     </div> 
                     <div class="property-line">
                         <h4>Senses</h4>
-                        {/* <p>{monster.senses}</p> */}
+                        
+                        {
+                        monster.senses?.blindsight
+                        ? <p> Blindsight: {monster.senses.blindsight}</p>
+                        : ''
+                        }
+                        {
+                        monster.senses?.darkvision
+                        ? <p> Darkvision: {monster.senses.darkvision}</p>
+                        : ''
+                        }
+                        {
+                        monster.senses?.passive_perception
+                        ? <p> Passive Perception: {monster.senses.passive_perception}</p>
+                        : ''
+                        }
+                        {
+                        monster.senses?.truesight
+                        ? <p> Truesight: {monster.senses.truesight}</p>
+                        : ''
+                        }
+                        {
+                        monster.senses?.tremorsense
+                        ? <p> Tremorsense: {monster.senses.tremorsense}</p>
+                        : ''
+                        }
                     </div> 
                     <div class="property-line">
                         <h4>Languages</h4>
-                        <p>{monster.languages}</p>
+                        <p> {monster.languages}</p>
                     </div> 
                     <div class="property-line last">
                         <h4>Challenge</h4>
-                        <p>{monster.challenge_rating}</p>
+                        <p> {monster.challenge_rating}</p>
                     </div> 
                 </div> 
                 <svg height="5" width="100%" class="tapered-rule">
                 <polyline points="0,0 400,2.5 0,5"></polyline>
             </svg>
-                {/* {monster.special_abilities} */}
                 <div class="property-block">
-                    <h4>{monster.name}.</h4>
-                    {/* <p>{monster.desc}</p> */}
+                    {
+                    monster.special_abilities[0].name
+                    ? <h4> {monster.special_abilities[0].name} </h4>
+                    : ''
+                    }
+                    {
+                    monster.special_abilities[0].desc
+                    ? <p> {monster.special_abilities[0].desc} <br /> </p>
+                    : ''
+                    }
+                    
+                    {
+                    monster.special_abilities[1]?.name
+                    ? <h4> {monster.special_abilities[1].name} </h4>
+                    : ''
+                    }
+                    {
+                    monster.special_abilities[1]?.desc
+                    ? <p> {monster.special_abilities[1].desc} <br /> </p>
+                    : ''
+                    }
+                    {/* {
+                    monster.special_abilities[1]?.spellcasting.spells[0].name
+                    ? <p> {monster.special_abilities[1].spellcasting.spells[0].name}, Level {monster.special_abilities[1].spellcasting.spells[0].level}, Type: {monster.special_abilities[1].spellcasting.spells[0].usage.type}</p>
+                    : ''
+                    } */}
+                    {
+                    monster.special_abilities[2]?.name
+                    ? <h4> {monster.special_abilities[2].name} </h4>
+                    : ''
+                    }
+                    {
+                    monster.special_abilities[2]?.desc
+                    ? <p> {monster.special_abilities[2].desc} <br /> </p> 
+                    : ''
+                    }
+                    
+                    {
+                    monster.special_abilities[3]?.name
+                    ? <h4> {monster.special_abilities[3].name} </h4>
+                    : ''
+                    }
+                    {
+                    monster.special_abilities[3]?.desc
+                    ? <p> {monster.special_abilities[3].desc} <br /> </p>
+                    : ''
+                    }
                 </div> 
-                
+                <img src={process.env.PUBLIC_URL + '/images/' + monster.index + '.jpg'} alt={monster.name} id="monster-card-image" />
             </div> 
             <div class="section-right">
                 <div class="actions">
                     <h3>Actions</h3>
                     {/* {monster.actions} */}
                     <div class="property-block">
-                        <h4>{monster.name}.</h4>
-                        {/* <p>{monster.desc}</p> */}
+                        {
+                        monster.actions[0].name
+                        ? <h4> {monster.actions[0].name} </h4>
+                        : ''
+                        }
+                        {
+                        monster.actions[0].desc
+                        ? <p> {monster.actions[0].desc} <br /> </p>
+                        : ''
+                        }
+                        
+                        {
+                        monster.actions[1]?.name
+                        ? <h4> {monster.actions[1].name} </h4>
+                        : ''
+                        }
+                        {
+                        monster.actions[1]?.desc
+                        ? <p> {monster.actions[1].desc} <br /> </p>
+                        : ''
+                        }
+                        
+                        {
+                        monster.actions[2]?.name
+                        ? <h4> {monster.actions[2].name} </h4>
+                        : ''
+                        }
+                        {
+                        monster.actions[2]?.desc
+                        ? <p> {monster.actions[2].desc} <br /> </p>
+                        : ''
+                        }
+                        
+                        {
+                        monster.actions[3]?.name
+                        ? <h4> {monster.actions[3].name} </h4>
+                        : ''
+                        }
+                        {
+                        monster.actions[3]?.desc
+                        ? <p> {monster.actions[3].desc} <br /> </p>
+                        : ''
+                        }
+                        
+                        {
+                        monster.actions[4]?.name
+                        ? <h4> {monster.actions[4].name} </h4>
+                        : ''
+                        }
+                        {
+                        monster.actions[4]?.desc
+                        ? <p> {monster.actions[4].desc} <br /> </p>
+                        : ''
+                        }
+                        
+                        {
+                        monster.actions[5]?.name
+                        ? <h4> {monster.actions[5].name} </h4>
+                        : ''
+                        }
+                        {
+                        monster.actions[5]?.desc
+                        ? <p> {monster.actions[5].desc} <br /> </p>
+                        : ''
+                        }
+                        {
+                        monster.actions[6]?.name
+                        ? <h4> {monster.actions[6].name} </h4>
+                        : ''
+                        }
+                        {
+                        monster.actions[6]?.desc
+                        ? <p> {monster.actions[6].desc} <br /> </p>
+                        : ''
+                        }
+                        {
+                        monster.actions[7]?.name
+                        ? <h4> {monster.actions[7].name} </h4>
+                        : ''
+                        }
+                        {
+                        monster.actions[7]?.desc
+                        ? <p> {monster.actions[7].desc} <br /> </p>
+                        : ''
+                        }
                     </div> 
                     
                 </div> 
@@ -118,10 +472,50 @@ export default function MonsterCard({ monsters }) {
                     <h3>Legendary Actions</h3>
                     {/* {monster.legendary_actions} */}
                     <div class="property-block">
-                        <h4>{monster.name}.</h4>
-                        {/* <p>{monster.desc}</p> */}
+                        {
+                        monster.legendary_actions[0]?.name
+                        ? <h4>{monster.legendary_actions[0].name} </h4>
+                        : <h4 className="m-4">"Don't worry fren, you can always make the {monster.name} legendary. Even the Awakened Shrub can be unleashed... ! !"</h4>
+                        }
+                        {
+                        monster.legendary_actions[0]?.desc
+                        ? <p> {monster.legendary_actions[0].desc} <br /> </p>
+                        : <p> - A Silly Goose</p>
+                        }
+                        
+                        {
+                        monster.legendary_actions[1]?.name
+                        ? <h4>{monster.legendary_actions[1].name} </h4>
+                        : ''
+                        }
+                        {
+                        monster.legendary_actions[1]?.desc
+                        ? <p> {monster.legendary_actions[1].desc} <br /> </p>
+                        : ''
+                        }
+                        {
+                        monster.legendary_actions[2]?.name
+                        ? <h4>{monster.legendary_actions[2].name} </h4>
+                        : ''
+                        }
+                        {
+                        monster.legendary_actions[2]?.desc
+                        ? <p> {monster.legendary_actions[2].desc} <br /> </p>
+                        : ''
+                        }
+                        <br />
+                        {
+                        monster.legendary_actions[3]?.name
+                        ? <h4>{monster.legendary_actions[3].name} </h4>
+                        : ''
+                        }
+                        {
+                        monster.legendary_actions[3]?.desc
+                        ? <p> {monster.legendary_actions[3].desc} </p>
+                        : ''
+                        }
                     </div> 
-                    <img src={process.env.PUBLIC_URL + '/images/' + monster.index + '.jpg'} alt={monster.name} id="monster-card-image" />
+                    
                 </div> 
             </div> 
             <hr class="orange-border bottom" />
@@ -130,165 +524,12 @@ export default function MonsterCard({ monsters }) {
         )
     })
 
-
-
-    let monstra = monsters.map((mon) => {
-        return (
-            <Col className="my-3" id="user-monsters" >
-            <Card style={{maxWidth: 100 + 'vw', maxHeight: 100 + 'vh'}} className="p-1" bg="danger" id="user-monster-card">
-                <Card.Img src={process.env.PUBLIC_URL + '/images/' + mon.index + '.jpg'} key={mon.index} alt={mon.name} id="monster-image" />
-                <Card.Body style={{ backgroundImage: 'url(/images/dungeon-background.png)' }}>
-                    <Card.Title>{mon.name}</Card.Title>
-                    <Card.Text>
-                    <Card.Subtitle>{mon.size} {mon.type}</Card.Subtitle>
-                    <br />
-                    Hit Points: {mon.hit_points}
-                    <br />
-                    Hit Dice: {mon.hit_dice}
-                    <br />
-                    Hit Points Roll: {mon.hit_points_roll}
-                    <br />
-                    Armor Class: {mon.armor_class}
-                    <br />
-                    Challenge Rating: {mon.challenge_rating}
-                    <br />
-                    Languages: {mon.languages}
-                    <br />
-                    {
-                    mon.speed
-                    ? <>Speed (Burrow): {
-                        mon.speed.burrow
-                        ? mon.speed.burrow
-                        : 'No Info'
-                    }</>
-                    : ''
-                    }
-                    <br />
-                    {
-                    mon.speed
-                    ? <>Speed (Climb): {
-                        mon.speed.climb
-                        ? mon.speed.climb
-                        : 'No Info'
-                    }</>
-                    : ''
-                    }
-                    <br />
-                    {
-                    mon.speed
-                    ? <>Speed (Flight): {
-                        mon.speed.fly
-                        ? mon.speed.fly
-                        : 'No Info'
-                    }</>
-                    : ''
-                    }
-                    <br />
-                    {
-                    mon.speed 
-                    ? <>Speed (Swim): {
-                        mon.speed.swim
-                        ? mon.speed.swim
-                        : 'No Info'
-                        }</>
-                    : ''
-                    }
-                    <br />
-                    {
-                    mon.speed 
-                    ? <>Speed (Walk): {
-                        mon.speed.walk
-                        ? mon.speed.walk
-                        : 'No Info'
-                        }</>
-                    : ''
-                    }
-                    <br />
-                    Strength: {mon.strength}
-                    <br />
-                    Dexterity: {mon.dexterity}
-                    <br />
-                    Constitution: {mon.constitution}
-                    <br />
-                    Intelligence: {mon.intelligence}
-                    <br />
-                    Wisdom: {mon.wisdom}
-                    <br />
-                    Charisma: {mon.charisma}
-                    {/* {
-                    mon.actions
-                    ? <> {
-                        mon.actions[0]
-                        ? 'Actions (1): ' + mon.actions[0].name + ' - ' + mon.actions[0].desc
-                        : ''
-                    }</>
-                    : <>Actions (1): Error</>
-                    }
-                    {
-                    mon.actions
-                    ? <> {
-                        mon.actions[1]
-                        ? 'Actions (2): ' + mon.actions[1].name + ' - ' + mon.actions[1].desc
-                        : ''
-                    }</>
-                    : <>Actions (2): Error</>
-                    }
-                    {
-                    mon.actions
-                    ? <> {
-                        mon.actions[2]
-                        ? 'Actions (3): ' + mon.actions[2].name + ' - ' + mon.actions[2].desc
-                        : ''
-                    }</>
-                    : <>Actions (3): Error</>
-                    }
-                    {
-                    mon.actions
-                    ? <> {
-                        mon.actions[3]
-                        ? 'Actions (4): ' + mon.actions[3].name + ' - ' + mon.actions[3].desc
-                        : ''
-                    }</>
-                    : <>Actions (4): Error</>
-                    }
-                    {
-                    mon.legendary_actions
-                    ? <> {
-                        mon.legendary_actions[0]
-                        ? 'Legendary Action (1): ' + mon.legendary_actions[0].one.name + ' - ' + mon.legendary_actions[0].one.desc
-                        : ''
-                    }</>
-                    : <>legendary_actions (1): Error</>
-                    }
-                    {
-                    mon.legendary_actions
-                    ? <> {
-                        mon.legendary_actions[0]
-                        ? 'Legendary Action (2): ' + mon.legendary_actions[0].two.name + ' - ' + mon.legendary_actions[0].two.desc
-                        : ''
-                    }</>
-                    : <>legendary_actions (2): Error</>
-                    }
-                    {
-                    mon.legendary_actions
-                    ? <> {
-                        mon.legendary_actions[0]
-                        ? 'Legendary Action (3): ' + mon.legendary_actions[0].three.name + ' - ' + mon.legendary_actions[0].three.desc
-                        : ''
-                    }</>
-                    : <>legendary_actions (3): Error</>
-                    } */}
-                    </Card.Text>
-                    </Card.Body>
-                </Card>
-                </Col>
-        )
-    })
-
     return (
         <React.Fragment>
             <Row className="justify-content-md-center" style={{maxWidth: 100 + 'vw', maxHeight: 100 + 'vh'}} xs={1 | 'auto'} sm={1 | 'auto'} md={2 | 'auto'} lg={2 | 'auto'} xl={2 | 'auto'} xxl={3 | 'auto'}>
+                
                 {monstras}
+                
             </Row>
         </React.Fragment>
     );
