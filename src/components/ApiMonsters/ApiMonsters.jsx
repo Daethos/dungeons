@@ -12,9 +12,9 @@ import Carousel from 'react-bootstrap/Carousel';
 export default function ApiMonsters({ user, handleLogout }) {
 
     const [monsterData, setMonsterData] = useState(null);
-    const [monstahUrl, setMonstahUrl] = useState('');
+    // const [monstahUrl, setMonstahUrl] = useState('');
     const [monsters, setMonsters] = useState([])
-    const [submitting, setSubmitting] = useState(false);
+    // const [submitting, setSubmitting] = useState(false);
     const [loading, setLoading] = useState(false);
     const [index, setIndex] = useState(0);
 
@@ -43,21 +43,21 @@ export default function ApiMonsters({ user, handleLogout }) {
             }
         }
 
-    useEffect(() => {
-        if (submitting) {
-            fetchMonsters()
-                .then(
-                (response) => {
-                setMonsterData(response)
-                console.log(response, '<- The response in the submitting useEffect')
-            });
+    // useEffect(() => {
+    //     if (submitting) {
+    //         fetchMonsters()
+    //             .then(
+    //             (response) => {
+    //             setMonsterData(response)
+    //             console.log(response, '<- The response in the submitting useEffect')
+    //         });
             
-            setSubmitting(false)
-        }
-    }, [submitting])
+    //         setSubmitting(false)
+    //     }
+    // }, [submitting])
 
     async function handleSubmit(e) {
-        setSubmitting(true);
+        // setSubmitting(true);
         setLoading(true);
         e.preventDefault();
         try {
@@ -78,9 +78,9 @@ export default function ApiMonsters({ user, handleLogout }) {
             })
     }
 
-    function getMonstahUrl(url) {
-        setMonstahUrl(url);
-    }
+    // function getMonstahUrl(url) {
+    //     setMonstahUrl(url);
+    // }
 
     if (loading) {
         return (
@@ -93,69 +93,65 @@ export default function ApiMonsters({ user, handleLogout }) {
     return (
         <Container fluid>
             {
-                monsterData 
-                ? <ApiMonsterData monsters={monsterData} getMonstahUrl={getMonstahUrl} />
-                : // ''
-            // }
+            monsterData 
+            ? <ApiMonsterData monsters={monsterData} key={user} />
+            :
             <React.Fragment>
-                <Row>
-                    <Col md={{span: 4, offset: 4}} className="my-5">
-                <Form onSubmit={handleSubmit} >
-                <Button type="submit" className="btn btn-lg btn-danger">WARNING: This will grab ALL the monsters. Are you prepared?</Button>
-                </Form>
-                    </Col>
-                </Row>
-
-                <Row>
-                    <Col md={{span: 6, offset: 3}}>
-                <Carousel activeIndex={index} id="carousel" onSelect={handleSelect} fade>
-                    <Carousel.Item>
-                    <img 
-                        src={process.env.PUBLIC_URL + '/gifs/monster-button.gif'} 
-                        alt="loading.gif" 
-                        // style={{maxWidth: 100 + 'vw', maxHeight: 100 + 'vh'}} 
-                        id="carousel-one"
-                        className="d-block w-100"
-                    />
-                        <Carousel.Caption>
-                        <h3>Monster Search Form</h3>
-                        <p>Type in the kind of parameter you wish to search, or just say gimme all!</p>
-                        </Carousel.Caption>
-                    </Carousel.Item>
-                    <Carousel.Item>
-                    <img 
-                        src={process.env.PUBLIC_URL + '/gifs/loading.gif'} 
-                        alt="loading.gif" 
-                        // style={{maxWidth: 50 + 'vw', height: 50 + 'vh'}} 
-                        id="loading" 
-                        className="d-block w-100"
-                    />
-                        <Carousel.Caption>
-                        <h3>Loading Screen</h3>
-                        <p>You shall experience a short intermission!</p>
-                        </Carousel.Caption>
-                    </Carousel.Item>
-                    <Carousel.Item>
-                    <img 
-                        src={process.env.PUBLIC_URL + '/gifs/loading.gif'} 
-                        alt="loading.gif" 
-                        // style={{maxWidth: 50 + 'vw', height: 50 + 'vh'}} 
-                        id="loading"
-                        className="d-block w-100" 
-                    />
-                        <Carousel.Caption>
-                        <h3>Monster Retrieval</h3>
-                        <p>
-                            And voila! Hot, delicious monsters served right to you!
-                        </p>
-                        </Carousel.Caption>
-                    </Carousel.Item>
-                </Carousel>
-                
-            {/* // } */}
+            <Row>
+                <Col md={{span: 4, offset: 4}} className="my-5">
+            <Form onSubmit={handleSubmit} >
+            <Button type="submit" className="btn btn-lg btn-danger">WARNING: This will grab ALL the monsters. Are you prepared?</Button>
+            </Form>
                 </Col>
-                </Row>
-                </React.Fragment>
+            </Row>
+            <Row>
+                <Col md={{span: 6, offset: 3}}>
+            <Carousel activeIndex={index} id="carousel" onSelect={handleSelect} fade>
+                <Carousel.Item>
+                <img 
+                    src={process.env.PUBLIC_URL + '/gifs/monster-button.gif'} 
+                    alt="loading.gif" 
+                    // style={{maxWidth: 100 + 'vw', maxHeight: 100 + 'vh'}} 
+                    id="carousel-one"
+                    className="d-block w-100"
+                />
+                    <Carousel.Caption>
+                    <h3>Monster Search Form</h3>
+                    <p>Type in the kind of parameter you wish to search, or just say gimme all!</p>
+                    </Carousel.Caption>
+                </Carousel.Item>
+                <Carousel.Item>
+                <img 
+                    src={process.env.PUBLIC_URL + '/gifs/loading.gif'} 
+                    alt="loading.gif" 
+                    // style={{maxWidth: 50 + 'vw', height: 50 + 'vh'}} 
+                    id="loading" 
+                    className="d-block w-100"
+                />
+                    <Carousel.Caption>
+                    <h3>Loading Screen</h3>
+                    <p>You shall experience a short intermission!</p>
+                    </Carousel.Caption>
+                </Carousel.Item>
+                <Carousel.Item>
+                <img 
+                    src={process.env.PUBLIC_URL + '/gifs/loading.gif'} 
+                    alt="loading.gif" 
+                    // style={{maxWidth: 50 + 'vw', height: 50 + 'vh'}} 
+                    id="loading"
+                    className="d-block w-100" 
+                />
+                    <Carousel.Caption>
+                    <h3>Monster Retrieval</h3>
+                    <p>
+                        And voila! Hot, delicious monsters served right to you!
+                    </p>
+                    </Carousel.Caption>
+                </Carousel.Item>
+            </Carousel>
+            </Col>
+            </Row>
+            </React.Fragment>
             }
         </Container>
     )

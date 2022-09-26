@@ -1,22 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import MonsterCard from '../MonsterCard/MonsterCard';
+import './ApiMonsterData.css'
 import { Link } from 'react-router-dom'
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-
-
-import ApiMonsterDetails from '../ApiMonsterDetails/ApiMonsterDetails';
+import InputGroup from 'react-bootstrap/InputGroup';
 
 export default function ApiMonsterData({ monsters }) {
-    const [monstahUrl, setMonstahUrl] = useState('');
     const [searchText, setSearchText] = useState('');
-    const [error, setError] = useState(null);
     const [allMonsters, setAllMonsters] = useState(monsters);
-    function getMonstahUrl(url) {
-        setMonstahUrl(url);
-    }
 
     async function filterMonsters(results) {
         console.log(results, '<- Results in filterMonsters')
@@ -34,23 +27,36 @@ export default function ApiMonsterData({ monsters }) {
         let views = [];
         for (let i = 0; i < allMonsters.length; i++) {
             views.push(
-                <Col className="results" >
-                    <Card style={{maxWidth: 100 + 'vw', maxHeight: 100 + 'vh'}} className="p-1 my-3" bg="danger">
-                    <Card.Img 
-                        src={process.env.PUBLIC_URL + '/images/' + allMonsters[i].index + '.jpg'} 
-                        // key={allMonsters[i].index} 
-                        alt={allMonsters[i].name} 
-                        id="monster-search-card" />
+                
+
+                <Col className="results">
+                <div className="stat-block wide">
+                <hr className="orange-border" />
+                <div className="section-left">
+                    <div className="creature-heading">
+                        <h1>{allMonsters[i].name}</h1>
+                    </div> 
+                    <svg height="5" width="100%" className="tapered-rule">
+                    <polyline points="0,0 400,2.5 0,5"></polyline>
+                </svg>
                     <Link 
-                        to={"/Monsters/" + allMonsters[i].index} 
-                        key={allMonsters[i].index} 
-                        monstah={allMonsters[i]}
-                        
-                        className="btn btn-danger btn-lg p-2 my-1">
-                        {allMonsters[i].name}
+                            to={'/Monsters/' + allMonsters[i].index}
+                            key={allMonsters[i].index}
+                            monstah={allMonsters[i]}
+                        >
+                    <img 
+                        src={process.env.PUBLIC_URL + '/images/' + allMonsters[i].index + '.jpg'} 
+                        alt={allMonsters[i].name} 
+                        id="monster-card-image" 
+                        // style={{maxWidth: 20 + 'vw', maxHeight: 50 + 'vh'}}
+                    />
                     </Link>
-                    </Card>
+                </div> 
+
+                <hr className="orange-border bottom" />
+                </div>
                 </Col>
+
             )
         }
         return (views)
@@ -74,39 +80,38 @@ export default function ApiMonsterData({ monsters }) {
         return filteredResults
     }, [searchText, monsters])
 
-    // function handleSubmit(event) {
-    //     event.preventDefault()      
-    //     setAllMonsters([]);
-    //     if (searchText == '') {
-    //         setAllMonsters([]);
-    //         return
-    //     }
-
-    //     const filteredResults = monsters.filter(m => m['index'].includes(searchText)) 
-    //     console.log(filteredResults, '<- The filtered results')       
-    //     filterMonsters(filteredResults)
-    //     return filteredResults
-        
-    // }
-
     const fullMonsters = monsters.map((monster) => {
         return (
-            <Col>
-            <Card style={{maxWidth: 100 + 'vw', maxHeight: 100 + 'vh'}} className="p-1 my-3" bg="danger">
-                <Card.Img 
-                    src={process.env.PUBLIC_URL + '/images/' + monster.index + '.jpg'} 
-                    alt={monster.name} 
-                    id="monster-search-card" />
-                <Link 
-                    to={"/Monsters/" + monster.index} 
-                    key={monster.index} 
-                    monstah={monster}
-                    getMonstahUrl={getMonstahUrl} 
-                    className="btn btn-danger btn-lg p-2 my-1">
-                    {monster.name}
-                </Link>
-                </Card>
+
+            <React.Fragment>
+                <Col>
+                <div className="stat-block wide">
+                <hr className="orange-border" />
+                <div className="section-left">
+                    <div className="creature-heading">
+                        <h1>{monster.name}</h1>
+                    </div> 
+                    <svg height="5" width="100%" className="tapered-rule">
+                    <polyline points="0,0 400,2.5 0,5"></polyline>
+                </svg>
+                    <Link 
+                            to={'/Monsters/' + monster.index}
+                            key={monster.index}
+                            monstah={monster}
+                        >
+                    <img 
+                        src={process.env.PUBLIC_URL + '/images/' + monster.index + '.jpg'} 
+                        alt={monster.name} 
+                        id="monster-card-image" 
+                        // style={{maxWidth: 20 + 'vw', maxHeight: 50 + 'vh'}}
+                    />
+                    </Link>
+                </div> 
+                
+                <hr className="orange-border bottom" />
+                </div>
                 </Col>
+            </React.Fragment>
             );
     }) 
 
@@ -115,15 +120,40 @@ export default function ApiMonsterData({ monsters }) {
         <React.Fragment>
         <Row>
         <Form className="searchForm" >
-        <Col md={{span: 8, offset: 4}} className="my-5" >
-            <h1>Type Any Part of the Monster's Name!</h1>
-        <input className="headerSearchInput" placeholder="Type Here!" type="text" value={searchText} onChange={handleChange} />
-        <h1>Results for {searchText}: {allMonsters.length} </h1>
+        <Col md={{offset: 4}} className="my-5" >
+            <h1>Search for any Monster*! From the SRD</h1>
+        </Col>
+        <Col md={{}} className="my-5" >
+
+            <InputGroup className="bg-black">
+                <InputGroup.Text className="bg-black">
+                <img 
+                        src={process.env.PUBLIC_URL + '/images/awakened-shrub.png'} 
+                        alt="Awakened Shrub" 
+                        style={{maxWidth: 5 + 'vw', maxHeight: 5 + 'vh'}}
+                    />
+                </InputGroup.Text>
+                <Form.Control 
+                    className="headerSearchInput bg-black text-white" 
+                    placeholder="What Monster are you looking for?" 
+                    type="text" value={searchText} 
+                    onChange={handleChange}
+                />
+            </InputGroup>
+        </Col>
+        <Col md={{span: 8, offset: 5}} className="my-5" >
+            <h1>Results for {searchText}: {allMonsters.length} </h1>
         {/* <input type="submit" value="Search"></input> */}
         </Col>
         </Form>
         </Row>
-        <Row className="justify-content-md-center" style={{maxWidth: 100 + 'vw', maxHeight: 100 + 'vh'}} xs={3 | 'auto'} sm={4 | 'auto'} md={5 | 'auto'} lg={6 | 'auto'} xl={6 | 'auto'} xxl={6 | 'auto'}>
+        {/* <Row 
+            className="justify-content-md-center" 
+            style={{maxWidth: 100 + 'vw', maxHeight: 100 + 'vh'}} 
+            xs={3 | 'auto'} sm={4 | 'auto'} md={5 | 'auto'} lg={6 | 'auto'} xl={6 | 'auto'} xxl={6 | 'auto'}
+        > */}
+            <Row>
+        
                 {   
                     monsters.length > 0 
                     ? <>
@@ -131,25 +161,9 @@ export default function ApiMonsterData({ monsters }) {
                     </>
                     : <h3>Monsters Not Found</h3>    
                 }
-        {/* {monsters.map((monster) => {
-            return (
-                <Card style={{maxWidth: 100 + 'vw', maxHeight: 100 + 'vh'}} className="p-1 my-3" bg="danger">
-                    <Card.Img 
-                        src={process.env.PUBLIC_URL + '/images/' + monster.index + '.jpg'} 
-                        alt={monster.name} 
-                        id="monster-search-card" />
-                    <Link 
-                        to={"/Monsters/" + monster.index} 
-                        key={monster.index} 
-                        monstah={monster}
-                        getMonstahUrl={getMonstahUrl} 
-                        className="btn btn-danger btn-lg p-2 my-1">
-                        {monster.name}
-                    </Link>
-                    </Card>
-                
-                );
-        })}  */}
+        
+        </Row>
+        <Row>
         {fullMonsters}
         
         </Row>

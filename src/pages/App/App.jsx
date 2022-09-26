@@ -38,7 +38,7 @@ function App() {
     setUser(null);
   }
 
-  function getMonstahUrl(url) {
+  function getmonstahurl(url) {
     setMonstahUrl(url);
   }
 
@@ -64,7 +64,6 @@ function App() {
     }
   }
 
-
   async function handleColor(e) {
     setLoading(true);
     e.preventDefault();
@@ -79,10 +78,7 @@ function App() {
     }
   }
 
-  // background-image: url(../public/images/Y13.png);
-
   const myStyle = {
-      
       height: 100 + 'vh',
       width: 100 + 'vw',
       backgroundSize: 'cover',
@@ -98,12 +94,6 @@ function App() {
 
   if (user) {
     return (
-      // <div style={{
-      // { backgroundState 
-      //   ? backgroundImage: 'url(/images/' + backgroundState + ')'
-      //   : backgroundImage: 'url(/images/Y13.png)' 
-      // }
-      // }} id="user-background">
       <div 
       style={
         backgroundState 
@@ -112,23 +102,16 @@ function App() {
     } 
       id="user-background"
       > 
-      <NavBar user={user} setUser={setUser} handleLogout={handleLogout} getMonstahUrl={getMonstahUrl} handleColor={handleColor} />
+      <NavBar user={user} setUser={setUser} handleLogout={handleLogout} getmonstahurl={getmonstahurl} handleColor={handleColor} />
       <Routes>
         <Route path="/" element={<UserProfile loggedUser={user} monstra={monstra} setMonstra={setMonstra} setUser={setUser} handleSignUpOrLogin={handleSignUpOrLogin} handleLogout={handleLogout} />} />
         <Route path="/Monsters" element={<ApiMonsters user={user} handleLogout={handleLogout} />} />
         <Route path="/Monsters/Data" element={<ApiMonsterData user={user} handleLogout={handleLogout} />} />
-        <Route path="/Monsters/:monsterName" element={<ApiMonsterDetails user={user} handleLogout={handleLogout} getMonstahUrl={getMonstahUrl} handleMonster={handleMonster} />} />
+        <Route path="/Monsters/:monsterName" element={<ApiMonsterDetails user={user} handleLogout={handleLogout} getmonstahurl={getmonstahurl} handleMonster={handleMonster} />} />
         <Route path="/:id/monster" element={<UserMonsters loggedUser={user} />} />
         <Route path="/Spells" element={<ApiSpells user={user}/>} />
         <Route path="/Characters" element={<ApiCharacters user={user} />} />
-        {/* <Route
-          path="/login"
-          element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}
-        />
-        <Route
-          path="/signup"
-          element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin} />}
-        /> */}
+
         <Route path="/Authorization" element={<AuthPage setUser={setUser} handleSignUpOrLogin={handleSignUpOrLogin} />} />
       </Routes>
       </div>
@@ -138,14 +121,7 @@ function App() {
 
   return (
     <Routes>
-      {/* <Route
-        path="/login"
-        element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}
-      />
-      <Route
-        path="/signup"
-        element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin} />}
-      /> */}
+
       <Route path="/Authorization" element={<AuthPage setUser={setUser} handleSignUpOrLogin={handleSignUpOrLogin} />} />
       <Route path="/*" element={<Navigate to="/Authorization" />} />
     </Routes>

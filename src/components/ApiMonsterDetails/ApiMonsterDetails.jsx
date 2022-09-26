@@ -13,19 +13,22 @@ import Form from 'react-bootstrap/Form';
 
 // Different 'translation' than how the monster model is structured. Patience!
 
-export default function ApiMonsterDetails({ monster, key, getMonstahUrl, loggedUser, handleMonster }) {
+export default function ApiMonsterDetails({ monster, key, getmonstahurl, loggedUser, handleMonster }) {
     const [monstroso, setMonstroso] = useState({});
     const [monsterImage, setMonsterImage] = useState('');
     const [monstra, setMonstra] = useState([])
     const monsterUrl = 'https://www.dnd5eapi.co/api/monsters/'
 
     const { monsterName } = useParams();
-    getMonstahUrl(monsterName);
+    // getmonstahurl(monsterName); <- This was trying to update state in App.jsx every time
+    // I put this in the useEffect so it does not keep trying to update the App page
+    // Instead it will only setState when it is changint the actualy monsterName parameter
 
     useEffect(() => {
         const url = `${monsterUrl}${monsterName}`;
 
         async function fetchUrls() {
+            getmonstahurl(monsterName);
             console.log(monsterName, '<- Monster Data in Monster Detail')
             try {
                 
