@@ -5,6 +5,7 @@ import NavBar from '../../components/NavBar/NavBar';
 import UserProfile from '../UserProfile/UserProfile';
 import './App.css';
 import userService from "../../utils/userService";
+import * as monstersAPI from '../../utils/monsterApi';
 import ApiMonsters from "../../components/ApiMonsters/ApiMonsters";
 import UserMonsters from "../../components/UserMonsters/UserMonsters";
 // import UserCharacters from '../../components/UserCharacters/UserCharacters'
@@ -15,8 +16,6 @@ import AuthPage from "../AuthPage/AuthPage";
 import ApiCharacters from "../../components/ApiCharacters/ApiCharacters";
 import Container from 'react-bootstrap/Container';
 import Loading from "../../components/Loading/Loading";
-import NewApiMonsters from "../../components/NewApiMonsters/NewApiMonsters";
-import NewApiMonsterData from "../../components/NewApiMonsterData/NewApiMonsterData";
 
 function App() {
   const [user, setUser] = useState(userService.getUser()); // getUser decodes our JWT token, into a javascript object
@@ -26,6 +25,7 @@ function App() {
   const [backgroundState, setBackgroundState] = useState('');
   const [loading, setLoading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [monstra, setMonstra] = useState([])
   
 
 
@@ -41,6 +41,18 @@ function App() {
   function getMonstahUrl(url) {
     setMonstahUrl(url);
   }
+
+  async function handleMonster(monstroso) {
+    try {
+        console.log(monstroso, '<- Monstroso in handleMonster start')
+        const response = await monstersAPI.create(monstroso);
+        console.log(response, '<- Response in handleMonster');
+        setMonstra([response.data, ...monstra]);
+        // setMonstra([...monstra, response.data]);
+    } catch (err) {
+        console.log(err.message, '<- This is the error in handleMonster')
+    }
+}
 
   const userBackground = document.getElementById('user-background');
 
@@ -102,15 +114,13 @@ function App() {
       > 
       <NavBar user={user} setUser={setUser} handleLogout={handleLogout} getMonstahUrl={getMonstahUrl} handleColor={handleColor} />
       <Routes>
-        <Route path="/" element={<UserProfile loggedUser={user}  setUser={setUser} handleSignUpOrLogin={handleSignUpOrLogin} handleLogout={handleLogout} />} />
+        <Route path="/" element={<UserProfile loggedUser={user} monstra={monstra} setMonstra={setMonstra} setUser={setUser} handleSignUpOrLogin={handleSignUpOrLogin} handleLogout={handleLogout} />} />
         <Route path="/Monsters" element={<ApiMonsters user={user} handleLogout={handleLogout} />} />
         <Route path="/Monsters/Data" element={<ApiMonsterData user={user} handleLogout={handleLogout} />} />
-        <Route path="/Monsters/:monsterName" element={<ApiMonsterDetails user={user} handleLogout={handleLogout} getMonstahUrl={getMonstahUrl} />} />
+        <Route path="/Monsters/:monsterName" element={<ApiMonsterDetails user={user} handleLogout={handleLogout} getMonstahUrl={getMonstahUrl} handleMonster={handleMonster} />} />
         <Route path="/:id/monster" element={<UserMonsters loggedUser={user} />} />
         <Route path="/Spells" element={<ApiSpells user={user}/>} />
         <Route path="/Characters" element={<ApiCharacters user={user} />} />
-        <Route path="/MonsterSearch" element={<NewApiMonsters user={user} setUser={setUser} handleSignUpOrLogin={handleSignUpOrLogin} handleLogout={handleLogout} /> } />
-        <Route path="/MonsterSearch/Data" element={<NewApiMonsterData user={user} handleLogout={handleLogout} />} />
         {/* <Route
           path="/login"
           element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}

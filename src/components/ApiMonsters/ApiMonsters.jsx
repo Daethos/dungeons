@@ -12,7 +12,6 @@ import Carousel from 'react-bootstrap/Carousel';
 export default function ApiMonsters({ user, handleLogout }) {
 
     const [monsterData, setMonsterData] = useState(null);
-    // const [completedMonsterData, setCompletedMonsterData] = useState(false);
     const [monstahUrl, setMonstahUrl] = useState('');
     const [monsters, setMonsters] = useState([])
     const [submitting, setSubmitting] = useState(false);
@@ -22,67 +21,27 @@ export default function ApiMonsters({ user, handleLogout }) {
     const handleSelect = (selectedIndex, e) => {
         setIndex(selectedIndex);
     };
-    // let monster = [];
 
     const monsterUrl = 'https://www.dnd5eapi.co/api/monsters/';
     
 
-    // useCallback basically CACHES our fetchMonsters function, so it doesn't change between
-    // re-renders of the comment. Const fetchMonsters = useCallback(async () => { }, [dependency: monsterData])
-    // const makes it so it's not a 'new' function on re-render... Provided that the monsterData did not change
-    // const fetchMonsters = useCallback(async () => {
-    // const fetchMonsters = async () => {
-    // useEffect(() => {
         async function fetchMonsters() {
             try {
-                
                 const response = await fetch(monsterUrl);
                 console.log(response);
                 if (response.ok) {
                 const data = await response.json();
                 console.log(data.results, '<- Monster Data!');
                 setMonsterData(data.results)
-                // setMonsterData(data.results);
-                
-                
                 let monsterArr = [];
-                // let monsterUrls = [];
                 monsterArr = data.results;
                 console.log(monsterArr, ' <- An Array of Monsters!')
                 return monsterArr
-                // console.log(monsterArr,'<- monsterArr Post Set State')
-                // monsterArr.forEach((monster) => {
-                //     const monstah = {
-                //         key: monster.index,
-                //         name: monster.name,
-                //         index: monsterUrl+monster.index,
-                //     }
-                //     // console.log(monstah, '<- New Monstah to consume!')
-                //     monsterUrls.push(monstah);  
-                //     // console.log(monsterUrls, '<- The full array of Monstahs!')
-                    
-                // });
-                
-                    // setMonsterData(monsterUrls) // .then((res) => { console.log(res, '<-res embedded')})
-                    // console.log(monsterUrls,'<- monsterUrls Post Set State')
                 }
             } catch (err) {
                 console.log(err, '<- Registered Error');
             }
         }
-
-    // useEffect(async () => {
-    //     await fetchMonsters()
-    //     .then((result) => {
-    //         console.log(result, '<- What result are you?')
-
-    //     })
-    // }, [monsterData])
-    // fetchMonsters()
-        // .then(
-        //     monsterData.map((result) => {
-        //     console.log(result, '<-What result are you?')
-        // }))
 
     useEffect(() => {
         if (submitting) {
@@ -110,42 +69,14 @@ export default function ApiMonsters({ user, handleLogout }) {
             console.log(err.message, ' <- Error handling Monstroso!')
             setLoading(false);
         }
-
-        // useEffect(() => {
-
-        // }, [submitting])
-
-
-        // fetchMonsters().then((response) => {
-        //     console.log(response, '<- The response in the handlesubmit')
-        //     setMonsters([...response])
-            // setLoading(false)
-            // console.log(response, '<- The response in the handlesubmit')
-        }
+    }
     
-
     const monstra = async () => {
         await fetchMonsters()
             .then((result) => {
                 console.log(result, '<- What result are you?')
-                // setMonsters(result)
             })
     }
-
-    // useEffect(() => {
-    //     const getMonsterData = async () => {
-    //         monsterData.map((monster) => {
-    //             console.log(monster, '<- And what are you, stranger?')
-    //             return (
-    //                 <div>
-    //                 <ApiMonsterData monster={monsterData} key={monster.index} getMonstahUrl={getMonstahUrl} />
-    //                 </div>
-    //             )
-    //         })
-    //     }
-    //     getMonsterData();
-    // }, [completedMonsterData])
-
 
     function getMonstahUrl(url) {
         setMonstahUrl(url);
@@ -154,16 +85,13 @@ export default function ApiMonsters({ user, handleLogout }) {
     if (loading) {
         return (
         <>
-            {/* <Loading handleLogout={handleLogout} user={user} /> */}
             <Loading user={user} handleLogout={handleLogout} />
         </>
         );
     }
 
-
     return (
         <Container fluid>
-            
             {
                 monsterData 
                 ? <ApiMonsterData monsters={monsterData} getMonstahUrl={getMonstahUrl} />
@@ -180,7 +108,7 @@ export default function ApiMonsters({ user, handleLogout }) {
 
                 <Row>
                     <Col md={{span: 6, offset: 3}}>
-                <Carousel  activeIndex={index} id="carousel" onSelect={handleSelect} fade>
+                <Carousel activeIndex={index} id="carousel" onSelect={handleSelect} fade>
                     <Carousel.Item>
                     <img 
                         src={process.env.PUBLIC_URL + '/gifs/monster-button.gif'} 
@@ -188,8 +116,6 @@ export default function ApiMonsters({ user, handleLogout }) {
                         // style={{maxWidth: 100 + 'vw', maxHeight: 100 + 'vh'}} 
                         id="carousel-one"
                         className="d-block w-100"
-                        // style={{alignSelf: 'center'}} 
-                        
                     />
                         <Carousel.Caption>
                         <h3>Monster Search Form</h3>

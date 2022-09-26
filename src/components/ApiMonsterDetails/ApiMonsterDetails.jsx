@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import './ApiMonsterDetails.css';
 import { useParams, Navigate } from 'react-router-dom';
 import * as monstersAPI from '../../utils/monsterApi';
+import MonsterCard from "../MonsterCard/MonsterCard";
 import AddMonster from '../AddMonster/AddMonster';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
@@ -11,7 +12,7 @@ import Form from 'react-bootstrap/Form';
 
 
 
-export default function ApiMonsterDetails({ monster, key, getMonstahUrl, loggedUser }) {
+export default function ApiMonsterDetails({ monster, key, getMonstahUrl, loggedUser, handleMonster }) {
     const [monstroso, setMonstroso] = useState({});
     const [monsterImage, setMonsterImage] = useState('');
     const [monstra, setMonstra] = useState([])
@@ -47,16 +48,17 @@ export default function ApiMonsterDetails({ monster, key, getMonstahUrl, loggedU
         fetchUrls();
     }, []);
 
-    async function handleMonster(monstroso) {
-        try {
-            console.log(monstroso, '<- Monstroso in handleMonster start')
-            const response = await monstersAPI.create(monstroso);
-            console.log(response, '<- Response in handleMonster');
-            setMonstra([response.data, ...monstra]);
-        } catch (err) {
-            console.log(err.message, '<- This is the error in handleMonster')
-        }
-    }
+    // async function handleMonster(monstroso) {
+    //     try {
+    //         console.log(monstroso, '<- Monstroso in handleMonster start')
+    //         const response = await monstersAPI.create(monstroso);
+    //         console.log(response, '<- Response in handleMonster');
+    //         setMonstra([response.data, ...monstra]);
+    //         // setMonstra([...monstra, response.data]);
+    //     } catch (err) {
+    //         console.log(err.message, '<- This is the error in handleMonster')
+    //     }
+    // }
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -124,7 +126,8 @@ export default function ApiMonsterDetails({ monster, key, getMonstahUrl, loggedU
             </button>
         </Form>
         </Col>
-        <Row className="justify-content-md-center" style={{maxWidth: 100 + 'vw', maxHeight: 100 + 'vh'}} xs={1 | 'auto'} sm={1 | 'auto'} md={1 | 'auto'} lg={1 | 'auto'} xl={1 | 'auto'} xxl={2 | 'auto'}>
+        <MonsterCard monsters={monstroso} />
+        <Row className="justify-content-md-center" style={{maxWidth: 100 + 'vw', maxHeight: 100 + 'vh'}} xs={1 | 'auto'} sm={1 | 'auto'} md={1 | 'auto'} lg={2 | 'auto'} xl={2 | 'auto'} xxl={2 | 'auto'}>
         <Col id="user-monsters">
             <Card className="" id="user-monster-card" bg="danger" style={{maxWidth: 100 + 'vw', maxHeight: 100 + 'vh'}}>
             <Card.Img src={process.env.PUBLIC_URL + monsterImage} key={monstroso.index} alt={monstroso.name} style={{maxWidth: 100 + 'vw', height: 100 + 'vh'}} id="monster-image" />

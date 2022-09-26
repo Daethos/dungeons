@@ -66,7 +66,9 @@ const monsterSchema = new Schema(
             type: [],
             default: null
         }
-    }
-)
+    },
+    {
+        timestamps: true
+})
 
 module.exports = mongoose.model('Monster', monsterSchema);
