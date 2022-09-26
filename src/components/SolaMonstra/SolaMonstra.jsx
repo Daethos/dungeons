@@ -138,7 +138,7 @@ export default function SolaMonstra({ monster }) {
                     <div className="property-line first last">
                         <h4>Proficiencies</h4>
                         {
-                        monster.proficiencies?.[0].proficiency?.name
+                        monster.proficiencies?.[0]?.proficiency.name
                         ? <p> {monster.proficiencies[0].proficiency.name} </p>
                         : ''
                         }

@@ -63,24 +63,16 @@ export default function ApiMonsterDetails({ monster, key, getMonstahUrl, loggedU
 
     function handleSubmit(e) {
         e.preventDefault();
-        const url = `${monsterUrl}${monsterName}`;
-
         async function fetchUrls() {
             console.log(monsterName, '<- Monster Data in Monster Detail')
             try {
-                
-                // const res = await fetch(url);
-                //     console.log(res);
-                //     if (res.ok) {
-                        // const newData = await res.json();
-                        // console.log(newData, '<- Can you be my favorite Monster?');
-                        const formData = new FormData();
-                        let required = ['special_abilities', 'proficiencies', 'damage_vulnerabilities', 'damage_resistances',  'damage_immunities', 'condition_immunities', 'actions', 'senses', 'legendary_actions', 'speed', 'index', 'name', 'size', 'type', 'alignment', 'armor_class', 'hit_points', 'hit_dice', 'hit_points_roll', 'strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma', 'languages', 'challenge_rating', 'xp']
-                        for (let key in monstroso) {
-                            if (required.includes(key)) {
-                                formData[key] = monstroso[key]
-                            }
-                        }
+                const formData = new FormData();
+                let required = ['special_abilities', 'proficiencies', 'damage_vulnerabilities', 'damage_resistances',  'damage_immunities', 'condition_immunities', 'actions', 'senses', 'legendary_actions', 'speed', 'index', 'name', 'size', 'type', 'alignment', 'armor_class', 'hit_points', 'hit_dice', 'hit_points_roll', 'strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma', 'languages', 'challenge_rating', 'xp']
+                for (let key in monstroso) {
+                    if (required.includes(key)) {
+                        formData[key] = monstroso[key]
+                    }
+                }
                         console.log(
                             formData.forEach((item) => console.log(item)),
                             '<- The current spec of formData');
