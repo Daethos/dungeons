@@ -14,7 +14,7 @@ export default function NavBar({ user, setUser, handleLogOut, handleColor }) {
         setUser(null);
     }
     return (
-        <Navbar bg="black" expand="lg">
+        <Navbar className="" expand="lg" id="navbar">
         <Container fluid>
         
         {/* &nbsp;&nbsp;<span className="text-info">{user?.email}</span> */}
@@ -23,7 +23,7 @@ export default function NavBar({ user, setUser, handleLogOut, handleColor }) {
             <img src={user?.photoUrl} alt={user?.photoUrl} id="nav-pic" />
         </Link>
         <Navbar.Toggle type="button" aria-controls="basic-navbar-nav" className="bg-info" />
-        <Navbar.Collapse id="basic-navbar-nav" className="">
+        <Navbar.Collapse id="basic-navbar-nav" className="links">
         &nbsp;&nbsp;
         <Link to="/Monsters" className="text-info btn btn-lg btn-outline-black">Monsters</Link>
         &nbsp;&nbsp;
@@ -38,7 +38,7 @@ export default function NavBar({ user, setUser, handleLogOut, handleColor }) {
             <NavDropdown.Item type="submit" onClick={handleColor} name="Y13" value="Y13" className="text-warning btn btn-lg">Yellow</NavDropdown.Item>
         </NavDropdown>
         {   user 
-        ? <Link to="" onClick={handleLogOut} className="text-danger btn btn-lg btn-outline-black">Log Out</Link>
+        ? <Link to="" onClick={handleLogOut} className="text-warning btn btn-lg btn-outline-black">Log Out</Link>
         : <Link to="/login" className="text-success btn btn-lg btn-outline-black">Log In</Link>
         }
         

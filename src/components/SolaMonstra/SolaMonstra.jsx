@@ -55,8 +55,13 @@ export default function SolaMonstra({ monster, deleteMonster }) {
 
                 ?
                 
-                <Row className="justify-content-md-center" style={{maxWidth: 100 + 'vw', maxHeight: 100 + 'vh'}} xs={1 | 'auto'} sm={1 | 'auto'} md={2 | 'auto'} lg={2 | 'auto'} xl={2 | 'auto'} xxl={3 | 'auto'}>
-            <div className="stat-block wide">
+                <Row 
+                    className="justify-content-md-center" 
+                    // style={{maxWidth: 100 + 'vw', maxHeight: 100 + 'vh'}} 
+                    xs={1 | 'auto'} sm={1 | 'auto'} md={2 | 'auto'} lg={2 | 'auto'} xl={2 | 'auto'} xxl={3 | 'auto'}
+                >
+                    
+            <Col className="stat-block wide">
             <hr className="orange-border" />
             <div className="section-left">
                 <div className="creature-heading">
@@ -400,7 +405,12 @@ export default function SolaMonstra({ monster, deleteMonster }) {
                     : ''
                     }
                 </div> 
-                <img src={process.env.PUBLIC_URL + '/images/' + monster.index + '.jpg'} alt={monster.name} id="monster-card-image" />
+                <img 
+                    src={process.env.PUBLIC_URL + '/images/' + monster.index + '.jpg'} 
+                    alt={monster.name} 
+                    // id="monster-card-image"
+                    style={{maxWidth: 100 + '%', maxHeight: 75 + '%'}} 
+                />
             </div> 
             <div className="section-right">
                 <div className="actions">
@@ -543,9 +553,10 @@ export default function SolaMonstra({ monster, deleteMonster }) {
                     
                 </div> 
             </div> 
-            <button className="btn" value={monster._id} onClick={deleteMonster}>Delete Monster</button>
+            <button className="btn btn-outline-danger" value={monster._id} onClick={deleteMonster}>Delete Monster</button>
             <hr className="orange-border bottom" />
-            </div>
+            
+            </Col>
             </Row>
         : '' 
         }

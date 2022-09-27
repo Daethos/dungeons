@@ -47,8 +47,8 @@ export default function ApiMonsterData({ monsters }) {
                     <img 
                         src={process.env.PUBLIC_URL + '/images/' + allMonsters[i].index + '.jpg'} 
                         alt={allMonsters[i].name} 
-                        id="monster-card-image" 
-                        // style={{maxWidth: 20 + 'vw', maxHeight: 50 + 'vh'}}
+                        // id="monster-card-image" 
+                        style={{maxWidth: 100 + '%', maxHeight: 75 + '%'}}
                     />
                     </Link>
                 </div> 
@@ -84,8 +84,8 @@ export default function ApiMonsterData({ monsters }) {
         return (
 
             <React.Fragment>
-                {/* <Col> */}
-                <Col className="stat-block wide">
+                <Col>
+                <div className="stat-block wide">
                 <hr className="orange-border" />
                 <div className="section-left">
                     <div className="creature-heading">
@@ -109,8 +109,8 @@ export default function ApiMonsterData({ monsters }) {
                 </div> 
                 
                 <hr className="orange-border bottom" />
+                </div>
                 </Col>
-                {/* </Col> */}
             </React.Fragment>
             );
     }) 
@@ -163,7 +163,7 @@ export default function ApiMonsterData({ monsters }) {
                 }
         
         </Row>
-        <Row>
+        <Row >
         {fullMonsters}
         
         </Row>

@@ -4,7 +4,7 @@ import './Loading.css';
 export default function Loading({ user, handleLogout }) {
     // Try a different size than xs={12} for perhaps more interesting resutls! Maybe other colors
     return (
-        <div className="bg-black" id="placeholder"> 
+        <div className="" id="placeholder"> 
         <Placeholder as="h1" animation="glow">
             <Placeholder className="" xs={12} bg="danger" size="lg"  />
         </Placeholder>

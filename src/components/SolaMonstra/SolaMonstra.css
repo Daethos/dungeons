@@ -12,6 +12,7 @@
 .stat-block.wide .section-right { display: inline-block; vertical-align: top; width: 48%; text-align: left; }
 .stat-block.wide .section-left { margin-right: 1.5%; }
 .stat-block.wide .section-right { margin-left: 1.5%; }
+
 @media screen and (max-width: 675px){
 	.stat-block.wide{
 		min-width: 280px;
@@ -21,12 +22,12 @@
         display: block;
         width: 100%;
 	}
-	.stat-block.wide .section-left{
+	/* .stat-block.wide .section-left{
 	    margin: 0;
 	}
 	.stat-block.wide .section-right{
 		margin: 0;
-	}
+	} */
 }
 .orange-border{
     display: block;
@@ -173,8 +174,8 @@
 		page-break-after: always;
 	}
 }
-@media screen and (max-width: 575px){
+/* @media screen and (max-width: 575px){
 	.stat-block{
 		margin: 20px 0;
 	}
-}
+} */

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ApiMonsterData from "../ApiMonsterData/ApiMonsterData";
+import * as dndAPI from '../../utils/dndApi'
 import Loading from "../Loading/Loading";
 // import { Link } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
@@ -62,11 +63,30 @@ export default function ApiMonsters({ user, handleLogout }) {
         e.preventDefault();
         try {
             const monstroso = await monstra();
-            // console.log(monstroso[0], ' <- Monstroso!')
+            
             setMonsters(monstroso)
             setLoading(false);
         } catch (err)  {
             console.log(err.message, ' <- Error handling Monstroso!')
+            setLoading(false);
+        }
+    }
+
+    async function handleSubmitting(e) {
+        setLoading(true);
+        e.preventDefault();
+        try {
+            const data = await dndAPI.index()
+            console.log(data, ' <-  What data came back to react? ')
+
+            // const res = await data.json();
+            // console.log(res.results, '<- What is the res of the data')
+            console.log(data, ' <-  What data came back to react? ')
+            // setMonsterData(data)
+            // setMonsters(data)
+            setLoading(false);
+        } catch (err) {
+            console.log(err.message, '<- Error in new API Call')
             setLoading(false);
         }
     }
@@ -94,7 +114,7 @@ export default function ApiMonsters({ user, handleLogout }) {
         <Container fluid>
             {
             monsterData 
-            ? <>Hello!
+            ? 
             <ApiMonsterData monsters={monsterData} 
             key=
             {
@@ -105,23 +125,17 @@ export default function ApiMonsters({ user, handleLogout }) {
                 })
             } 
             />
-            
 
-            {/* {monsterData.map((monsters) => {
-                return (
-                    <ApiMonsterData
-                        monsters={monsterData}
-                        key={monsters.index}
-                    />
-                )
-            })} */}
-            </>
+        
             :
             <React.Fragment>
             <Row>
                 <Col md={{span: 4, offset: 4}} className="my-5">
             <Form onSubmit={handleSubmit} >
-            <Button type="submit" className="btn btn-lg btn-danger">WARNING: This will grab ALL the monsters. Are you prepared?</Button>
+            <Button type="submit" className="btn btn-lg btn-danger my-5">WARNING: This will grab ALL the monsters. Are you prepared?</Button>
+            </Form>
+            <Form onSubmit={handleSubmitting} >
+            <Button type="submit" className="btn btn-lg btn-danger">WARNING: This uses the backend ^_^</Button>
             </Form>
                 </Col>
             </Row>
