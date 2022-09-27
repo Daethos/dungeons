@@ -62,7 +62,7 @@ export default function ApiMonsters({ user, handleLogout }) {
         e.preventDefault();
         try {
             const monstroso = await monstra();
-            console.log(monstroso[0], ' <- Monstroso!')
+            // console.log(monstroso[0], ' <- Monstroso!')
             setMonsters(monstroso)
             setLoading(false);
         } catch (err)  {
@@ -94,7 +94,28 @@ export default function ApiMonsters({ user, handleLogout }) {
         <Container fluid>
             {
             monsterData 
-            ? <ApiMonsterData monsters={monsterData} key={user} />
+            ? <>Hello!
+            <ApiMonsterData monsters={monsterData} 
+            key=
+            {
+                monsterData.map((m) => {
+                    return (
+                        m.index
+                    )
+                })
+            } 
+            />
+            
+
+            {/* {monsterData.map((monsters) => {
+                return (
+                    <ApiMonsterData
+                        monsters={monsterData}
+                        key={monsters.index}
+                    />
+                )
+            })} */}
+            </>
             :
             <React.Fragment>
             <Row>

@@ -1,10 +1,10 @@
 #monster-card { text-align: center; font-size: 13.5px; line-height: 1.2em; }
 #monster-card  *{ box-sizing: border-box; max-width: 100%; font-family: 'Noto Sans', 'Myriad Pro', Calibri, Helvetica, Arial, sans-serif;
 }
-#monster-card-image {
+/* #monster-card-image {
     max-width: 15vw;
     max-height: 30vw;
-}
+} */
 
 .stat-block { text-align: left; margin: 20px; display: inline-block; vertical-align: top; width: 17%; min-width:280px; background: #FDF1DC; padding: 5px 10px 20px; box-shadow: 0 0 1.5em #867453; }
 .stat-block.wide { width: 65%; min-width: 560px; text-align: center; }

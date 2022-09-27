@@ -96,7 +96,7 @@ export default function ApiMonsterData({ monsters }) {
                 </svg>
                     <Link 
                             to={'/Monsters/' + monster.index}
-                            key={monster.index}
+                            key={monster.name}
                             monstah={monster}
                         >
                     <img 
