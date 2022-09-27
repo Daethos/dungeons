@@ -5,7 +5,27 @@ const bcrypt = require('bcrypt');
 
 module.exports = {
     create,
-    index
+    index,
+    delete: deleteMonster
+    // update: editMonster
+}
+
+// async function editMonster(req, res) {
+//     try {
+//         console.log(req.body, '<- Ooooh Boy!')
+//     } catch (err) {
+//         console.log(err.message, '<- Error in editing the monster!')
+//     }
+// }
+
+async function deleteMonster(req, res) {
+    try {
+        await Monster.findByIdAndDelete(req.params.id)
+        res.status(201).json({});
+    } catch (err) {
+        console.log(err.message, '<- Error in delete Monster function')
+        res.status(400).json({ err })
+    }
 }
 
 async function create(req, res) {

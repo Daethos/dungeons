@@ -27,11 +27,13 @@ export default function ApiMonsterDetails({ monster, key, getmonstahurl, loggedU
     useEffect(() => {
         const url = `${monsterUrl}${monsterName}`;
 
+        // TODO: Put API in Backend
+        // FIXME: Put API in Backend
+
         async function fetchUrls() {
             getmonstahurl(monsterName);
             console.log(monsterName, '<- Monster Data in Monster Detail')
             try {
-                
                 const res = await fetch(url);
                     console.log(res);
                     if (res.ok) {

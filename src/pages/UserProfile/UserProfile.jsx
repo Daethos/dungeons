@@ -8,6 +8,7 @@ import * as monstersAPI from '../../utils/monsterApi';
 import UserMonsters from '../../components/UserMonsters/UserMonsters';
 // import NavBar from '../../components/NavBar/NavBar';
 import Container from 'react-bootstrap/Container';
+import SolaMonstra from '../../components/SolaMonstra/SolaMonstra';
 
 
 export default function UserProfile({ loggedUser, handleLogout, setUser }) {
@@ -82,27 +83,30 @@ export default function UserProfile({ loggedUser, handleLogout, setUser }) {
     }, [searchText, monsters])
 
     useEffect(() => {
-        async function getMonsters() {
-            try {
-                const response = await monstersAPI.getAll();
-                console.log(response, ' <- the response in getMonsters')
-                // setMonstra([...response.data])
-                setMonsters([...response.data])
-            } catch (err) {
-                console.log(err.message);
-            }
-        }
         getMonsters()
     }, [])
-    
-    
+
+    async function getMonsters() {
+        try {
+            const response = await monstersAPI.getAll();
+            console.log(response, ' <- the response in getMonsters')
+            setMonsters([...response.data])
+        } catch (err) {
+            console.log(err.message);
+        }
+    }
+
+    async function deleteMonster(monster) {
+        monster.preventDefault();
+        console.log(monster.target.value, '<- What are you in here?')
+        monstersAPI.deleteMonster(monster.target.value)
+        // setMonsterState({ monsters })
+        getMonsters()
+    }
 
     return (
         <div>
             <input className="headerSearchInput" placeholder="Type Here!" type="text" value={searchText} onChange={handleChange} />
-            {/* <NavBar user={loggedUser} setUser={setUser} handleLogout={handleLogout} /> */}
-            {/* <img src={process.env.PUBLIC_URL + '/images/dungeon-background.png'} className="overlay" alt="ancient-black-dragon" id="background" /> */}
-            {/* <div className="overlay" style={{background: process.env.PUBLIC_URL + '/images/dungeon-background.png'}} /> */}
             
             {   
                 monsters.length > 0 
@@ -111,13 +115,21 @@ export default function UserProfile({ loggedUser, handleLogout, setUser }) {
                 </>
                 : <h3>Monsters Not Found</h3>    
             }
-            
-            
-            <MonsterCard monsters={monsters} />
-            
+            {monsters.map((monster) => {
+                return (
+                    <SolaMonstra
+                        monster={monster}
+                        key={monster._id}
+                        deleteMonster={deleteMonster}
+                    />
+                )
+            })}
+            {/* <MonsterCard monsters={monsters} deleteMonster={deleteMonster} /> */}
         </div>
     );
 }
 
-// I want to follow the logic of Jim's work with the PostCards and make a component for MonsterCards, probably on
+// I want to follow the logic of Jim's work with the PostCards and make a component for 
+// MonsterCards, probably on
 // Fresh go-round of concept in p4
+// I did it !!

@@ -7,7 +7,9 @@ router.post('/', monstersCtrl.create);
 // GET /api/monsters
 router.get('/', monstersCtrl.index);
 // UPDATE /api/monsters
-
+// router.put('/:id', monstersCtrl.update);
+// DELTE /api/monsters
+router.delete('/:id', monstersCtrl.delete);
 /*---------- Protected Routes ----------*/
 
 

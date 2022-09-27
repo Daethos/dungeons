@@ -1,44 +1,58 @@
 import './MonsterCard.css';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import * as monstersAPI from '../../utils/monsterApi';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-// import Button from 'react-bootstrap/Button';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 
-export default function MonsterCard({ monsters }) {
+export default function MonsterCard({ monsters, deleteMonster }) {
     // const [userCharactersState, setUserCharactersState] = useState(null);
     // style={{maxWidth: 50 + 'vw'}}
     //  style={{maxWidth: 25 + 'vw'}}
     // style={{maxWidth: 100 + 'vw', height: 100 + 'vh'}}
     console.log(monsters.length, '<- Monster count')
+    // const [monsterState, setMonsterState] = useState({ monsters })
+
+    // async function deleteMonster(monster) {
+    //     monster.preventDefault();
+    //     console.log(monster.target.value, '<- What are you in here?')
+    //     monstersAPI.deleteMonster(monster.target.value)
+    //     // setMonsterState({ monsters })
+    // }
+
+    // useEffect(() => {
+    //     monstras()
+    // }, [monsterState])
     
     
 
     let monstras = monsters.filter(monster => (monster.is_active === undefined || monster.is_active === 1)).map((monster) => {
-        console.log(monster.condition_immunities, "What's going on, condition immunities for", monster.name)
+        // console.log(monster.condition_immunities, "What's going on, condition immunities for", monster.name)
         return (
             <React.Fragment>
-            <div class="stat-block wide">
-            <hr class="orange-border" />
-            <div class="section-left">
-                <div class="creature-heading">
+            <div className="stat-block wide">
+            <hr className="orange-border" />
+            <div className="section-left">
+                <div className="creature-heading">
                     <h1>{monster.name}</h1>
                     <h2>{monster.size} {monster.type}, {monster.alignment}</h2>
                 </div> 
-                <svg height="5" width="100%" class="tapered-rule">
+                <svg height="5" width="100%" className="tapered-rule">
                 <polyline points="0,0 400,2.5 0,5"></polyline>
             </svg>
-                <div class="top-stats">
-                    <div class="property-line first">
+                <div className="top-stats">
+                    <div className="property-line first">
                         <h4>Armor Class</h4>
                         <p> {monster.armor_class}</p>
                     </div> 
-                    <div class="property-line">
+                    <div className="property-line">
                         <h4>Hit Points</h4>
                         <p> {monster.hit_points} ({monster.hit_dice})</p>
                     </div> 
-                    <div class="property-line last">
+                    <div className="property-line last">
                         <h4>Speed</h4>
                         {/* <p>{monster.speed}</p> */}
                         {
@@ -67,39 +81,39 @@ export default function MonsterCard({ monsters }) {
                         : ''
                         }
                     </div> 
-                    <svg height="5" width="100%" class="tapered-rule">
+                    <svg height="5" width="100%" className="tapered-rule">
                 <polyline points="0,0 400,2.5 0,5"></polyline>
             </svg>
-                    <div class="abilities">
-                        <div class="ability-strength">
+                    <div className="abilities">
+                        <div className="ability-strength">
                             <h4>STR</h4>
                             <p>{monster.strength}</p>
                         </div> 
-                        <div class="ability-dexterity">
+                        <div className="ability-dexterity">
                             <h4>DEX</h4>
                             <p>{monster.dexterity}</p>
                         </div> 
-                        <div class="ability-constitution">
+                        <div className="ability-constitution">
                             <h4>CON</h4>
                             <p>{monster.constitution}</p>
                         </div> 
-                        <div class="ability-intelligence">
+                        <div className="ability-intelligence">
                             <h4>INT</h4>
                             <p>{monster.intelligence}</p>
                         </div> 
-                        <div class="ability-wisdom">
+                        <div className="ability-wisdom">
                             <h4>WIS</h4>
                             <p>{monster.wisdom}</p>
                         </div> 
-                        <div class="ability-charisma">
+                        <div className="ability-charisma">
                             <h4>CHA</h4>
                             <p>{monster.charisma}</p>
                         </div> 
                     </div>
-                    <svg height="5" width="100%" class="tapered-rule">
+                    <svg height="5" width="100%" className="tapered-rule">
                     <polyline points="0,0 400,2.5 0,5"></polyline>
                     </svg>
-                    <div class="property-line first last">
+                    <div className="property-line first last">
                         <h4>Proficiencies</h4>
                         {
                         monster.proficiencies[0].proficiency?.name
@@ -189,10 +203,10 @@ export default function MonsterCard({ monsters }) {
                         : ''
                         }
                     </div> 
-                    <svg height="5" width="100%" class="tapered-rule">
+                    <svg height="5" width="100%" className="tapered-rule">
                         <polyline points="0,0 400,2.5 0,5"></polyline>
                     </svg>
-                    <div class="property-line first">
+                    <div className="property-line first">
                         <h4>Condition Immunities</h4>
                         {/* <p>{monster.condition_immunities[0]}</p> */}
                         {
@@ -241,7 +255,7 @@ export default function MonsterCard({ monsters }) {
                         : ''
                         }
                     </div>
-                    <div class="property-line">
+                    <div className="property-line">
                         <h4>Damage Immunities</h4>
                         {/* <p>{monster.damage_immunities}</p> */}
                         {
@@ -250,7 +264,7 @@ export default function MonsterCard({ monsters }) {
                         : ''
                         }
                     </div> 
-                    <div class="property-line">
+                    <div className="property-line">
                         <h4>Damage Resistances</h4>
                         {/* <p>{monster.damage_resistances[0]}</p> */}
                         {
@@ -269,7 +283,7 @@ export default function MonsterCard({ monsters }) {
                         : ''
                         }
                     </div>
-                    <div class="property-line">
+                    <div className="property-line">
                         <h4>Damage Vulnerabilities</h4>
                         {/* <p>{monster.damage_vulnerabilities[0]}</p> */}
                         {
@@ -283,7 +297,7 @@ export default function MonsterCard({ monsters }) {
                         : ''
                         }
                     </div> 
-                    <div class="property-line">
+                    <div className="property-line">
                         <h4>Senses</h4>
                         
                         {
@@ -312,19 +326,19 @@ export default function MonsterCard({ monsters }) {
                         : ''
                         }
                     </div> 
-                    <div class="property-line">
+                    <div className="property-line">
                         <h4>Languages</h4>
                         <p> {monster.languages}</p>
                     </div> 
-                    <div class="property-line last">
+                    <div className="property-line last">
                         <h4>Challenge</h4>
                         <p> {monster.challenge_rating}</p>
                     </div> 
                 </div> 
-                <svg height="5" width="100%" class="tapered-rule">
+                <svg height="5" width="100%" className="tapered-rule">
                 <polyline points="0,0 400,2.5 0,5"></polyline>
             </svg>
-                <div class="property-block">
+                <div className="property-block">
                     {
                     monster.special_abilities[0].name
                     ? <h4> {monster.special_abilities[0].name} </h4>
@@ -375,11 +389,11 @@ export default function MonsterCard({ monsters }) {
                 </div> 
                 <img src={process.env.PUBLIC_URL + '/images/' + monster.index + '.jpg'} alt={monster.name} id="monster-card-image" />
             </div> 
-            <div class="section-right">
-                <div class="actions">
+            <div className="section-right">
+                <div className="actions">
                     <h3>Actions</h3>
                     {/* {monster.actions} */}
-                    <div class="property-block">
+                    <div className="property-block">
                         {
                         monster.actions[0].name
                         ? <h4> {monster.actions[0].name} </h4>
@@ -468,10 +482,10 @@ export default function MonsterCard({ monsters }) {
                     </div> 
                     
                 </div> 
-                <div class="actions">
+                <div className="actions">
                     <h3>Legendary Actions</h3>
                     {/* {monster.legendary_actions} */}
-                    <div class="property-block">
+                    <div className="property-block">
                         {
                         monster.legendary_actions[0]?.name
                         ? <h4>{monster.legendary_actions[0].name} </h4>
@@ -516,9 +530,12 @@ export default function MonsterCard({ monsters }) {
                         }
                     </div> 
                     
-                </div> 
+                </div>
+                <Form> 
+                <button className="btn" value={monster._id} onClick={deleteMonster}>Delete Monster</button>
+                </Form>
             </div> 
-            <hr class="orange-border bottom" />
+            <hr className="orange-border bottom" />
         </div>
         </React.Fragment>
         )

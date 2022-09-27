@@ -9,6 +9,7 @@
     "aws-sdk": "^2.1219.0",
     "bcrypt": "^5.0.1",
     "bootstrap": "^5.2.1",
+    "deepai": "^1.0.21",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "isomorphic-fetch": "^3.0.0",

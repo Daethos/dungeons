@@ -7,7 +7,7 @@ import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Loading from '../Loading/Loading';
 
-export default function SolaMonstra({ monster }) {
+export default function SolaMonstra({ monster, deleteMonster }) {
     // const [userCharactersState, setUserCharactersState] = useState(null);
     // style={{maxWidth: 50 + 'vw'}}
     //  style={{maxWidth: 25 + 'vw'}}
@@ -543,6 +543,7 @@ export default function SolaMonstra({ monster }) {
                     
                 </div> 
             </div> 
+            <button className="btn" value={monster._id} onClick={deleteMonster}>Delete Monster</button>
             <hr className="orange-border bottom" />
             </div>
             </Row>
