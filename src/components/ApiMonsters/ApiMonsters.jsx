@@ -76,13 +76,18 @@ export default function ApiMonsters({ user, handleLogout }) {
         setLoading(true);
         e.preventDefault();
         try {
-            const data = await dndAPI.index()
-            console.log(data, ' <-  What data came back to react? ')
+            const response = await dndAPI.index()
+            console.log(response.response.results, ' <-  What data came back to react? ')
+
+            // if (response.ok) {
+                // const data = await response.json();
+                // console.log(data.results, '<- Monster Data!');
+            //}
 
             // const res = await data.json();
             // console.log(res.results, '<- What is the res of the data')
-            console.log(data, ' <-  What data came back to react? ')
-            // setMonsterData(data)
+            // console.log(data, ' <-  What data came back to react? ')
+            setMonsterData(response.response.results)
             // setMonsters(data)
             setLoading(false);
         } catch (err) {

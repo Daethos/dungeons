@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const Monster = require('../models/monster');
 const bcrypt = require('bcrypt');
+const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
 const monsterUrl = 'https://www.dnd5eapi.co/api/monsters/'
 const options = {
@@ -20,7 +21,16 @@ async function index(req, res) {
 
     try {
         const response = await fetch(monsterUrl, options)
-        console.log(response, '<- Response in the index controller');
+        // console.log(response, '<- Response in the index controller');
+        .then((res) => {
+            console.log(res, '<- And what does this look like?')
+            if(res.ok) return res.json();
+            return res.json().then(response => {
+            console.log(response, '<- Proper Response in dndAPI utility')
+            throw new Error(response.err)
+            })
+        });
+
         // if (response.ok) {
         // const data = await response.json();
         // console.log(data.results, '<- Monster Data!');
