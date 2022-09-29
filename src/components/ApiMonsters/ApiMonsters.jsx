@@ -13,9 +13,7 @@ import Carousel from 'react-bootstrap/Carousel';
 export default function ApiMonsters({ user, handleLogout }) {
 
     const [monsterData, setMonsterData] = useState(null);
-    // const [monstahUrl, setMonstahUrl] = useState('');
     const [monsters, setMonsters] = useState([])
-    // const [submitting, setSubmitting] = useState(false);
     const [loading, setLoading] = useState(false);
     const [index, setIndex] = useState(0);
 
@@ -25,6 +23,8 @@ export default function ApiMonsters({ user, handleLogout }) {
 
     const monsterUrl = 'https://www.dnd5eapi.co/api/monsters/';
     
+    // TODO: Change the Carousel content from Gifs that eat up a lot of data
+    // FIXME: Into Static Examples of Sola Monstra's, faster loading, better rendering.
 
         async function fetchMonsters() {
             try {
@@ -43,19 +43,6 @@ export default function ApiMonsters({ user, handleLogout }) {
                 console.log(err, '<- Registered Error');
             }
         }
-
-    // useEffect(() => {
-    //     if (submitting) {
-    //         fetchMonsters()
-    //             .then(
-    //             (response) => {
-    //             setMonsterData(response)
-    //             console.log(response, '<- The response in the submitting useEffect')
-    //         });
-            
-    //         setSubmitting(false)
-    //     }
-    // }, [submitting])
 
     async function handleSubmit(e) {
         // setSubmitting(true);
@@ -102,10 +89,6 @@ export default function ApiMonsters({ user, handleLogout }) {
                 console.log(result, '<- What result are you?')
             })
     }
-
-    // function getMonstahUrl(url) {
-    //     setMonstahUrl(url);
-    // }
 
     if (loading) {
         return (

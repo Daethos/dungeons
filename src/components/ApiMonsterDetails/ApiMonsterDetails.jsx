@@ -41,7 +41,7 @@ export default function ApiMonsterDetails({ monster, key, getmonstahurl, loggedU
                         console.log(newData, '<- What on earth are you?');
                         console.log(newData.index, '<-Can I use you?')
                         let monSrc = ''; 
-                        monSrc = '/images/' + newData.index + '.jpg';
+                        monSrc = '/images/' + newData.index + '.png';
                         console.log(monSrc, '<-Hopefully the image src')
                         setMonsterImage(monSrc);
                         setMonstroso(newData);

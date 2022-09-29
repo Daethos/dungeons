@@ -45,7 +45,7 @@ export default function ApiMonsterData({ monsters }) {
                             monstah={allMonsters[i]}
                         >
                     <img 
-                        src={process.env.PUBLIC_URL + '/images/' + allMonsters[i].index + '.jpg'} 
+                        src={process.env.PUBLIC_URL + '/images/' + allMonsters[i].index + '.png'} 
                         alt={allMonsters[i].name} 
                         // id="monster-card-image" 
                         style={{maxWidth: 100 + '%', maxHeight: 75 + '%'}}
@@ -96,11 +96,11 @@ export default function ApiMonsterData({ monsters }) {
                 </svg>
                     <Link 
                             to={'/Monsters/' + monster.index}
-                            key={monster.name}
+                            key={monster.index}
                             monstah={monster}
                         >
                     <img 
-                        src={process.env.PUBLIC_URL + '/images/' + monster.index + '.jpg'} 
+                        src={process.env.PUBLIC_URL + '/images/' + monster.index + '.png'} 
                         alt={monster.name} 
                         // id="monster-card-image" 
                         style={{maxWidth: 100 + '%', maxHeight: 75 + '%'}}

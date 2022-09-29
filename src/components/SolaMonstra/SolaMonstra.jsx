@@ -406,9 +406,11 @@ export default function SolaMonstra({ monster, deleteMonster }) {
                     }
                 </div> 
                 <img 
-                    src={process.env.PUBLIC_URL + '/images/' + monster.index + '.jpg'} 
+                    src={process.env.PUBLIC_URL + '/images/' + monster.index + '.png'} 
                     alt={monster.name} 
                     // id="monster-card-image"
+                    // id="clean-image"
+                    // className="img-container layerd"
                     style={{maxWidth: 100 + '%', maxHeight: 75 + '%'}} 
                 />
             </div> 
@@ -417,7 +419,7 @@ export default function SolaMonstra({ monster, deleteMonster }) {
                     <h3>Actions</h3>
                     <div className="property-block">
                         {
-                        monster.actions?.[0].name
+                        monster.actions?.[0]?.name
                         ? <h4> {monster.actions[0].name} </h4>
                         : ''
                         }
