@@ -1,5 +1,5 @@
 const deepai = require("deepai");
-deepai.setApiKey(process.env.DEEPAI_KEY);
+// deepai.setApiKey(process.env.DEEPAI_KEY);
 const User = require('../models/user');
 const Monster = require('../models/monster');
 const jwt = require('jsonwebtoken');
@@ -9,8 +9,8 @@ const s3 = new S3(); // initate the S3 constructor which can talk to aws/s3 our 
 const { v4: uuidv4 } = require("uuid");
 // since we are sharing code, when you pull you don't want to have to edit the
 // the bucket name, thats why we're using an environment variable
-const BUCKET_NAME = process.env.AWS_BUCKET_NAME;
-const SECRET = process.env.SECRET;
+// const BUCKET_NAME = process.env.AWS_BUCKET_NAME;
+// const SECRET = process.env.SECRET;
 
 module.exports = {
     getDeep
@@ -18,9 +18,9 @@ module.exports = {
 
 
 // Passes Literal Text
-const result = await deepai.callStandardApi("sentiment-analysis", {
-    text: "I am very happy to play with the newest APIs!",
-});
+// const result = await deepai.callStandardApi("sentiment-analysis", {
+//     text: "I am very happy to play with the newest APIs!",
+// });
 
 // BROWSER RESULT RENDERING
 // This code will render the result of the API call into an existing HTML element, 
