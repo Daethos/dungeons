@@ -10,7 +10,7 @@ import InputGroup from 'react-bootstrap/InputGroup';
 export default function ApiMonsterData({ monsters }) {
     const [searchText, setSearchText] = useState('');
     const [allMonsters, setAllMonsters] = useState(monsters);
-
+    const BUCKET_START = 'https://collectionbucketman.s3.amazonaws.com/dungeons/';
     async function filterMonsters(results) {
         console.log(results, '<- Results in filterMonsters')
         console.log(results.length, '<- The amount of search results!')
@@ -45,7 +45,7 @@ export default function ApiMonsterData({ monsters }) {
                             monstah={allMonsters[i]}
                         >
                     <img 
-                        src={process.env.PUBLIC_URL + '/images/' + allMonsters[i].index + '.png'} 
+                        src={BUCKET_START + allMonsters[i].index + '.png'} 
                         alt={allMonsters[i].name} 
                         // id="monster-card-image" 
                         style={{maxWidth: 100 + '%', maxHeight: 75 + '%'}}
@@ -100,7 +100,7 @@ export default function ApiMonsterData({ monsters }) {
                             monstah={monster}
                         >
                     <img 
-                        src={process.env.PUBLIC_URL + '/images/' + monster.index + '.png'} 
+                        src={BUCKET_START + monster.index + '.png'} 
                         alt={monster.name} 
                         // id="monster-card-image" 
                         style={{maxWidth: 100 + '%', maxHeight: 75 + '%'}}
@@ -128,7 +128,7 @@ export default function ApiMonsterData({ monsters }) {
             <InputGroup className="bg-black">
                 <InputGroup.Text className="bg-black">
                 <img 
-                        src={process.env.PUBLIC_URL + '/images/awakened-shrub.png'} 
+                        src={BUCKET_START + 'awakened-shrub.png'} 
                         alt="Awakened Shrub" 
                         style={{maxWidth: 5 + 'vw', maxHeight: 5 + 'vh'}}
                     />

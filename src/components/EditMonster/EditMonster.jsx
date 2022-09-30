@@ -19,6 +19,8 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
     const { monsterId } = useParams();
     // console.log(monsterId, '<- Monster ID in question')
     const location = useLocation();
+    const BUCKET_START = 'https://collectionbucketman.s3.amazonaws.com/dungeons/';
+    
     // console.log(location, '<- Here is where I am')
     const [editState, setEditState] = useState({
         name: '',
@@ -792,7 +794,7 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                     }
                 </div> 
                 <img 
-                    src={process.env.PUBLIC_URL + '/images/' + monster.index + '.png'} 
+                    src={BUCKET_START + monster.index + ".png"} 
                     alt={monster.name} 
                     // id="monster-card-image"
                     // id="clean-image"

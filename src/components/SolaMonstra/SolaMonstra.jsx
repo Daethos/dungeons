@@ -9,6 +9,7 @@ import Container from 'react-bootstrap/Container';
 import Loading from '../Loading/Loading';
 
 export default function SolaMonstra({ monster, deleteMonster, editMonster, isSaved }) {
+    const BUCKET_START = 'https://collectionbucketman.s3.amazonaws.com/dungeons/';
     // const [userCharactersState, setUserCharactersState] = useState(null);
     // style={{maxWidth: 50 + 'vw'}}
     //  style={{maxWidth: 25 + 'vw'}}
@@ -22,24 +23,6 @@ export default function SolaMonstra({ monster, deleteMonster, editMonster, isSav
         tag: ["reactjs", "react-router-dom"]
     });
     
-    
-    // useEffect(() => {
-    //     setLoading(true);
-    //     monstras();
-    //     setLoading(false);
-    // }, [])
-    
-
-    // const monstras = useCallback(async () => {
-    //     try {
-    //         setMonster([monsters])
-    //         console.log(monster, '<- Did this do anything?')
-    //         setLoading(false);
-    //     } catch (err) {
-    //         console.log(err.message, '<- Callback in SolaMonstra did not fire correctly');
-    //     }
-    // })
-
     if (loading) {
         return (
         <>
@@ -47,10 +30,7 @@ export default function SolaMonstra({ monster, deleteMonster, editMonster, isSav
         </>
         );
     }
-    
-    // const monstras = monsters.map((monster) => {
-        // const monstras = (monster) => {
-        // console.log(monster, "What's going on, ", monster)
+ 
         return (
             
             // <h1>Hello!</h1>
@@ -408,7 +388,7 @@ export default function SolaMonstra({ monster, deleteMonster, editMonster, isSav
                     }
                 </div> 
                 <img 
-                    src={process.env.PUBLIC_URL + '/images/' + monster.index + '.png'} 
+                    src={BUCKET_START + monster.index + '.png'} 
                     alt={monster.name} 
                     // id="monster-card-image"
                     // id="clean-image"

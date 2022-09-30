@@ -82,7 +82,7 @@ async function editMonstra(monstra) {
     setLoading(true);
     e.preventDefault();
     console.log(e.target.name, '<- New Png?')
-    const background = 'url(/images/' + e.target.name + '.png)'
+    const background = process.env.MONSTER_IMAGE_URL + e.target.name + '.png'
     try {
       await colores(background);
       setLoading(false);
@@ -112,7 +112,7 @@ async function editMonstra(monstra) {
       style={
         backgroundState 
         ? { backgroundImage: backgroundState, myStyle }
-        : { backgroundImage: 'url(/images/Y4.png)', myStyle }
+        : { backgroundImage: process.env.MONSTER_IMAGE_URL + 'Y4.png', myStyle }
     } 
       id="user-background"
       > 
