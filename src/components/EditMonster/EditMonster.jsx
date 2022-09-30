@@ -175,6 +175,7 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
     }
     // TODO: May need to refactor model, did not anticipate issue of editing embedded
     // FIXME: object data, i.e. nested field data. Look into this tomorrow.
+    
     function handleWalk(e) {
         const [ name, value ] = e.target;
         [...editState[name].walk] = value;
