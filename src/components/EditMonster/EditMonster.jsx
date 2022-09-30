@@ -168,10 +168,20 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
     // });
 
     function handleChange(e) {
-            setEditState({
+        setEditState({
+        ...editState,
+        [e.target.name]: e.target.value,
+        });
+    }
+    // TODO: May need to refactor model, did not anticipate issue of editing embedded
+    // FIXME: object data, i.e. nested field data. Look into this tomorrow.
+    function handleWalk(e) {
+        const [ name, value ] = e.target;
+        [...editState[name].walk] = value;
+        setEditState({
             ...editState,
             [e.target.name]: e.target.value,
-            });
+        });
     }
 
     function handleSubmit(e) {
@@ -223,40 +233,43 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
             <hr className="orange-border" />
             <div className="section-left">
                 <div className="creature-heading">
-                    <h1>{monster.name}</h1>
-                    <Form.Group className="my-1" controlId="editName">
-                        <Form.Control 
+                    <h1 >{monster.name}</h1>
+                    <input 
                             name="name"
+                            
+                            // style={{ 'marginLeft': 1 + 'vw' }}
                             type="text" 
                             placeholder={monster.name}
                             value={editState.name}
                             onChange={handleChange}
-                        />
-                    </Form.Group>
-                    
+                    />
                     <h2>{monster.size} {monster.type}, {monster.alignment}</h2>
                     <Row>
                     <Form.Group as={Col} className="my-1" controlId="editName">
-                        <Form.Control 
+                        <input 
                             name="size"
+                            style={{ 'marginLeft': 1 + 'vw' }}
                             type="text" 
                             placeholder={monster.size}
                             value={editState.size}
                             onChange={handleChange}
                         />
-                        <Form.Control 
+                        <input
                             name="type"
+                            style={{ 'marginLeft': 1 + 'vw' }}
                             type="text" 
                             placeholder={monster.type}
                             value={editState.type}
                             onChange={handleChange}
                         />
-                        <Form.Control 
+                        <input
                             name="alignment"
+                            style={{ 'marginLeft': 1 + 'vw' }}
                             type="text" 
                             placeholder={monster.alignment}
                             value={editState.alignment}
                             onChange={handleChange}
+                            className="mb-2"
                             />
                     </Form.Group>
                     </Row>
@@ -268,39 +281,120 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                     <div className="property-line first">
                         <h4>Armor Class</h4>
                         <p> {monster.armor_class}</p>
+                        <input
+                            className=""
+                            style={{ 'marginLeft': 1 + 'vw' }}
+                            name="armor_class"
+                            type="text" 
+                            placeholder={monster.armor_class}
+                            value={editState.armor_class}
+                            onChange={handleChange}
+                        />
                     </div> 
                     <div className="property-line">
                         <h4>Hit Points</h4>
-                        <p> {monster.hit_points} ({monster.hit_dice})</p>
+                        <p> {monster.hit_points}</p>
+                        <input
+                            name="hit_points"
+                            className="my-1"
+                            style={{ 'marginLeft': 1 + 'vw' }}
+                            type="text" 
+                            placeholder={monster.hit_points}
+                            value={editState.hit_points}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className="property-line">
+                        <h4>Hit Dice</h4>
+                        <p> ({monster.hit_dice})</p>
+                        <input
+                        name="hit_dice"
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder={monster.hit_dice}
+                        value={editState.hit_dice}
+                        onChange={handleChange}
+                        className="mb-2"
+                        />
                     </div> 
                     <div className="property-line last">
                         <h4>Speed</h4>
                         {
                         monster.speed?.burrow
-                        ? <p> Burrow: {monster.speed.burrow}</p>
+                        ? <><p> Burrow: {monster.speed.burrow}</p>
+                        <input
+                            name="speed"
+                            style={{ 'marginLeft': 1 + 'vw' }}
+                            type="text" 
+                            placeholder={monster.speed.burrow}
+                            // value={editState.speed.burrow}
+                            onChange={handleChange}
+                            className="mb-2"
+                            /></>
                         : ''
                         }
                         {
                         monster.speed?.climb
-                        ? <p> Climb: {monster.speed.climb}</p>
+                        ? <><p> Climb: {monster.speed.climb}</p>
+                        <input
+                            name="speed"
+                            style={{ 'marginLeft': 1 + 'vw' }}
+                            type="text" 
+                            placeholder={monster.speed.climb}
+                            // value={editState.speed.climb}
+                            onChange={handleChange}
+                            className="mb-2"
+                            /></>
                         : ''
                         }
                         {
                         monster.speed?.fly
-                        ? <p> Flight: {monster.speed.fly}</p>
+                        ? <><p> Flight: {monster.speed.fly}</p>
+                        <input
+                            name="fly"
+                            style={{ 'marginLeft': 1 + 'vw' }}
+                            type="text" 
+                            placeholder={monster.speed.fly}
+                            // value={editState.speed.fly}
+                            onChange={handleChange}
+                            className="mb-2"
+                            /></>
                         : ''
                         }
                         {
                         monster.speed?.swim
-                        ? <p> Swim: {monster.speed.swim}</p>
+                        ? <><p> Swim: {monster.speed.swim}</p>
+                        <input
+                            name="speed"
+                            style={{ 'marginLeft': 1 + 'vw' }}
+                            type="text" 
+                            placeholder={monster.speed.swim}
+                            // value={editState.speed.swim}
+                            onChange={handleChange}
+                            className="mb-2"
+                            /></>
                         : ''
                         }
                         {
                         monster.speed?.walk
-                        ? <p> Walk: {monster.speed.walk}</p>
+                        ? <><p> Walk: {monster.speed.walk}</p>
+                        <input
+                            name="speed"
+                            style={{ 'marginLeft': 1 + 'vw' }}
+                            type="text" 
+                            placeholder={monster.speed.walk}
+                            // value={editState.speed.walk || ''}
+                            onChange={handleWalk}
+                            className="mb-2"
+                            /></>
                         : ''
                         }
-                    </div> 
+                    </div>
+                    <Form.Group as={Col} className="my-1" controlId="editName">
+                        
+                        
+                        
+                    </Form.Group> 
                     <svg height="5" width="100%" className="tapered-rule">
                 <polyline points="0,0 400,2.5 0,5"></polyline>
             </svg>
@@ -308,26 +402,80 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                         <div className="ability-strength">
                             <h4>STR</h4>
                             <p>{monster.strength}</p>
+                            <input
+                            name="strength"
+                            //style={{ 'marginLeft': 1 + 'vw' }}
+                            type="text" 
+                            placeholder={monster.strength}
+                            value={editState.strength}
+                            onChange={handleChange}
+                            className="mb-2"
+                            />
                         </div> 
                         <div className="ability-dexterity">
                             <h4>DEX</h4>
                             <p>{monster.dexterity}</p>
+                            <input
+                            name="dexterity"
+                            //style={{ 'marginLeft': 1 + 'vw' }}
+                            type="text" 
+                            placeholder={monster.dexterity}
+                            value={editState.dexterity}
+                            onChange={handleChange}
+                            className="mb-2"
+                            />
                         </div> 
                         <div className="ability-constitution">
                             <h4>CON</h4>
                             <p>{monster.constitution}</p>
+                            <input
+                            name="constitution"
+                            //style={{ 'marginLeft': 1 + 'vw' }}
+                            type="text" 
+                            placeholder={monster.constitution}
+                            value={editState.constitution}
+                            onChange={handleChange}
+                            className="mb-2"
+                            />
                         </div> 
                         <div className="ability-intelligence">
                             <h4>INT</h4>
                             <p>{monster.intelligence}</p>
+                            <input
+                            name="intelligence"
+                            //style={{ 'marginLeft': 1 + 'vw' }}
+                            type="text" 
+                            placeholder={monster.intelligence}
+                            value={editState.intelligence}
+                            onChange={handleChange}
+                            className="mb-2"
+                            />
                         </div> 
                         <div className="ability-wisdom">
                             <h4>WIS</h4>
                             <p>{monster.wisdom}</p>
+                            <input
+                            name="wisdom"
+                            //style={{ 'marginLeft': 1 + 'vw' }}
+                            type="text" 
+                            placeholder={monster.wisdom}
+                            value={editState.wisdom}
+                            onChange={handleChange}
+                            className="mb-2"
+                            />
                         </div> 
                         <div className="ability-charisma">
                             <h4>CHA</h4>
                             <p>{monster.charisma}</p>
+                            <input
+                            name="charisma"
+                            //style={{ 'marginLeft': 1 + 'vw' }}
+                            type="text" 
+                            placeholder={monster.charisma}
+                            value={editState.charisma}
+                            onChange={handleChange}
+                            className="mb-2"
+                            />
                         </div> 
                     </div>
                     <svg height="5" width="100%" className="tapered-rule">
@@ -342,7 +490,15 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                         }
                         {
                         monster.proficiencies?.[0]?.value
-                        ? <p> {monster.proficiencies[0].value}, </p>
+                        ? <p> {monster.proficiencies[0].value} <input
+                        name='proficiencies'
+                        //style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder={monster.proficiencies[0].value}
+                        value={editState.proficiencies[0].value}
+                        onChange={handleChange}
+                        className="mb-2"
+                        /></p>
                         : ''
                         }
                         
@@ -430,7 +586,15 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                         <h4>Condition Immunities</h4>
                         {
                         monster.condition_immunities?.[0]?.name 
-                        ?  <p> {monster.condition_immunities[0].name} </p>
+                        ?  <p> {monster.condition_immunities[0].name} <input
+                        name='condition_immunities'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder={monster.condition_immunities[0].name}
+                        value={editState.condition_immunities[0].name}
+                        onChange={handleChange}
+                        className="mb-2"
+                        /></p>
                         : ''
                         }
                         {
@@ -518,7 +682,7 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                         
                         {
                         monster.senses?.blindsight
-                        ? <p> Blindsight: {monster.senses.blindsight}</p>
+                        ? <p> Blindsight: {monster.senses.blindsight} </p>
                         : ''
                         }
                         {
@@ -544,11 +708,39 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                     </div> 
                     <div className="property-line">
                         <h4>Languages</h4>
-                        <p> {monster.languages}</p>
+                        <p> {monster.languages} <input
+                            name="languages"
+                            //style={{ 'marginLeft': 1 + 'vw' }}
+                            type="text" 
+                            placeholder={monster.languages}
+                            value={editState.languages}
+                            onChange={handleChange}
+                            className="mb-2"
+                            /></p>
                     </div> 
-                    <div className="property-line last">
+                    <div className="property-line">
                         <h4>Challenge</h4>
-                        <p> {monster.challenge_rating}</p>
+                        <p> {monster.challenge_rating} <input
+                            name="challenge_rating"
+                            //style={{ 'marginLeft': 1 + 'vw' }}
+                            type="text" 
+                            placeholder={monster.challenge_rating}
+                            value={editState.challenge_rating}
+                            onChange={handleChange}
+                            className="mb-2"
+                            /></p>
+                    </div>
+                    <div className="property-line last">
+                        <h4>Experience</h4>
+                        <p> {monster.xp} <input
+                            name="xp"
+                            //style={{ 'marginLeft': 1 + 'vw' }}
+                            type="text" 
+                            placeholder={monster.xp}
+                            value={editState.xp}
+                            onChange={handleChange}
+                            className="mb-2"
+                            /></p>
                     </div> 
                 </div> 
                 <svg height="5" width="100%" className="tapered-rule">

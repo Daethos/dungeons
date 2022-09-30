@@ -47,9 +47,14 @@
     fill: #922610;
     stroke: #922610;
 }
+/* .creature-heading {
+    display: flex;
+    
+} */
 .creature-heading h1{
     font-family: 'Libre Baskerville', 'Lora', 'Calisto MT', 'Bookman Old Style', Bookman, 'Goudy Old Style', Garamond, 'Hoefler Text', 'Bitstream Charter', Georgia, serif;
     color: #922610;
+    float: left;
     font-size: 23px;
     line-height: 1.2em;
     margin: 10px 0 0;
@@ -64,6 +69,10 @@
     line-height: 1.2em;
     margin: 0 0 10px;
 }
+
+/* #name-input {
+    margin-left: 15vw;
+} */
 .property-line h4,
 .property-line p{
     display: inline;
