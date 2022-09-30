@@ -19,6 +19,7 @@ export default function UserProfile({ loggedUser, handleLogout, setUser }) {
     // const [error, setError] = useState('');
     const [searchText, setSearchText] = useState('');
     const [allMonsters, setAllMonsters] = useState(monsters);
+    const [isSaved, setIsSaved] = useState(true)
 
     async function filterMonsters(results) {
         console.log(results, '<- Results in filterMonsters')
@@ -57,6 +58,7 @@ export default function UserProfile({ loggedUser, handleLogout, setUser }) {
                         monster={allMonsters[i]}
                         key={allMonsters[i]._id}
                         deleteMonster={deleteMonster}
+                        isSaved={true}
                     />
                 </Col>
             )
@@ -98,13 +100,22 @@ export default function UserProfile({ loggedUser, handleLogout, setUser }) {
         try {
             const response = await monstersAPI.getAll();
             console.log(response, ' <- the response in getMonsters')
-            setMonsters([...response.data])
+            
+            setMonsters([...response.data].reverse())
         } catch (err) {
             console.log(err.message);
         }
     }
 
     async function deleteMonster(monster) {
+        monster.preventDefault();
+        console.log(monster.target.value, '<- What are you in here?')
+        monstersAPI.deleteMonster(monster.target.value)
+        // setMonsterState({ monsters })
+        getMonsters()
+    }
+
+    async function editMonster(monster) {
         monster.preventDefault();
         console.log(monster.target.value, '<- What are you in here?')
         monstersAPI.deleteMonster(monster.target.value)
@@ -145,6 +156,8 @@ export default function UserProfile({ loggedUser, handleLogout, setUser }) {
                         monster={monster}
                         key={monster._id}
                         deleteMonster={deleteMonster}
+                        editMonster={editMonster}
+                        isSaved={isSaved}
                     />
                 )
             })}

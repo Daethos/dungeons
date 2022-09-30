@@ -6,15 +6,16 @@ const bcrypt = require('bcrypt');
 module.exports = {
     create,
     index,
+    getOne,
     delete: deleteMonster,
-    update: editMonster
+    editMonster
 }
 
 async function editMonster(req, res) {
     console.log(req.body, '<- Ooooh Boy!')
     try {
-        
-        const monster = await Monster.findById(req.params.id, {
+        console.log(req.params.id, '<- ID in the editMonster Controller')
+        const monster = await Monster.findByIdAndUpdate(req.params.id, {
             user: req.user,
             index: req.body.index,
             key: req.body.name,
@@ -88,7 +89,6 @@ async function editMonster(req, res) {
         })
         monster.save();
         
-
         res.status(201).json({ monster: monster });
     } catch (err) {
         console.log(err.message, '<- Error in editing the monster!')
@@ -193,6 +193,18 @@ async function index(req, res) {
         // when you fetch teh posts
         const monsters = await Monster.find({}).populate("user").exec();
         res.status(200).json({ data: monsters });
+    } catch (err) {
+        res.status(400).json({ err });
+    }
+}
+
+async function getOne(req, res) {
+    try {
+        // this populates the user when you find the posts
+        // so you'll have access to the users information
+        // when you fetch teh posts
+        const monster = await Monster.findById({ _id: req.params.id})
+        res.status(200).json({ data: monster });
     } catch (err) {
         res.status(400).json({ err });
     }

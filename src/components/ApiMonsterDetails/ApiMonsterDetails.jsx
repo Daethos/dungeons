@@ -17,6 +17,7 @@ export default function ApiMonsterDetails({ monster, key, getmonstahurl, loggedU
     const [monstroso, setMonstroso] = useState({});
     const [monsterImage, setMonsterImage] = useState('');
     const [monstra, setMonstra] = useState([])
+    const [isSaved, setIsSaved] = useState(false)
     const monsterUrl = 'https://www.dnd5eapi.co/api/monsters/'
 
     const { monsterName } = useParams();
@@ -110,7 +111,7 @@ export default function ApiMonsterDetails({ monster, key, getmonstahurl, loggedU
             </button>
         </Form>
         </Col>
-        <SolaMonstra monster={monstroso} key={monstroso.index} />
+        <SolaMonstra monster={monstroso} key={monstroso.index} isSaved={isSaved} />
     </div>
     );
 }

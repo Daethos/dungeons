@@ -8,6 +8,7 @@ import userService from "../../utils/userService";
 import * as monstersAPI from '../../utils/monsterApi';
 import ApiMonsters from "../../components/ApiMonsters/ApiMonsters";
 import UserMonsters from "../../components/UserMonsters/UserMonsters";
+import EditMonster from "../../components/EditMonster/EditMonster";
 // import UserCharacters from '../../components/UserCharacters/UserCharacters'
 import ApiMonsterDetails from "../../components/ApiMonsterDetails/ApiMonsterDetails";
 import ApiMonsterData from "../../components/ApiMonsterData/ApiMonsterData";
@@ -54,6 +55,19 @@ function App() {
     }
 }
 
+async function editMonstra(monstra) {
+  try {
+    console.log(monstra, '<- Monstra in editMonstra start')
+    const response = await monstersAPI.edit(monstra);
+    
+    console.log(response, '<- Response in editMonstra')
+    
+    setMonstra([response.data, ...monstra]);
+  } catch (err)  {
+    console.log(err.message, '<- You are having an error in the editMonstra function in App.jsx')
+  }
+}
+
   const userBackground = document.getElementById('user-background');
 
   async function colores(background) {
@@ -98,7 +112,7 @@ function App() {
       style={
         backgroundState 
         ? { backgroundImage: backgroundState, myStyle }
-        : { backgroundImage: 'url(/images/Y13.png)', myStyle }
+        : { backgroundImage: 'url(/images/Y4.png)', myStyle }
     } 
       id="user-background"
       > 
@@ -111,7 +125,7 @@ function App() {
         <Route path="/:id/monster" element={<UserMonsters loggedUser={user} />} />
         <Route path="/Spells" element={<ApiSpells user={user}/>} />
         <Route path="/Characters" element={<ApiCharacters user={user} />} />
-
+        <Route path="/edit/:monsterId" element={<EditMonster user={user} editMonstra={editMonstra} />} />
         <Route path="/Authorization" element={<AuthPage setUser={setUser} handleSignUpOrLogin={handleSignUpOrLogin} />} />
       </Routes>
       </div>

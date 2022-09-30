@@ -3,11 +3,15 @@ const router = express.Router();
 const monstersCtrl = require('../../controllers/monsters');
 
 // /*---------- Public Routes ----------*/
+
+router.get('/', monstersCtrl.index);
+// GET ONE /api/monsters
+router.get('/:id', monstersCtrl.getOne);
+// UPDATE /api/monsters
+router.put('/:id', monstersCtrl.editMonster);
+
 router.post('/', monstersCtrl.create);
 // GET /api/monsters
-router.get('/', monstersCtrl.index);
-// UPDATE /api/monsters
-router.put('/:id', monstersCtrl.update);
 // DELTE /api/monsters
 router.delete('/:id', monstersCtrl.delete);
 /*---------- Protected Routes ----------*/

@@ -1,74 +1,265 @@
-import './SolaMonstra.css';
-import React, { useEffect, useState, useCallback } from 'react';
-import Row from 'react-bootstrap/Row';
+import React, { useState, useEffect } from "react";
+import { useParams, Navigate, useLocation } from 'react-router-dom';
+import * as monstersAPI from '../../utils/monsterApi';
+import Loading from "../Loading/Loading";
+import SolaMonstra from "../SolaMonstra/SolaMonstra";
+import MonsterCard from "../MonsterCard/MonsterCard";
+import AddMonster from '../AddMonster/AddMonster';
 import Col from 'react-bootstrap/Col';
-import { Link } from "react-router-dom";
-// import Button from 'react-bootstrap/Button';
+import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import Container from 'react-bootstrap/Container';
-import Loading from '../Loading/Loading';
+import Row from 'react-bootstrap/Row';
+import Form from 'react-bootstrap/Form';
 
-export default function SolaMonstra({ monster, deleteMonster, editMonster, isSaved }) {
-    // const [userCharactersState, setUserCharactersState] = useState(null);
-    // style={{maxWidth: 50 + 'vw'}}
-    //  style={{maxWidth: 25 + 'vw'}}
-    // style={{maxWidth: 100 + 'vw', height: 100 + 'vh'}}
-    const [loading, setLoading] = useState(false);
-    // const [monster, setMonster] = useState([])
-    const [monsterState, setMonsterState] = useState({monster})
-    console.log(monsterState)
-    const [data, setData] = useState({ id: "1t4",
-        title: " How to pass state in react-router-dom",
-        tag: ["reactjs", "react-router-dom"]
+// Different 'translation' than how the monster model is structured. Patience!
+
+export default function EditMonster({ getmonstahurl, user, editMonstra }) { 
+    const [monster, setMonster] = useState({});
+    const [loading, setLoading] = useState(true);
+    const { monsterId } = useParams();
+    // console.log(monsterId, '<- Monster ID in question')
+    const location = useLocation();
+    // console.log(location, '<- Here is where I am')
+    const [editState, setEditState] = useState({
+        name: '',
+        size: '',
+        type: '',
+        alignment: '',
+        armor_class: 0,
+        hit_points: 0,
+        hit_dice: '',
+        hit_points_roll: '',
+        speed: {
+            burrow: '',
+            climb: '',
+            fly: '',
+            swim: '',
+            walk: ''
+        },
+        strength: 0,
+        dexterity: 0,
+        constitution: 0,
+        intelligence: 0,
+        wisdom: 0,
+        charisma: 0,
+        proficiencies: {
+            type: [''],
+            default: null
+        },
+        damage_vulnerabilities: {
+            type: [''],
+            default: null
+        },
+        damage_resistances: {
+            type: [''],
+            default: null
+        },
+        damage_immunities: {
+            type: [''],
+            default: null
+        },
+        condition_immunities: {
+            type: [''],
+            default: null
+        },
+        senses: {
+            blindsight: '',
+            darkvision: '',
+            passive_perception: '',
+            truesight: '',
+            tremorsense: ''
+        },
+        languages: [''],
+        challenge_rating: 0,
+        xp: 0,
+        special_abilities: {
+            type: [], 
+            default: null
+        },
+        actions: [''],
+        legendary_actions: {
+            type: [''],
+            default: null
+        }
     });
-    
-    
-    // useEffect(() => {
-    //     setLoading(true);
-    //     monstras();
-    //     setLoading(false);
-    // }, [])
-    
 
-    // const monstras = useCallback(async () => {
-    //     try {
-    //         setMonster([monsters])
-    //         console.log(monster, '<- Did this do anything?')
-    //         setLoading(false);
-    //     } catch (err) {
-    //         console.log(err.message, '<- Callback in SolaMonstra did not fire correctly');
+    
+    useEffect(() => {
+        getMonster()
+    }, [])
+
+    async function getMonster() {
+        try {
+            const response = await monstersAPI.getOne(monsterId);
+            console.log(response, ' <- the response in getMonsters')
+            setMonster(response.data)
+            console.log(monster, '<- The monster!')
+            setEditState(response.data)
+            setLoading(false)
+        } catch (err) {
+            console.log(err.message);
+        }
+    }
+
+
+
+
+
+    // const [editState, setEditState] = useState({
+    //     name: monster.name,
+    //     size: monster.size,
+    //     type: monster.type,
+    //     alignment: monster.alignment,
+    //     armor_class: monster.armor_class,
+    //     hit_points: monster.hit_points,
+    //     hit_dice: monster.hit_dice,
+    //     hit_points_roll: monster.hit_points_roll,
+    //     speed: {
+    //         burrow: monster.speed?.burrow,
+    //         climb: monster.speed?.climb,
+    //         fly: monster.speed?.fly,
+    //         swim: monster.speed?.swim,
+    //         walk: monster.speed?.walk
+    //     },
+    //     strength: monster.strength,
+    //     dexterity: monster.dexterity,
+    //     constitution: monster.constitution,
+    //     intelligence: monster.intelligence,
+    //     wisdom: monster.wisdom,
+    //     charisma: monster.charisma,
+    //     {
+    //     [monster.proficiencies]
+    //     ? proficiencies: [...monster.proficiencies]
+    //     : ''
     //     }
-    // })
+        
+    //     proficiencies: [...monster.proficiencies]
+        
+    //     ,
+    //     damage_vulnerabilities: {
+    //         type: [...monster.damage_vulnerabilities],
+    //         default: null
+    //     },
+    //     damage_resistances: {
+    //         type: [...monster.damage_resistances],
+    //         default: null
+    //     },
+    //     damage_immunities: {
+    //         type: [...monster.damage_immunities],
+    //         default: null
+    //     },
+    //     condition_immunities: {
+    //         type: [monster.condition_immunities],
+    //         default: null
+    //     },
+    //     senses: {
+    //         blindsight: monster.senses.blindsight,
+    //         darkvision: monster.senses.darkvision,
+    //         passive_perception: monster.senses.passive_perception,
+    //         truesight: monster.senses.truesight,
+    //         tremorsense: monster.senses.tremorsense
+    //     },
+    //     languages: [...monster.languages],
+    //     challenge_rating: monster.challenge_rating,
+    //     xp: monster.xp,
+    //     special_abilities: [...monster.special_abilities],
+    //     actions: [...monster.actions],
+    //     legendary_actions: [...monster.legendary_actions]
+    // });
+
+    function handleChange(e) {
+            setEditState({
+            ...editState,
+            [e.target.name]: e.target.value,
+            });
+    }
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        console.log('It is firing!')
+        async function homebrew() {
+            try {
+                const formData = new FormData();
+                    // let required = ['special_abilities', 'proficiencies', 'damage_vulnerabilities', 'damage_resistances',  'damage_immunities', 'condition_immunities', 'actions', 'senses', 'legendary_actions', 'speed', 'index', 'name', 'size', 'type', 'alignment', 'armor_class', 'hit_points', 'hit_dice', 'hit_points_roll', 'strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma', 'languages', 'challenge_rating', 'xp']
+                    for (let key in monster) {
+                        // if (required.includes(key)) {
+                        formData[key] = editState[key]
+                        formData.forEach((item) => console.log(item));
+                        // }
+                    }
+                    editMonstra(formData);
+            } catch (err) {
+                console.log()
+            }
+        }
+        homebrew();
+        getMonster();
+        
+    }
 
     if (loading) {
         return (
         <>
-            <Loading />
+            <Loading user={user} />
         </>
         );
     }
     
-    // const monstras = monsters.map((monster) => {
-        // const monstras = (monster) => {
-        // console.log(monster, "What's going on, ", monster)
-        return (
-            
-            // <h1>Hello!</h1>
-            <React.Fragment>
-                {
-                monster
-                ?
-                <Row 
-                    className="justify-content-md-center" 
-                    // style={{maxWidth: 100 + 'vw', maxHeight: 100 + 'vh'}} 
-                    xs={1 | 'auto'} sm={1 | 'auto'} md={2 | 'auto'} lg={2 | 'auto'} xl={2 | 'auto'} xxl={3 | 'auto'}
-                >
-            <Col className="stat-block wide">
+    return (
+    <Row >
+        {/* {
+            state
+            ? 'Hello!'
+            : 'Nope'
+        } */}
+        {/* {
+            monster
+            ? 'Hello!'
+            : 'Nope'
+        } */}
+        
+        <Form onSubmit={handleSubmit}>
+        <Col className="stat-block wide" >
             <hr className="orange-border" />
             <div className="section-left">
                 <div className="creature-heading">
                     <h1>{monster.name}</h1>
+                    <Form.Group className="my-1" controlId="editName">
+                        <Form.Control 
+                            name="name"
+                            type="text" 
+                            placeholder={monster.name}
+                            value={editState.name}
+                            onChange={handleChange}
+                        />
+                    </Form.Group>
+                    
                     <h2>{monster.size} {monster.type}, {monster.alignment}</h2>
+                    <Row>
+                    <Form.Group as={Col} className="my-1" controlId="editName">
+                        <Form.Control 
+                            name="size"
+                            type="text" 
+                            placeholder={monster.size}
+                            value={editState.size}
+                            onChange={handleChange}
+                        />
+                        <Form.Control 
+                            name="type"
+                            type="text" 
+                            placeholder={monster.type}
+                            value={editState.type}
+                            onChange={handleChange}
+                        />
+                        <Form.Control 
+                            name="alignment"
+                            type="text" 
+                            placeholder={monster.alignment}
+                            value={editState.alignment}
+                            onChange={handleChange}
+                            />
+                    </Form.Group>
+                    </Row>
                 </div> 
                 <svg height="5" width="100%" className="tapered-rule">
                 <polyline points="0,0 400,2.5 0,5"></polyline>
@@ -557,38 +748,17 @@ export default function SolaMonstra({ monster, deleteMonster, editMonster, isSav
                     
                 </div> 
             </div>
-            {
-                isSaved
-                ? <>
-                    <Link to={{
-                        pathname:`/edit/${monster._id}`,
-                        
-                        state: { monster: true }
-                    }}
-                    ><button 
-                        className="btn btn-outline-success m-1"
-                        value={monster._id}
-                        // onClick={editMonster}
-                        >
-                            Update
-                    </button></Link>
-                    <button 
-                        className="btn btn-outline-danger" 
-                        value={monster._id} 
-                        onClick={deleteMonster}>
-                            Delete Monster
-                    </button> 
-                </>
-                : ''
-            } 
-            {/* <button className="btn btn-outline-danger" value={monster._id} onClick={deleteMonster}>Delete Monster</button> */}
+            <button type="submit" className="btn btn-lg btn-outline-primary m-1">
+                Homebrew!
+            </button>
             <hr className="orange-border bottom" />
             
             </Col>
-            </Row>
-        : '' 
-        }
-        </React.Fragment>
-
-        ) // <- the Return Enclosing Paranthesis
+        </Form>
+        
+        {/* <SolaMonstra monster={monstroso} key={monstroso.index} isSaved={isSaved} /> */}
+    </Row>
+    );
 }
+
+

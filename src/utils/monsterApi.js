@@ -16,6 +16,21 @@ export async function getAll() {
     });
 }
 
+export async function getOne(monsterId) {
+    return fetch(BASE_URL + monsterId, {
+        headers: {
+        'Authorization': 'Bearer ' + tokenService.getToken()
+        }
+    })
+    .then((res) => {
+        if(res.ok) return res.json();
+        return res.json().then(response => {
+        console.log(response)
+        throw new Error(response.err)
+        })
+    });
+}
+
 export async function create(monster) {
     console.log(monster, '<- monster in monsterAPI')
     return fetch(BASE_URL, {
@@ -56,8 +71,9 @@ export async function deleteMonster(monster) {
 
 export async function edit(monster) {
     console.log(monster, '<- monster in monsterAPI')
-    return fetch(BASE_URL, {
-        method: "POST",
+    console.log(monster._id, '<-monster ID in the edit function in monsterAPI')
+    return fetch(BASE_URL + monster._id, {
+        method: "PUT",
         body: JSON.stringify(monster),
         headers: {
             'Content-Type': 'application/json',
