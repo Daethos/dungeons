@@ -121,7 +121,7 @@ export default function ApiMonsterData({ monsters }) {
         <Row>
         <Form className="searchForm" >
         <Col md={{offset: 4}} className="my-5" >
-            <h1>Search for any Monster*! From the SRD</h1>
+            <h1>Search for any Monster From the SRD</h1>
         </Col>
         <Col md={{}} className="my-5" >
 

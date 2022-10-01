@@ -102,11 +102,6 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
             console.log(err.message);
         }
     }
-
-
-
-
-
     // const [editState, setEditState] = useState({
     //     name: monster.name,
     //     size: monster.size,
@@ -179,12 +174,44 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
     // FIXME: object data, i.e. nested field data. Look into this tomorrow.
     
     function handleWalk(e) {
-        const [ name, value ] = e.target;
-        [...editState[name].walk] = value;
-        setEditState({
-            ...editState,
-            [e.target.name]: e.target.value,
-        });
+        console.log(e.target, '<- e.target in general')
+        const { name, value }  = e.target;
+        console.log(name, '<- e.target.name ?')
+        console.log(value, '<- e.target.value ?')
+        editState[name].walk = value;
+        setEditState({...editState})
+    }
+    function handleSwim(e) {
+        console.log(e.target, '<- e.target in general')
+        const { name, value }  = e.target;
+        console.log(name, '<- e.target.name ?')
+        console.log(value, '<- e.target.value ?')
+        editState[name].swim = value;
+        setEditState({...editState})
+    }
+    function handleFly(e) {
+        console.log(e.target, '<- e.target in general')
+        const { name, value }  = e.target;
+        console.log(name, '<- e.target.name ?')
+        console.log(value, '<- e.target.value ?')
+        editState[name].fly = value;
+        setEditState({...editState})
+    }
+    function handleClimb(e) {
+        console.log(e.target, '<- e.target in general')
+        const { name, value }  = e.target;
+        console.log(name, '<- e.target.name ?')
+        console.log(value, '<- e.target.value ?')
+        editState[name].climb = value;
+        setEditState({...editState})
+    }
+    function handleBurrow(e) {
+        console.log(e.target, '<- e.target in general')
+        const { name, value }  = e.target;
+        console.log(name, '<- e.target.name ?')
+        console.log(value, '<- e.target.value ?')
+        editState[name].burrow = value;
+        setEditState({...editState})
     }
 
     function handleSubmit(e) {
@@ -193,13 +220,21 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
         async function homebrew() {
             try {
                 const formData = new FormData();
+                // formData.replace('speed.walk', editState.walk)
                     // let required = ['special_abilities', 'proficiencies', 'damage_vulnerabilities', 'damage_resistances',  'damage_immunities', 'condition_immunities', 'actions', 'senses', 'legendary_actions', 'speed', 'index', 'name', 'size', 'type', 'alignment', 'armor_class', 'hit_points', 'hit_dice', 'hit_points_roll', 'strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma', 'languages', 'challenge_rating', 'xp']
                     for (let key in monster) {
                         // if (required.includes(key)) {
                         formData[key] = editState[key]
-                        formData.forEach((item) => console.log(item));
+                        // formData.forEach((item) => console.log(item));
                         // }
+                        // if (key === 'walk') {
+                        //     formData.append('speed.walk', editState.walk);
+                            
+                        // }
+                        // formData.append('speed.walk', editState.walk)
+                        formData.forEach((item) => console.log(item));
                     }
+                    // formData.replace('speed.walk', editState.walk)
                     editMonstra(formData);
             } catch (err) {
                 console.log()
@@ -207,68 +242,7 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
         }
         homebrew();
         getMonster();
-        // setEditState({
-        //     name: '',
-        //     size: '',
-        //     type: '',
-        //     alignment: '',
-        //     armor_class: 0,
-        //     hit_points: 0,
-        //     hit_dice: '',
-        //     hit_points_roll: '',
-        //     speed: {
-        //         burrow: '',
-        //         climb: '',
-        //         fly: '',
-        //         swim: '',
-        //         walk: ''
-        //     },
-        //     strength: 0,
-        //     dexterity: 0,
-        //     constitution: 0,
-        //     intelligence: 0,
-        //     wisdom: 0,
-        //     charisma: 0,
-        //     proficiencies: {
-        //         type: [''],
-        //         default: null
-        //     },
-        //     damage_vulnerabilities: {
-        //         type: [''],
-        //         default: null
-        //     },
-        //     damage_resistances: {
-        //         type: [''],
-        //         default: null
-        //     },
-        //     damage_immunities: {
-        //         type: [''],
-        //         default: null
-        //     },
-        //     condition_immunities: {
-        //         type: [''],
-        //         default: null
-        //     },
-        //     senses: {
-        //         blindsight: '',
-        //         darkvision: '',
-        //         passive_perception: '',
-        //         truesight: '',
-        //         tremorsense: ''
-        //     },
-        //     languages: [''],
-        //     challenge_rating: 0,
-        //     xp: 0,
-        //     special_abilities: {
-        //         type: [], 
-        //         default: null
-        //     },
-        //     actions: [''],
-        //     legendary_actions: {
-        //         type: [''],
-        //         default: null
-        //     }
-        // });
+        
     }
 
     if (loading) {
@@ -281,17 +255,6 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
     
     return (
     <Row className="justify-content-md-center" xs={1 | 'auto'} sm={1 | 'auto'} md={2 | 'auto'} lg={2 | 'auto'} xl={2 | 'auto'} xxl={2 | 'auto'}>
-        {/* {
-            state
-            ? 'Hello!'
-            : 'Nope'
-        } */}
-        {/* {
-            monster
-            ? 'Hello!'
-            : 'Nope'
-        } */}
-        
         
         <Col className="stat-block wide">
         <Form onSubmit={handleSubmit}>
@@ -382,7 +345,7 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                         className="mb-2"
                         />
                     </div> 
-                    <div className="property-line last">
+                    <div className="property-line last"> 
                         <h4>Speed</h4>
                         {
                         monster.speed?.burrow
@@ -392,8 +355,8 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                             style={{ 'marginLeft': 1 + 'vw' }}
                             type="text" 
                             placeholder={monster.speed.burrow}
-                            // value={editState.speed.burrow}
-                            onChange={handleChange}
+                            value={editState.speed.burrow}
+                            onChange={handleBurrow}
                             className="mb-2"
                             /></>
                         : ''
@@ -406,8 +369,8 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                             style={{ 'marginLeft': 1 + 'vw' }}
                             type="text" 
                             placeholder={monster.speed.climb}
-                            // value={editState.speed.climb}
-                            onChange={handleChange}
+                            value={editState.speed.climb}
+                            onChange={handleClimb}
                             className="mb-2"
                             /></>
                         : ''
@@ -416,12 +379,12 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                         monster.speed?.fly
                         ? <><p> Flight: {monster.speed.fly}</p>
                         <input
-                            name="fly"
+                            name="speed"
                             style={{ 'marginLeft': 1 + 'vw' }}
                             type="text" 
                             placeholder={monster.speed.fly}
-                            // value={editState.speed.fly}
-                            onChange={handleChange}
+                            value={editState.speed.fly}
+                            onChange={handleFly}
                             className="mb-2"
                             /></>
                         : ''
@@ -434,8 +397,8 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                             style={{ 'marginLeft': 1 + 'vw' }}
                             type="text" 
                             placeholder={monster.speed.swim}
-                            // value={editState.speed.swim}
-                            onChange={handleChange}
+                            value={editState.speed.swim}
+                            onChange={handleSwim}
                             className="mb-2"
                             /></>
                         : ''
@@ -448,7 +411,7 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                             style={{ 'marginLeft': 1 + 'vw' }}
                             type="text" 
                             placeholder={monster.speed.walk}
-                            // value={editState.speed.walk || ''}
+                            value={editState.speed.walk}
                             onChange={handleWalk}
                             className="mb-2"
                             /></>
