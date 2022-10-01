@@ -83,6 +83,22 @@ export default function ApiMonsters({ user, handleLogout }) {
         }
     }
     
+    useEffect(() => {
+        backendMonster()
+    }, [])
+
+    async function backendMonster() {
+        setLoading(true);
+        try {
+            const response = await dndAPI.index()
+            setMonsterData(response.response.results)
+            setLoading(false);
+        } catch (err) {
+            console.log(err.message, '<- Error in Backend Monster!')
+            setLoading(false);
+        }
+    }
+    
     const monstra = async () => {
         await fetchMonsters()
             .then((result) => {
@@ -132,9 +148,9 @@ export default function ApiMonsters({ user, handleLogout }) {
             <Carousel activeIndex={index} id="carousel" onSelect={handleSelect} fade>
                 <Carousel.Item>
                 <img 
-                    src={process.env.PUBLIC_URL + '/gifs/monster-button.gif'} 
-                    alt="loading.gif" 
-                    // style={{maxWidth: 100 + 'vw', maxHeight: 100 + 'vh'}} 
+                    //src={} 
+                    alt="To Be Determined!" 
+                     
                     id="carousel-one"
                     className="d-block w-100"
                 />
@@ -145,9 +161,9 @@ export default function ApiMonsters({ user, handleLogout }) {
                 </Carousel.Item>
                 <Carousel.Item>
                 <img 
-                    src={process.env.PUBLIC_URL + '/gifs/loading.gif'} 
-                    alt="loading.gif" 
-                    // style={{maxWidth: 50 + 'vw', height: 50 + 'vh'}} 
+                    //src={} 
+                    alt="To Be Determined!" 
+                     
                     id="loading" 
                     className="d-block w-100"
                 />
@@ -158,9 +174,9 @@ export default function ApiMonsters({ user, handleLogout }) {
                 </Carousel.Item>
                 <Carousel.Item>
                 <img 
-                    src={process.env.PUBLIC_URL + '/gifs/loading.gif'} 
-                    alt="loading.gif" 
-                    // style={{maxWidth: 50 + 'vw', height: 50 + 'vh'}} 
+                    //src={} 
+                    alt="To Be Determined!" 
+                     
                     id="loading"
                     className="d-block w-100" 
                 />

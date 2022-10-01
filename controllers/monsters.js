@@ -191,7 +191,8 @@ async function index(req, res) {
         // this populates the user when you find the posts
         // so you'll have access to the users information
         // when you fetch teh posts
-        const monsters = await Monster.find({}).populate("user").exec();
+        console.log(req.user._id, '<- User ID in Monster Index Controller')
+        const monsters = await Monster.find({ user: req.user._id }).populate("user").exec();
         res.status(200).json({ data: monsters });
     } catch (err) {
         res.status(400).json({ err });

@@ -20,6 +20,7 @@ export default function UserProfile({ loggedUser, handleLogout, setUser }) {
     const [searchText, setSearchText] = useState('');
     const [allMonsters, setAllMonsters] = useState(monsters);
     const [isSaved, setIsSaved] = useState(true)
+    const BUCKET_START = 'https://collectionbucketman.s3.amazonaws.com/dungeons/';
 
     async function filterMonsters(results) {
         console.log(results, '<- Results in filterMonsters')
@@ -130,7 +131,7 @@ export default function UserProfile({ loggedUser, handleLogout, setUser }) {
             <InputGroup className="bg-black">
                 <InputGroup.Text className="bg-black">
                 <img 
-                        src={process.env.PUBLIC_URL + '/images/awakened-shrub.png'} 
+                        src={BUCKET_START + 'awakened-shrub.png'} 
                         alt="Awakened Shrub" 
                         style={{maxWidth: 5 + 'vw', maxHeight: 5 + 'vh'}}
                     />

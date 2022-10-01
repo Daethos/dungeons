@@ -207,7 +207,68 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
         }
         homebrew();
         getMonster();
-        
+        // setEditState({
+        //     name: '',
+        //     size: '',
+        //     type: '',
+        //     alignment: '',
+        //     armor_class: 0,
+        //     hit_points: 0,
+        //     hit_dice: '',
+        //     hit_points_roll: '',
+        //     speed: {
+        //         burrow: '',
+        //         climb: '',
+        //         fly: '',
+        //         swim: '',
+        //         walk: ''
+        //     },
+        //     strength: 0,
+        //     dexterity: 0,
+        //     constitution: 0,
+        //     intelligence: 0,
+        //     wisdom: 0,
+        //     charisma: 0,
+        //     proficiencies: {
+        //         type: [''],
+        //         default: null
+        //     },
+        //     damage_vulnerabilities: {
+        //         type: [''],
+        //         default: null
+        //     },
+        //     damage_resistances: {
+        //         type: [''],
+        //         default: null
+        //     },
+        //     damage_immunities: {
+        //         type: [''],
+        //         default: null
+        //     },
+        //     condition_immunities: {
+        //         type: [''],
+        //         default: null
+        //     },
+        //     senses: {
+        //         blindsight: '',
+        //         darkvision: '',
+        //         passive_perception: '',
+        //         truesight: '',
+        //         tremorsense: ''
+        //     },
+        //     languages: [''],
+        //     challenge_rating: 0,
+        //     xp: 0,
+        //     special_abilities: {
+        //         type: [], 
+        //         default: null
+        //     },
+        //     actions: [''],
+        //     legendary_actions: {
+        //         type: [''],
+        //         default: null
+        //     }
+        // });
     }
 
     if (loading) {
@@ -219,7 +280,7 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
     }
     
     return (
-    <Row >
+    <Row className="justify-content-md-center" xs={1 | 'auto'} sm={1 | 'auto'} md={2 | 'auto'} lg={2 | 'auto'} xl={2 | 'auto'} xxl={2 | 'auto'}>
         {/* {
             state
             ? 'Hello!'
@@ -231,8 +292,9 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
             : 'Nope'
         } */}
         
+        
+        <Col className="stat-block wide">
         <Form onSubmit={handleSubmit}>
-        <Col className="stat-block wide" >
             <hr className="orange-border" />
             <div className="section-left">
                 <div className="creature-heading">
@@ -947,9 +1009,9 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                 Homebrew!
             </button>
             <hr className="orange-border bottom" />
-            
+            </Form>
             </Col>
-        </Form>
+        
         
         {/* <SolaMonstra monster={monstroso} key={monstroso.index} isSaved={isSaved} /> */}
     </Row>

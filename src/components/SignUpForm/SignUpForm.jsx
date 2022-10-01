@@ -4,6 +4,9 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import userService from "../../utils/userService";
 import { useNavigate } from "react-router-dom";
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Card from 'react-bootstrap/Card';
 
 function isPasswordMatch(passwordOne, passwordConf) {
   return passwordOne === passwordConf;
@@ -21,10 +24,11 @@ export default function SignUpPage(props) {
     password: "",
     passwordConf: "",
     bio: "",
+    color: ""
   });
 
   const [selectedFile, setSelectedFile] = useState("");
-
+  const BUCKET_START = 'https://collectionbucketman.s3.amazonaws.com/dungeons/';
   // initialized the react router hook, which allows you to programatically
   // change routes, aka after our signup call in the handleSubmit
   const navigate = useNavigate();
@@ -35,6 +39,22 @@ export default function SignUpPage(props) {
       [e.target.name]: e.target.value,
     });
   }
+
+  // async function handleColor(e) {
+  //   //setLoading(true);
+  //   e.preventDefault();
+  //   console.log(e.target.name, '<- New Png?')
+  //   const background = BUCKET_START + e.target.name + ".png";
+  //   console.log(background, '<- New background selected!')
+  //   try {
+  //     //await colores(background);
+  //     //console.log(backgroundState, '<- And what is the state of the background at the end?')
+  //     //setLoading(false);
+  //   } catch (err) {
+  //     console.log(err.message, ' <- Error handling Color!')
+  //     //setLoading(false);
+  //   }
+  // }
 
   async function handleSubmit(e) {
     e.preventDefault(); // this stop the browser from submitting the form!
@@ -91,85 +111,125 @@ export default function SignUpPage(props) {
     setSelectedFile(e.target.files[0]);
   }
   const disable = state.password !== state.passwordConf;
+
+
   return (
-    <div id="signup" className="border border-black bg-black text-white">
-        <div className="form-container">
-        <img src={process.env.PUBLIC_URL + '/images/ancient-silver-dragon.jpg'} alt="ancient-black-dragon" id="monster-image" />
-        <h2>Sign Up</h2>
-        
-      <Form onSubmit={handleSubmit}>
-      {/* <form autoComplete="off" onSubmit={handleSubmit}> */}
-      <Form.Group className="my-2" controlId="formBasicUsername">
-      <Form.Label>Username</Form.Label>
-          <Form.Control
-            type="text"
-            name="username"
-            placeholder="username"
-            value={state.username}
-            onChange={handleChange}
-            required
-          />
-          </Form.Group>
-          <Form.Group className="my-2" controlId="formBasicEmail">
-          <Form.Label>Email Address</Form.Label>
-          <Form.Control
-            type="email"
-            name="email"
-            placeholder="email"
-            value={state.email}
-            onChange={handleChange}
-            required
-          />
-          </Form.Group>
-          <Form.Group className="my-2" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            name="password"
-            type="password"
-            placeholder="password"
-            value={state.password}
-            onChange={handleChange}
-            required
-          />
-          </Form.Group>
-          <Form.Group className="my-2" controlId="formBasicPasswordConfirm">
-        <Form.Label>Confirm Password</Form.Label>
-          <Form.Control
-            name="passwordConf"
-            type="password"
-            placeholder="Confirm Password"
-            value={state.passwordConf}
-            onChange={handleChange}
-            required
-          />
-          </Form.Group>
-          <Form.Group className="my-2" controlId="formBasicUser">
-          <Form.Label>Your Bio Here!</Form.Label>
-          <Form.Control
-            type="textarea"
-            label="bio"
-            name="bio"
-            placeholder="Tell us more about yourself..."
-            value={state.bio}
-            onChange={handleChange}
-          />
-          </Form.Group>
-          <Form.Group className="my-2" controlId="formBasicPhoto">
-          <Form.Label>Profile Picture!</Form.Label>
-            <Form.Control
-              type="file"
-              name="photoUrl"
-              placeholder="upload image"
-              onChange={handleFileInput}
-            />
-          </Form.Group>
-          <Button type="submit" variant="success" disabled={disable} className="btn btn-lg">
-            SIGN UP
-          </Button>
-      {/* </form> */}
-      </Form>
-    </div>
-    <p className="error-message">&nbsp;{state.error}</p>
-  </div>
+    
+    <Col className="stat-block wide" id="signup">
+    <Form onSubmit={handleSubmit} className="signup-form">
+            <hr className="orange-border" />
+            <div className="section-left">
+                <div className="creature-heading">
+                    <h1>Signup Form</h1>
+                    </div>
+                     
+                    <svg height="5" width="100%" className="tapered-rule mt-4">
+                    <polyline points="0,0 400,2.5 0,5"></polyline>
+                    </svg>
+                <div className="actions">
+                <div className="property-line first">
+                    <h3>Username</h3>
+                    <Form.Group className="my-2 display-6" controlId="formBasicUsername">
+                          <Form.Control
+                            type="text"
+                            name="username"
+                            placeholder="username"
+                            value={state.username}
+                            onChange={handleChange}
+                            required
+                          />
+                    </Form.Group>
+                </div>
+                    <div className="property-line last">
+                        <h3>Email</h3>
+                        <Form.Group className="my-2 display-6" controlId="formBasicEmail">
+                        <Form.Control
+                          type="email"
+                          name="email"
+                          placeholder="Email Address"
+                          value={state.email}
+                          onChange={handleChange}
+                          required
+                        />
+                        </Form.Group>
+                    </div> 
+                    <svg height="5" width="100%" className="tapered-rule mt-4">
+                    <polyline points="0,0 400,2.5 0,5"></polyline>
+                    </svg>
+                    <div className="property-line first">
+                        <h3>Password</h3>
+                        <Form.Group className="my-2 display-6" controlId="formBasicPassword">
+                          <Form.Control
+                            name="password"
+                            type="password"
+                            placeholder="password"
+                            value={state.password}
+                            onChange={handleChange}
+                            required
+                          />
+                          </Form.Group>
+                    </div>
+                    
+                    <div className="property-line last">
+                        <h3>Confirmation</h3>
+                        <Form.Group className="my-2 display-6" controlId="formBasicPasswordConfirm">
+                          <Form.Control
+                            name="passwordConf"
+                            type="password"
+                            placeholder="Confirm Password"
+                            value={state.passwordConf}
+                            onChange={handleChange}
+                            required
+                          />
+                          </Form.Group>
+                    </div>  
+                    <svg height="5" width="100%" className="tapered-rule mt-4">
+                        <polyline points="0,0 400,2.5 0,5"></polyline>
+                    </svg>
+                    <div className="property-line first">
+                        <h3>Profile Bio</h3>
+                        <Form.Group className="my-2 display-6" controlId="formBasicUser">
+                        <Form.Control
+                          type="textarea"
+                          label="bio"
+                          name="bio"
+                          placeholder="Are you a DM or fledgling Player perhaps?"
+                          value={state.bio}
+                          onChange={handleChange}
+                        />
+                        </Form.Group>
+                        
+                    </div>
+                    
+                    <div className="property-line last">
+                        <h3>Profile Picture</h3>
+                        <Form.Group className="my-2 display-6" controlId="formBasicPhoto">
+                          <Form.Control
+                            type="file"
+                            name="photoUrl"
+                            placeholder="upload image"
+                            onChange={handleFileInput}
+                          />
+                        </Form.Group>
+                    </div> 
+                </div> 
+                <svg height="5" width="100%" className="tapered-rule my-2">
+                <polyline points="0,0 400,2.5 0,5"></polyline>
+            </svg>
+                <div className="property-block">
+                     <h4>  </h4>
+                     <p>  <br /> </p>
+                    
+                </div> 
+                <button type="submit" className="btn btn-lg btn-outline-danger m-1">
+                Sign Up
+            </button>
+            
+            </div> 
+            <img src={BUCKET_START + 'vampire-vampire.png'} alt="Vampire" id="" style={{ maxWidth: 50 + '%', maxHeight: 50 + '%'}} />
+            
+            <hr className="orange-border bottom" />
+            </Form>
+            </Col>
   );
 }

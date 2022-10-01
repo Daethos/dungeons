@@ -12,7 +12,7 @@ export default function LoginPage(props) {
     email: "",
     password: "",
   });
-
+  const BUCKET_START = 'https://collectionbucketman.s3.amazonaws.com/dungeons/';
   const navigate = useNavigate();
 
   function handleChange(e) {
@@ -37,8 +37,8 @@ export default function LoginPage(props) {
     }
   }
   return (
-    <div className="border border-black bg-black text-white">
-      <img src={process.env.PUBLIC_URL + '/images/ancient-black-dragon.jpg'} alt="ancient-black-dragon" id="monster-image" />
+    <div className="text-black">
+      <img src={BUCKET_START + 'tarrasque.png'} alt="Tarrasque" id="monster-image" />
       <div className="form-container">
         <Form onSubmit={handleSubmit}>
         <Form.Group className="my-2" controlId="formBasicEmail">

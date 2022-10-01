@@ -84,6 +84,7 @@ export default function ApiMonsterDetails({ monster, key, getmonstahurl, loggedU
                             '<- The current spec of formData');
                             handleMonster(formData); // formData is the data we want to send to the server!
                     // }
+                            setIsSaved(true);
             } catch (err) {
                 console.log(err);
             }
@@ -93,25 +94,25 @@ export default function ApiMonsterDetails({ monster, key, getmonstahurl, loggedU
     
     return (
     <div>
-        <Col md={{span: 6, offset: 3}}>
+        <Col md={{span: 6, offset: 5}}>
         {
-            monstra
-            ? <button value={monstroso} type="submit" className="btn btn-danger" disabled>
+            isSaved
+            ? <button value={monstroso} type="submit" className="btn btn-danger my-3" disabled>
             {monstroso.name} Is Yours Now!
             </button>
             : <Form onSubmit={handleSubmit}>
-            <button value={monstroso} type="submit" className="btn btn-success">
+            <button value={monstroso} type="submit" className="btn btn-success my-3">
             Add {monstroso.name} ?
             </button>
         </Form>
         }
-        <Form onSubmit={handleSubmit}>
+        {/* <Form onSubmit={handleSubmit}>
             <button value={monstroso} type="submit" className="btn btn-success">
             Add {monstroso.name} ?
             </button>
-        </Form>
+        </Form> */}
         </Col>
-        <SolaMonstra monster={monstroso} key={monstroso.index} isSaved={isSaved} />
+        <SolaMonstra monster={monstroso} key={monstroso.index} handleSubmit={handleSubmit} isSaved={isSaved} />
     </div>
     );
 }

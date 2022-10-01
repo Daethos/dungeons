@@ -27,7 +27,9 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [monstra, setMonstra] = useState([])
-  
+  const BUCKET_START = 'https://collectionbucketman.s3.amazonaws.com/dungeons/';
+  const userBackground = document.getElementById('user-background');
+  console.log(backgroundState, "<- What's up?")
 
 
   function handleSignUpOrLogin() {
@@ -68,11 +70,14 @@ async function editMonstra(monstra) {
   }
 }
 
-  const userBackground = document.getElementById('user-background');
+  
 
   async function colores(background) {
     try {
       setBackgroundState(background);
+      console.log(background, '<- Background in colores function')
+      // document.getElementById('user-background').style.backgroundImage = `${background}`;
+      // userBackground.style.backgroundImage = `${background}`;
     } catch (err) {
       console.log(err.message, '<- Error in colores')
     }
@@ -82,9 +87,11 @@ async function editMonstra(monstra) {
     setLoading(true);
     e.preventDefault();
     console.log(e.target.name, '<- New Png?')
-    const background = process.env.MONSTER_IMAGE_URL + e.target.name + '.png'
+    const background = BUCKET_START + e.target.name + ".png";
+    console.log(background, '<- New background selected!')
     try {
       await colores(background);
+      console.log(backgroundState, '<- And what is the state of the background at the end?')
       setLoading(false);
     } catch (err) {
       console.log(err.message, ' <- Error handling Color!')
@@ -104,17 +111,18 @@ async function editMonstra(monstra) {
         <Loading user={user} handleLogout={handleLogout} />
     );
 }
-  
+  console.log(process.env.PUBLIC_URL + "/images/dungeon-background.png")
 
   if (user) {
     return (
       <div 
       style={
-        backgroundState 
-        ? { backgroundImage: backgroundState, myStyle }
-        : { backgroundImage: process.env.MONSTER_IMAGE_URL + 'Y4.png', myStyle }
-    } 
-      id="user-background"
+        backgroundState
+        ? { backgroundImage:`url(${backgroundState})` }
+        : { backgroundImage: `url(${BUCKET_START}Y4.png)` }
+      } 
+      //style={{ backgroundImage: `url(${BUCKET_START}Y4.png)`}}
+      className="user-background"
       > 
       <NavBar user={user} setUser={setUser} handleLogout={handleLogout} getmonstahurl={getmonstahurl} handleColor={handleColor} />
       <Routes>
@@ -134,11 +142,20 @@ async function editMonstra(monstra) {
   }
 
   return (
+    <div 
+      style={
+        backgroundState
+        ? { backgroundImage:`url(${backgroundState})` }
+        : { backgroundImage: `url(${BUCKET_START}Y4.png)` }
+      } 
+      //style={{ backgroundImage: `url(${BUCKET_START}Y4.png)`}}
+      className="user-background"
+      > 
     <Routes>
-
       <Route path="/Authorization" element={<AuthPage setUser={setUser} handleSignUpOrLogin={handleSignUpOrLogin} />} />
       <Route path="/*" element={<Navigate to="/Authorization" />} />
     </Routes>
+    </div>
   );
 }
 
