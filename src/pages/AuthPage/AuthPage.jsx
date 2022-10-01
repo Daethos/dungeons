@@ -25,7 +25,6 @@ export default function AuthPage({ setUser, handleSignUpOrLogin }) {
         </>
         :
         <>
-        
         <Button variant="danger" className="btn-lg text-white" onClick={() => setShowSignUp(!showSignUp)}>{showSignUp ? 'Need to Log In?' : 'Need to Sign Up?'}</Button>
         <LoginForm setUser={setUser} handleSignUpOrLogin={handleSignUpOrLogin} />
         </>

@@ -230,6 +230,7 @@ export default function SignUpPage(props) {
             
             <hr className="orange-border bottom" />
             </Form>
+            
             </Col>
   );
 }
