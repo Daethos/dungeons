@@ -165,52 +165,56 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
     // });
 
     function handleChange(e) {
+        // const { name, value }  = e.target;
+        // editState[name] = value;
         setEditState({
-        ...editState,
+        ...editState
+        ,
         [e.target.name]: e.target.value,
         });
     }
     // TODO: May need to refactor model, did not anticipate issue of editing embedded
     // FIXME: object data, i.e. nested field data. Look into this tomorrow.
     
-    function handleWalk(e) {
-        console.log(e.target, '<- e.target in general')
+    function handleSpeed(e) {
         const { name, value }  = e.target;
-        console.log(name, '<- e.target.name ?')
-        console.log(value, '<- e.target.value ?')
-        editState[name].walk = value;
+        editState.speed[name] = value;
         setEditState({...editState})
     }
-    function handleSwim(e) {
-        console.log(e.target, '<- e.target in general')
+
+    function handleSenses(e) {
         const { name, value }  = e.target;
-        console.log(name, '<- e.target.name ?')
-        console.log(value, '<- e.target.value ?')
-        editState[name].swim = value;
+        editState.senses[name] = value;
         setEditState({...editState})
     }
-    function handleFly(e) {
-        console.log(e.target, '<- e.target in general')
+
+    function handleConditionImmunities(e) {
         const { name, value }  = e.target;
-        console.log(name, '<- e.target.name ?')
-        console.log(value, '<- e.target.value ?')
-        editState[name].fly = value;
+        editState.condition_immunities[name].name = value;
         setEditState({...editState})
     }
-    function handleClimb(e) {
-        console.log(e.target, '<- e.target in general')
+
+    function handleDamageImmunities(e) {
         const { name, value }  = e.target;
-        console.log(name, '<- e.target.name ?')
-        console.log(value, '<- e.target.value ?')
-        editState[name].climb = value;
+        editState.damage_immunities[name] = value;
         setEditState({...editState})
     }
-    function handleBurrow(e) {
-        console.log(e.target, '<- e.target in general')
+
+    function handleDamageResistances(e) {
         const { name, value }  = e.target;
-        console.log(name, '<- e.target.name ?')
-        console.log(value, '<- e.target.value ?')
-        editState[name].burrow = value;
+        editState.damage_resistances[name] = value;
+        setEditState({...editState})
+    }
+
+    function handleDamageVulberabilities(e) {
+        const { name, value }  = e.target;
+        editState.damage_vulnerabilities[name] = value;
+        setEditState({...editState})
+    }
+
+    function handleActions(e) {
+        const { name, value }  = e.target;
+        editState.actions[name] = value;
         setEditState({...editState})
     }
 
@@ -351,71 +355,111 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                         monster.speed?.burrow
                         ? <><p> Burrow: {monster.speed.burrow}</p>
                         <input
-                            name="speed"
+                            name="burrow"
                             style={{ 'marginLeft': 1 + 'vw' }}
                             type="text" 
                             placeholder={monster.speed.burrow}
                             value={editState.speed.burrow}
-                            onChange={handleBurrow}
+                            onChange={handleSpeed}
                             className="mb-2"
                             /></>
-                        : ''
+                        : <input
+                        name="burrow"
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder="Burrow?"
+                        value={editState.speed.burrow}
+                        onChange={handleSpeed}
+                        className="mb-2"
+                        />
                         }
                         {
                         monster.speed?.climb
                         ? <><p> Climb: {monster.speed.climb}</p>
                         <input
-                            name="speed"
+                            name="climb"
                             style={{ 'marginLeft': 1 + 'vw' }}
                             type="text" 
                             placeholder={monster.speed.climb}
                             value={editState.speed.climb}
-                            onChange={handleClimb}
+                            onChange={handleSpeed}
                             className="mb-2"
                             /></>
-                        : ''
+                        : <input
+                        name="climb"
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder="Climb?"
+                        value={editState.speed.climb}
+                        onChange={handleSpeed}
+                        className="mb-2"
+                        />
                         }
                         {
                         monster.speed?.fly
                         ? <><p> Flight: {monster.speed.fly}</p>
                         <input
-                            name="speed"
+                            name="fly"
                             style={{ 'marginLeft': 1 + 'vw' }}
                             type="text" 
                             placeholder={monster.speed.fly}
                             value={editState.speed.fly}
-                            onChange={handleFly}
+                            onChange={handleSpeed}
                             className="mb-2"
                             /></>
-                        : ''
+                        : <input
+                        name="fly"
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder="Fly?"
+                        value={editState.speed.fly}
+                        onChange={handleSpeed}
+                        className="mb-2"
+                        />
                         }
                         {
                         monster.speed?.swim
                         ? <><p> Swim: {monster.speed.swim}</p>
                         <input
-                            name="speed"
+                            name="swim"
                             style={{ 'marginLeft': 1 + 'vw' }}
                             type="text" 
                             placeholder={monster.speed.swim}
                             value={editState.speed.swim}
-                            onChange={handleSwim}
+                            onChange={handleSpeed}
                             className="mb-2"
                             /></>
-                        : ''
+                        : <input
+                        name="swim"
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder="Swim?"
+                        value={editState.speed.swim}
+                        onChange={handleSpeed}
+                        className="mb-2"
+                        />
                         }
                         {
                         monster.speed?.walk
                         ? <><p> Walk: {monster.speed.walk}</p>
                         <input
-                            name="speed"
+                            name="walk"
                             style={{ 'marginLeft': 1 + 'vw' }}
                             type="text" 
                             placeholder={monster.speed.walk}
                             value={editState.speed.walk}
-                            onChange={handleWalk}
+                            onChange={handleSpeed}
                             className="mb-2"
                             /></>
-                        : ''
+                        : <input
+                        name="walk"
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder="Walk?"
+                        value={editState.speed.walk}
+                        onChange={handleSpeed}
+                        className="mb-2"
+                        />
                         }
                     </div>
                     <Form.Group as={Col} className="my-1" controlId="editName">
@@ -615,15 +659,23 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                         {
                         monster.condition_immunities?.[0]?.name 
                         ?  <p> {monster.condition_immunities[0].name} <input
-                        name='condition_immunities'
+                        name='0'
                         style={{ 'marginLeft': 1 + 'vw' }}
                         type="text" 
                         placeholder={monster.condition_immunities[0].name}
                         value={editState.condition_immunities[0].name}
-                        onChange={handleChange}
+                        onChange={handleConditionImmunities}
                         className="mb-2"
                         /></p>
-                        : ''
+                        : <input
+                        name='0'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder="Conditional Immunities?"
+                        value={editState.condition_immunities[0].name}
+                        onChange={handleConditionImmunities}
+                        className="mb-2"
+                        />
                         }
                         {
                         monster.condition_immunities?.[1]?.name 
@@ -670,16 +722,51 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                         <h4>Damage Immunities</h4>
                         {
                         monster.damage_immunities?.[0]
-                        ? <p> {monster.damage_immunities[0].charAt(0).toUpperCase() + monster.damage_immunities[0].slice(1)} </p>
-                        : ''
+                        ? <p> {monster.damage_immunities[0].charAt(0).toUpperCase() + monster.damage_immunities[0].slice(1)} 
+                        <input
+                        name='0'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder={monster.damage_immunities[0].charAt(0).toUpperCase() + monster.damage_immunities[0].slice(1)}
+                        value={editState.damage_immunities[0]}
+                        onChange={handleDamageImmunities}
+                        className="mb-2"
+                        />
+                        </p>
+                        : <input
+                        name='0'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder="Damage Immunities?"
+                        value={editState.damage_immunities[0]}
+                        onChange={handleDamageImmunities}
+                        className="mb-2"
+                        />
                         }
                     </div> 
                     <div className="property-line">
                         <h4>Damage Resistances</h4>
                         {
                         monster.damage_resistances?.[0] 
-                        ?  <p> {monster.damage_resistances[0].charAt(0).toUpperCase() + monster.damage_resistances[0].slice(1)} </p>
-                        : ''
+                        ?  <p> {monster.damage_resistances[0].charAt(0).toUpperCase() + monster.damage_resistances[0].slice(1)} 
+                        <input
+                        name='0'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder={monster.damage_resistances[0].charAt(0).toUpperCase() + monster.damage_resistances[0].slice(1)}
+                        value={editState.damage_resistances[0]}
+                        onChange={handleDamageResistances}
+                        className="mb-2"
+                        /></p>
+                        : <input
+                        name='0'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder="Damage Resistances?"
+                        value={editState.damage_resistances[0]}
+                        onChange={handleDamageResistances}
+                        className="mb-2"
+                        />
                         }
                         {
                         monster.damage_resistances?.[1] 
@@ -696,8 +783,25 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                         <h4>Damage Vulnerabilities</h4>
                         {
                         monster.damage_vulnerabilities?.[0] 
-                        ?  <p> {monster.damage_vulnerabilities[0]} </p>
-                        : ''
+                        ?  <p> {monster.damage_vulnerabilities[0]} 
+                        <input
+                        name='0'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder={monster.damage_vulnerabilities[0].charAt(0).toUpperCase() + monster.damage_vulnerabilities[0].slice(1)}
+                        value={editState.damage_vulnerabilities[0]}
+                        onChange={handleDamageVulberabilities}
+                        className="mb-2"
+                        /></p>
+                        : <input
+                        name='0'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder="Damage Vulnerabilities?"
+                        value={editState.damage_vulnerabilities[0]}
+                        onChange={handleDamageVulberabilities}
+                        className="mb-2"
+                        />
                         }
                         {
                         monster.damage_vulnerabilities?.[1] 
@@ -710,28 +814,113 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                         
                         {
                         monster.senses?.blindsight
-                        ? <p> Blindsight: {monster.senses.blindsight} </p>
-                        : ''
+                        ? <p> Blindsight: {monster.senses.blindsight} 
+                        <input
+                        name="blindsight"
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder={monster.senses.blindsight}
+                        value={editState.senses.blindsight}
+                        onChange={handleSenses}
+                        className="mb-2"
+                        /></p>
+                        : <input
+                        name="blindsight"
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder="Blindsight?"
+                        value={editState.senses.blindsight}
+                        onChange={handleSenses}
+                        className="mb-2"
+                        />
                         }
                         {
                         monster.senses?.darkvision
-                        ? <p> Darkvision: {monster.senses.darkvision}</p>
-                        : ''
+                        ? <p> Darkvision: {monster.senses.darkvision} 
+                        <input
+                        name="darkvision"
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder={monster.senses.darkvision}
+                        value={editState.senses.darkvision}
+                        onChange={handleSenses}
+                        className="mb-2"
+                        /></p>
+                        : <input
+                        name="darkvision"
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder="Darkvision?"
+                        value={editState.senses.darkvision}
+                        onChange={handleSenses}
+                        className="mb-2"
+                        />
                         }
                         {
                         monster.senses?.passive_perception
-                        ? <p> Passive Perception: {monster.senses.passive_perception}</p>
-                        : ''
+                        ? <p> Passive Perception: {monster.senses.passive_perception}
+                        <input
+                            name="passive_perception"
+                            style={{ 'marginLeft': 1 + 'vw' }}
+                            type="text" 
+                            placeholder={monster.senses.passive_perception}
+                            value={editState.senses.passive_perception}
+                            onChange={handleSenses}
+                            className="mb-2"
+                            /></p>
+                        : <input
+                        name="passive_perception"
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder="Passive Perception?"
+                        value={editState.senses.passive_perception}
+                        onChange={handleSenses}
+                        className="mb-2"
+                        />
                         }
                         {
                         monster.senses?.truesight
-                        ? <p> Truesight: {monster.senses.truesight}</p>
-                        : ''
+                        ? <p> Truesight: {monster.senses.truesight}
+                        <input
+                            name="truesight"
+                            style={{ 'marginLeft': 1 + 'vw' }}
+                            type="text" 
+                            placeholder={monster.senses.truesight}
+                            value={editState.senses.truesight}
+                            onChange={handleSenses}
+                            className="mb-2"
+                            /></p>
+                        : <input
+                        name="truesight"
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder="Truesight?"
+                        value={editState.senses.truesight}
+                        onChange={handleSenses}
+                        className="mb-2"
+                        />
                         }
                         {
                         monster.senses?.tremorsense
-                        ? <p> Tremorsense: {monster.senses.tremorsense}</p>
-                        : ''
+                        ? <p> Tremorsense: {monster.senses.tremorsense}
+                        <input
+                            name="tremorsense"
+                            style={{ 'marginLeft': 1 + 'vw' }}
+                            type="text" 
+                            placeholder={monster.senses.tremorsense}
+                            value={editState.senses.tremorsense}
+                            onChange={handleSenses}
+                            className="mb-2"
+                            /></p>
+                        : <input
+                        name="tremorsense"
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder="Tremorsense?"
+                        value={editState.senses.tremorsense}
+                        onChange={handleSenses}
+                        className="mb-2"
+                        />
                         }
                     </div> 
                     <div className="property-line">
