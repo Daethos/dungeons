@@ -21,6 +21,7 @@ export default function UserProfile({ loggedUser, handleLogout, setUser }) {
     const [searchText, setSearchText] = useState('');
     const [allMonsters, setAllMonsters] = useState(monsters);
     const [isSaved, setIsSaved] = useState(true)
+    const [onProfile, setOnProfile] = useState(true)
     const BUCKET_START = 'https://collectionbucketman.s3.amazonaws.com/dungeons/';
 
     async function filterMonsters(results) {
@@ -160,6 +161,7 @@ export default function UserProfile({ loggedUser, handleLogout, setUser }) {
                         deleteMonster={deleteMonster}
                         editMonster={editMonster}
                         isSaved={isSaved}
+                        onProfile={onProfile}
                     />
                 )
             })}

@@ -9,7 +9,7 @@ import Container from 'react-bootstrap/Container';
 import Loading from '../Loading/Loading';
 import EditMonster from '../EditMonster/EditMonster';
 
-export default function SolaMonstra({ monster, deleteMonster, editMonster, isSaved }) {
+export default function SolaMonstra({ monster, deleteMonster, editMonster, isSaved, onProfile }) {
     const BUCKET_START = 'https://collectionbucketman.s3.amazonaws.com/dungeons/';
     // const [userCharactersState, setUserCharactersState] = useState(null);
     // style={{maxWidth: 50 + 'vw'}}
@@ -35,7 +35,7 @@ export default function SolaMonstra({ monster, deleteMonster, editMonster, isSav
         </>
         );
     }
- 
+
         return (
             
             // <h1>Hello!</h1>
@@ -543,7 +543,7 @@ export default function SolaMonstra({ monster, deleteMonster, editMonster, isSav
                 </div> 
             </div>
             {
-                isSaved
+                onProfile
                 ? <>
 
                     <Link to={{
@@ -564,7 +564,7 @@ export default function SolaMonstra({ monster, deleteMonster, editMonster, isSav
                         onClick={deleteMonster}>
                             Delete Monster
                     </button>
-                     
+                    
                 </>
                 : ''
             }
