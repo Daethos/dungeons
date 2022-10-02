@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Loading from '../Loading/Loading';
+import EditMonster from '../EditMonster/EditMonster';
 
 export default function SolaMonstra({ monster, deleteMonster, editMonster, isSaved }) {
     const BUCKET_START = 'https://collectionbucketman.s3.amazonaws.com/dungeons/';
@@ -15,13 +16,17 @@ export default function SolaMonstra({ monster, deleteMonster, editMonster, isSav
     //  style={{maxWidth: 25 + 'vw'}}
     // style={{maxWidth: 100 + 'vw', height: 100 + 'vh'}}
     const [loading, setLoading] = useState(false);
-    // const [monster, setMonster] = useState([])
+    const [editMonsterState, setEditMonsterState] = useState(false)
     const [monsterState, setMonsterState] = useState({monster})
     console.log(monsterState)
     const [data, setData] = useState({ id: "1t4",
         title: " How to pass state in react-router-dom",
         tag: ["reactjs", "react-router-dom"]
     });
+
+    function editMonster(monster) {
+        setEditMonsterState(true);
+    }
     
     if (loading) {
         return (
@@ -540,6 +545,7 @@ export default function SolaMonstra({ monster, deleteMonster, editMonster, isSav
             {
                 isSaved
                 ? <>
+
                     <Link to={{
                         pathname:`/edit/${monster._id}`,
                         
@@ -557,10 +563,11 @@ export default function SolaMonstra({ monster, deleteMonster, editMonster, isSav
                         value={monster._id} 
                         onClick={deleteMonster}>
                             Delete Monster
-                    </button> 
+                    </button>
+                     
                 </>
                 : ''
-            } 
+            }
             {/* <button className="btn btn-outline-danger" value={monster._id} onClick={deleteMonster}>Delete Monster</button> */}
             <hr className="orange-border bottom" />
             

@@ -12,6 +12,7 @@ import UserMonsters from '../../components/UserMonsters/UserMonsters';
 // import NavBar from '../../components/NavBar/NavBar';
 import Container from 'react-bootstrap/Container';
 import SolaMonstra from '../../components/SolaMonstra/SolaMonstra';
+import EditMonster from '../../components/EditMonster/EditMonster';
 
 
 export default function UserProfile({ loggedUser, handleLogout, setUser }) {

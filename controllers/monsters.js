@@ -133,7 +133,32 @@ async function create(req, res) {
                 intelligence: req.body.intelligence,
                 wisdom: req.body.wisdom,
                 charisma: req.body.charisma,
-                proficiencies: [...req.body.proficiencies],
+                proficiencies: 
+                    req.body.proficiencies.length > 0
+                    ?
+                    [...req.body.proficiencies]
+                    :
+                    [
+                        {
+                            value: 'Prof. Value One', 
+                            proficiency: {
+                                name: 'Prof. Type Name One'
+                            }
+                        },
+                        {
+                            value: 'Prof. Value Two', 
+                            proficiency: {
+                                name: 'Prof. Type Name Two'
+                            }
+                        },
+                        {
+                            value: 'Prof. Value Three', 
+                            proficiency: {
+                                name: 'Prof. Type Name Three'
+                            }
+                        }
+                    ]
+                    ,
                 damage_vulnerabilities: 
                 req.body.damage_vulnerabilities.length > 0
                 ?
@@ -176,9 +201,38 @@ async function create(req, res) {
                 languages: req.body.languages,
                 challenge_rating: req.body.challenge_rating,
                 xp: req.body.xp,
-                special_abilities: [...req.body.special_abilities],
-                actions: [...req.body.actions],
-                legendary_actions: [...req.body.legendary_actions]
+                special_abilities: 
+                red.body.special_abilities.length > 0
+                ?
+                [...req.body.special_abilities]
+                :
+                [
+                    {name: 'Special Ability Name One', desc: 'Special Ability Desc One: Use Your Imagination!'},
+                    {name: 'Special Ability Name Two', desc: 'Special Ability Desc Two: Use Your Imagination!'},
+                    {name: 'Special Ability Name Three', desc: 'Special Ability Desc Three: Use Your Imagination!'},
+                ]
+                ,
+                actions: 
+                    req.body.actions.length > 0
+                    ?
+                    [...req.body.actions]
+                    :
+                    [
+                        {name: 'Action Name One', desc: 'Action Desc One: +Hit, Reach, Dice, DC, Type'},
+                        {name: 'Action Name Two', desc: 'Action Desc Two: +Hit, Reach, Dice, DC, Type'},
+                        {name: 'Action Name Three', desc: 'Action Desc Three: +Hit, Reach, Dice, DC, Type'},
+                    ]
+                    ,
+                legendary_actions: 
+                    req.body.legendary_actions.length > 0
+                    ?
+                    [...req.body.legendary_actions]
+                    :
+                    [
+                        {name: 'L-Action Name One', desc: 'L-Action Desc One: +Hit, +Dam, Reach, Dice, DC, Type'},
+                        {name: 'L-Action Name Two', desc: 'L-Action Desc Two: +Hit, +Dam, Reach, Dice, DC, Type'},
+                        {name: 'L-Action Name Three', desc: 'L-Action Desc Three: +Hit, +Dam, Reach, Dice, DC, Type'}
+                    ]
             })
             res.status(201).json({ monster: monster });
         } catch (err) {

@@ -23,14 +23,14 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
     
     // console.log(location, '<- Here is where I am')
     const [editState, setEditState] = useState({
-        name: '',
-        size: '',
-        type: '',
-        alignment: '',
+        name: 'Name?',
+        size: 'Size?',
+        type: 'Type?',
+        alignment: 'Alignment',
         armor_class: 0,
         hit_points: 0,
-        hit_dice: '',
-        hit_points_roll: '',
+        hit_dice: 'Hit Dice',
+        hit_points_roll: 'Hit Points',
         speed: {
             burrow: '',
             climb: '',
@@ -44,10 +44,57 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
         intelligence: 0,
         wisdom: 0,
         charisma: 0,
-        proficiencies: {
-            type: [''],
-            default: null
-        },
+        proficiencies: [
+            {
+                value: 'First Pro Value',
+                proficiency: {
+                    name: 'First Pro name'
+                }
+                
+            },
+            {
+                value: 'Second Pro Value',
+                proficiency: {
+                    name: ''
+                }
+            },
+            {
+                value: 'Third Pro Value',
+                proficiency: {
+                    name: ''
+                }
+            },
+            {
+                value: 'Fourth Pro Value',
+                proficiency: {
+                    name: ''
+                }
+            },
+            {
+                value: 'Fifth Pro Value',
+                proficiency: {
+                    name: ''
+                }
+            },
+            {
+                value: '',
+                proficiency: {
+                    name: ''
+                }
+            },
+            {
+                value: '',
+                proficiency: {
+                    name: ''
+                }
+            },
+            {
+                value: '',
+                proficiency: {
+                    name: ''
+                }
+            }
+    ],
         damage_vulnerabilities: {
             type: [''],
             default: null
@@ -60,10 +107,8 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
             type: [''],
             default: null
         },
-        condition_immunities: {
-            type: [''],
-            default: null
-        },
+        condition_immunities: ['']
+        ,
         senses: {
             blindsight: '',
             darkvision: '',
@@ -74,20 +119,42 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
         languages: [''],
         challenge_rating: 0,
         xp: 0,
-        special_abilities: {
-            type: [], 
-            default: null
-        },
+        special_abilities: [''],
         actions: [''],
-        legendary_actions: {
-            type: [''],
-            default: null
-        }
+        legendary_actions: [
+            {
+                desc: '',
+                name: ''
+            
+            },
+            {
+                desc: '',
+                name: ''
+            
+            },
+            {
+                desc: '',
+                name: ''
+            
+            },
+            {
+                desc: '',
+                name: ''
+            
+            },
+            {
+                desc: '',
+                name: ''
+            
+            },
+        ]
     });
 
     
     useEffect(() => {
+        // setEditState(editState)
         getMonster()
+        
     }, [])
 
     async function getMonster() {
@@ -96,7 +163,7 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
             console.log(response, ' <- the response in getMonsters')
             setMonster(response.data)
             console.log(monster, '<- The monster!')
-            setEditState(response.data)
+            setEditState(response.data) // It's because of this!
             setLoading(false)
         } catch (err) {
             console.log(err.message);
@@ -183,6 +250,7 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
     }
 
     function handleSenses(e) {
+        e.preventDefault();
         const { name, value }  = e.target;
         editState.senses[name] = value;
         setEditState({...editState})
@@ -212,9 +280,55 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
         setEditState({...editState})
     }
 
-    function handleActions(e) {
+    function handleProficiencyName(e) {
         const { name, value }  = e.target;
-        editState.actions[name] = value;
+        if (editState.proficiencies[name].proficiency.name === false) {
+            setEditState({
+                ...editState,
+                [editState.proficiencies[name].proficiency.name]: value
+            })
+        }
+        editState.proficiencies[name].proficiency.name = value;
+        setEditState({...editState})
+    }
+
+    function handleProficiencyValue(e) {
+        console.log(e.target.value, '<- What value are you?')
+        console.log(e.target.name, '<- What name are you?')
+        const { name, value }  = e.target;
+        editState.proficiencies[name].value = value;
+        setEditState({...editState})
+    }
+
+    function handleSpecialAbilitiesName(e) {
+        const { name, value }  = e.target;
+        editState.special_abilities[name].name = value;
+        setEditState({...editState})
+    }
+    function handleSpecialAbilitiesDesc(e) {
+        const { name, value }  = e.target;
+        editState.special_abilities[name].desc = value;
+        setEditState({...editState})
+    }
+
+    function handleActionsName(e) {
+        const { name, value }  = e.target;
+        editState.actions[name].name = value;
+        setEditState({...editState})
+    }
+    function handleActionsDesc(e) {
+        const { name, value }  = e.target;
+        editState.actions[name].desc = value;
+        setEditState({...editState})
+    }
+    function handleLegendaryActionsName(e) {
+        const { name, value }  = e.target;
+        editState.legendary_actions[name].name = value;
+        setEditState({...editState})
+    }
+    function handleLegendaryActionsDesc(e) {
+        const { name, value }  = e.target;
+        editState.legendary_actions[name].desc = value;
         setEditState({...editState})
     }
 
@@ -362,8 +476,8 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                             value={editState.speed.burrow}
                             onChange={handleSpeed}
                             className="mb-2"
-                            /></>
-                        : <input
+                            /><br /></>
+                        : <><input
                         name="burrow"
                         style={{ 'marginLeft': 1 + 'vw' }}
                         type="text" 
@@ -371,7 +485,7 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                         value={editState.speed.burrow}
                         onChange={handleSpeed}
                         className="mb-2"
-                        />
+                        /><br /></>
                         }
                         {
                         monster.speed?.climb
@@ -384,8 +498,8 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                             value={editState.speed.climb}
                             onChange={handleSpeed}
                             className="mb-2"
-                            /></>
-                        : <input
+                            /><br /></>
+                        : <><input
                         name="climb"
                         style={{ 'marginLeft': 1 + 'vw' }}
                         type="text" 
@@ -393,7 +507,7 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                         value={editState.speed.climb}
                         onChange={handleSpeed}
                         className="mb-2"
-                        />
+                        /><br /></>
                         }
                         {
                         monster.speed?.fly
@@ -406,8 +520,8 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                             value={editState.speed.fly}
                             onChange={handleSpeed}
                             className="mb-2"
-                            /></>
-                        : <input
+                            /><br /></>
+                        : <><input
                         name="fly"
                         style={{ 'marginLeft': 1 + 'vw' }}
                         type="text" 
@@ -415,7 +529,7 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                         value={editState.speed.fly}
                         onChange={handleSpeed}
                         className="mb-2"
-                        />
+                        /><br /></>
                         }
                         {
                         monster.speed?.swim
@@ -428,8 +542,8 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                             value={editState.speed.swim}
                             onChange={handleSpeed}
                             className="mb-2"
-                            /></>
-                        : <input
+                            /><br /></>
+                        : <><input
                         name="swim"
                         style={{ 'marginLeft': 1 + 'vw' }}
                         type="text" 
@@ -437,7 +551,7 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                         value={editState.speed.swim}
                         onChange={handleSpeed}
                         className="mb-2"
-                        />
+                        /><br /></>
                         }
                         {
                         monster.speed?.walk
@@ -450,8 +564,8 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                             value={editState.speed.walk}
                             onChange={handleSpeed}
                             className="mb-2"
-                            /></>
-                        : <input
+                            /><br /></>
+                        : <><input
                         name="walk"
                         style={{ 'marginLeft': 1 + 'vw' }}
                         type="text" 
@@ -459,13 +573,10 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                         value={editState.speed.walk}
                         onChange={handleSpeed}
                         className="mb-2"
-                        />
+                        /><br /></>
                         }
                     </div>
                     <Form.Group as={Col} className="my-1" controlId="editName">
-                        
-                        
-                        
                     </Form.Group> 
                     <svg height="5" width="100%" className="tapered-rule">
                 <polyline points="0,0 400,2.5 0,5"></polyline>
@@ -557,98 +668,360 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                         <h4>Proficiencies</h4>
                         {
                         monster.proficiencies?.[0]?.proficiency.name
-                        ? <p> {monster.proficiencies[0].proficiency.name} </p>
-                        : ''
+                        ? <p> {monster.proficiencies[0].proficiency.name} - {monster.proficiencies[0].value}
+                        <input
+                        name='0'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder={monster.proficiencies[0].proficiency.name}
+                        value={editState.proficiencies[0].proficiency.name}
+                        onChange={handleProficiencyName}
+                        className="mb-2"
+                        /></p>
+                        : <input
+                        name='0'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder='First Proficiency Name?'
+                        value={editState.proficiencies?.[0]?.proficiency.name}
+                        onChange={handleProficiencyName}
+                        className="mb-2"
+                        />
                         }
                         {
                         monster.proficiencies?.[0]?.value
-                        ? <p> {monster.proficiencies[0].value} <input
-                        name='proficiencies'
-                        //style={{ 'marginLeft': 1 + 'vw' }}
+                        ? <p><input
+                        name='0'
+                        style={{ 'marginLeft': 1 + 'vw' }}
                         type="text" 
                         placeholder={monster.proficiencies[0].value}
                         value={editState.proficiencies[0].value}
-                        onChange={handleChange}
+                        onChange={handleProficiencyValue}
                         className="mb-2"
-                        /></p>
-                        : ''
+                        /><br /></p>
+                        : <input
+                        name='0'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder='First Proficiency Value?'
+                        value={editState.proficiencies?.[0]?.value}
+                        onChange={handleProficiencyValue}
+                        className="mb-2"
+                        />
                         }
                         
                         {
                         monster.proficiencies?.[1]?.proficiency.name
-                        ? <p> {monster.proficiencies[1].proficiency.name} </p>
-                        : ''
+                        ? <p> {monster.proficiencies[1].proficiency.name} - {monster.proficiencies[1].value}
+                        <input
+                        name='1'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder={monster.proficiencies[1].proficiency.name}
+                        value={editState.proficiencies[1].proficiency.name}
+                        onChange={handleProficiencyName}
+                        className="mb-2"
+                        /></p>
+                        : <input
+                        name='1'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder='Second Proficiency Name?'
+                        value={editState.proficiencies?.[1]?.proficiency.name}
+                        onChange={handleProficiencyName}
+                        className="mb-2"
+                        />
                         }
                         {
                         monster.proficiencies?.[1]?.value
-                        ? <p> {monster.proficiencies[1].value}, </p>
-                        : ''
+                        ? <p>  
+                        <input
+                        name='1'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder={monster.proficiencies[1].value}
+                        value={editState.proficiencies[1].value}
+                        onChange={handleProficiencyValue}
+                        className="mb-2"
+                        /><br /></p>
+                        : <input
+                        name='1'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder='Second Proficiency Value?'
+                        value={editState.proficiencies?.[1]?.value}
+                        onChange={handleProficiencyValue}
+                        className="mb-2"
+                        />
                         }
                         
                         {
                         monster.proficiencies?.[2]?.proficiency.name
-                        ? <p> {monster.proficiencies[2].proficiency.name} </p>
-                        : ''
+                        ? <p> {monster.proficiencies[2].proficiency.name} - {monster.proficiencies[2].value} 
+                        <input
+                        name='2'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder={editState.proficiencies[2].proficiency.name}
+                        value={editState.proficiencies[2].proficiency.name}
+                        onChange={handleProficiencyName}
+                        className="mb-2"
+                        /></p>
+                        : <input
+                        name='2'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder='Third Proficiency Name?'
+                        value={editState.proficiencies?.[2]?.proficiency.name}
+                        onChange={handleProficiencyName}
+                        className="mb-2"
+                        />
                         }
                         {
                         monster.proficiencies?.[2]?.value
-                        ? <p> {monster.proficiencies[2].value}, </p>
-                        : ''
+                        ? <p> 
+                        <input
+                        name='2'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder='Third Proficiency Value?'
+                        value={editState.proficiencies[2].value}
+                        onChange={handleProficiencyValue}
+                        className="mb-2"
+                        /><br /></p>
+                        : <input
+                        name='2'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder='Third Proficiency Value?'
+                        value={editState.proficiencies?.[2]?.value}
+                        onChange={handleProficiencyValue}
+                        className="mb-2"
+                        />
                         }
                         
                         {
                         monster.proficiencies?.[3]?.proficiency.name
-                        ? <p> {monster.proficiencies[3].proficiency.name} </p>
-                        : ''
+                        ? <p> {monster.proficiencies[3].proficiency.name} - {monster.proficiencies[3].value}
+                        <input
+                        name='3'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder='Fourth Proficiency Name?'
+                        value={editState.proficiencies[3].proficiency.name}
+                        onChange={handleProficiencyName}
+                        className="mb-2"
+                        /></p>
+                        : <input
+                        name='3'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder='Fourth Proficiency Name?'
+                        value={editState.proficiencies?.[3]?.proficiency.name}
+                        onChange={handleProficiencyName}
+                        className="mb-2"
+                        />
                         }
                         {
                         monster.proficiencies?.[3]?.value
-                        ? <p> {monster.proficiencies[3].value}, </p>
-                        : ''
+                        ? <p>  
+                        <input
+                        name='3'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder='A Fourth Proficiency Value?'
+                        value={editState.proficiencies[3].value}
+                        onChange={handleProficiencyValue}
+                        className="mb-2"
+                        /><br /></p>
+                        : <input
+                        name='3'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder='A Fourth Proficiency Value?'
+                        value={editState.proficiencies?.[3]?.value}
+                        onChange={handleProficiencyValue}
+                        className="mb-2"
+                        />
                         }
                         
                         {
                         monster.proficiencies?.[4]?.proficiency.name
-                        ? <p> {monster.proficiencies[4].proficiency.name} </p>
-                        : ''
+                        ? <p> {monster.proficiencies[4].proficiency.name} - {monster.proficiencies[4].value}
+                        <input
+                        name='4'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder='A Third Proficiency Name?'
+                        value={editState.proficiencies[4].proficiency.name}
+                        onChange={handleProficiencyName}
+                        className="mb-2"
+                        /></p>
+                        : <input
+                        name='4'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder='A Third Proficiency Name?'
+                        value={editState.proficiencies?.[4]?.proficiency.name}
+                        onChange={handleProficiencyName}
+                        className="mb-2"
+                        />
                         }
                         {
                         monster.proficiencies?.[4]?.value
-                        ? <p> {monster.proficiencies[4].value}, </p>
-                        : ''
+                        ? <p>  
+                        <input
+                        name='4'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder='A Fifth Proficiency Value?'
+                        value={editState.proficiencies[4].value}
+                        onChange={handleProficiencyValue}
+                        className="mb-2"
+                        /><br /></p>
+                        : <input
+                        name='4'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder='A Fifth Proficiency Value?'
+                        value={editState.proficiencies?.[4]?.value}
+                        onChange={handleProficiencyValue}
+                        className="mb-2"
+                        />
                         }
                         
                         {
                         monster.proficiencies?.[5]?.proficiency.name
-                        ? <p> {monster.proficiencies[5].proficiency.name} </p>
-                        : ''
+                        ? <p> {monster.proficiencies[5].proficiency.name} - {monster.proficiencies[5].value}
+                        <input
+                        name='5'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder='A Sixth Proficiency Name?'
+                        value={editState.proficiencies[5].proficiency.name}
+                        onChange={handleProficiencyName}
+                        className="mb-2"
+                        /></p>
+                        : <input
+                        name='5'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder='A Sixth Proficiency Name?'
+                        value={editState.proficiencies?.[5]?.proficiency.name}
+                        onChange={handleProficiencyName}
+                        className="mb-2"
+                        />
                         }
                         {
                         monster.proficiencies?.[5]?.value
-                        ? <p> {monster.proficiencies[5].value}, </p>
-                        : ''
+                        ? <p>  
+                        <input
+                        name='5'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder='A Sixth Proficiency Value?'
+                        value={editState.proficiencies[5].value}
+                        onChange={handleProficiencyValue}
+                        className="mb-2"
+                        /><br /></p>
+                        : <input
+                        name='5'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder='A Sixth Proficiency Value?'
+                        value={editState.proficiencies?.[5]?.value}
+                        onChange={handleProficiencyValue}
+                        className="mb-2"
+                        />
                         }
-                        
                         {
                         monster.proficiencies?.[6]?.proficiency.name
-                        ? <p> {monster.proficiencies[6].proficiency.name} </p>
-                        : ''
+                        ? <p> {monster.proficiencies[6].proficiency.name} - {monster.proficiencies[6].value}
+                        <input
+                        name='6'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder='A Seventh Proficiency Name?'
+                        value={editState.proficiencies[6].proficiency.name}
+                        onChange={handleProficiencyName}
+                        className="mb-2"
+                        /></p>
+                        : <input
+                        name='6'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder='A Seventh Proficiency Name?'
+                        value={editState.proficiencies?.[6]?.proficiency?.name}
+                        onChange={handleProficiencyName}
+                        className="mb-2"
+                        />
                         }
                         {
                         monster.proficiencies?.[6]?.value
-                        ? <p> {monster.proficiencies[6].value}, </p>
-                        : ''
+                        ? <p>  
+                        <input
+                        name='6'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder='A Seventh Proficiency Value?'
+                        value={editState.proficiencies[6].value}
+                        onChange={handleProficiencyValue}
+                        className="mb-2"
+                        /><br /></p>
+                        : <input
+                        name='6'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder='A Seventh Proficiency Value?'
+                        value={editState.proficiencies?.[6]?.value}
+                        onChange={handleProficiencyValue}
+                        className="mb-2"
+                        />
                         }
                         
                         {
                         monster.proficiencies?.[7]?.proficiency.name
-                        ? <p> {monster.proficiencies[7].proficiency.name} </p>
-                        : ''
+                        ? <p> {monster.proficiencies[7].proficiency.name} - {monster.proficiencies[7].value}
+                        <input
+                        name='7'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder='An Eigth Proficiency Name?'
+                        value={editState.proficiencies[7].proficiency.name}
+                        onChange={handleProficiencyName}
+                        className="mb-2"
+                        /></p>
+                        : <input
+                        name='7'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder='An Eighth Proficiency Name?'
+                        value={editState.proficiencies?.[7]?.proficiency.name}
+                        onChange={handleProficiencyName}
+                        className="mb-2"
+                        />
                         }
                         {
                         monster.proficiencies?.[7]?.value
-                        ? <p> {monster.proficiencies[7].value} </p>
-                        : ''
+                        ? <p>  
+                        <input
+                        name='7'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder='A Eighth Proficiency Value?'
+                        value={editState.proficiencies[7].value}
+                        onChange={handleProficiencyValue}
+                        className="mb-2"
+                        /><br /></p>
+                        : <input
+                        name='7'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder='An Eighth Proficiency Value?'
+                        value={editState.proficiencies?.[7]?.value}
+                        onChange={handleProficiencyValue}
+                        className="mb-2"
+                        />
                         }
                     </div> 
                     <svg height="5" width="100%" className="tapered-rule">
@@ -823,7 +1196,7 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                         value={editState.senses.blindsight}
                         onChange={handleSenses}
                         className="mb-2"
-                        /></p>
+                        /><br /></p>
                         : <input
                         name="blindsight"
                         style={{ 'marginLeft': 1 + 'vw' }}
@@ -845,7 +1218,7 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                         value={editState.senses.darkvision}
                         onChange={handleSenses}
                         className="mb-2"
-                        /></p>
+                        /><br /></p>
                         : <input
                         name="darkvision"
                         style={{ 'marginLeft': 1 + 'vw' }}
@@ -867,7 +1240,7 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                             value={editState.senses.passive_perception}
                             onChange={handleSenses}
                             className="mb-2"
-                            /></p>
+                            /><br /></p>
                         : <input
                         name="passive_perception"
                         style={{ 'marginLeft': 1 + 'vw' }}
@@ -889,7 +1262,7 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                             value={editState.senses.truesight}
                             onChange={handleSenses}
                             className="mb-2"
-                            /></p>
+                            /><br /></p>
                         : <input
                         name="truesight"
                         style={{ 'marginLeft': 1 + 'vw' }}
@@ -911,8 +1284,8 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                             value={editState.senses.tremorsense}
                             onChange={handleSenses}
                             className="mb-2"
-                            /></p>
-                        : <input
+                            /><br /></p>
+                        : <><input
                         name="tremorsense"
                         style={{ 'marginLeft': 1 + 'vw' }}
                         type="text" 
@@ -920,7 +1293,7 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                         value={editState.senses.tremorsense}
                         onChange={handleSenses}
                         className="mb-2"
-                        />
+                        /><br /></>
                         }
                     </div> 
                     <div className="property-line">
@@ -966,44 +1339,116 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                 <div className="property-block">
                     {
                     monster.special_abilities?.[0]?.name
-                    ? <h4> {monster.special_abilities[0].name} </h4>
+                    ? <h4> {monster.special_abilities[0].name} 
+                    <input
+                        name='0'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder="Special Abilities?"
+                        value={editState.special_abilities[0].name}
+                        onChange={handleSpecialAbilitiesName}
+                        className="mb-2"
+                        /><br /></h4>
                     : ''
                     }
                     {
                     monster.special_abilities?.[0]?.desc
-                    ? <p> {monster.special_abilities[0].desc} <br /> </p>
+                    ? <p> {monster.special_abilities[0].desc} <br />
+                    <textarea
+                        name='0'
+                        style={{ 'width': 100 + '%', 'height': 100 + 'px' }}
+                        type="text" 
+                        placeholder="Special Abilities?"
+                        value={editState.special_abilities[0].desc}
+                        onChange={handleSpecialAbilitiesDesc}
+                        className="mb-2"
+                        /><br /> </p>
                     : ''
                     }
                     
                     {
                     monster.special_abilities?.[1]?.name
-                    ? <h4> {monster.special_abilities[1].name} </h4>
+                    ? <h4> {monster.special_abilities[1].name} 
+                    <input
+                        name='1'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder="Special Abilities?"
+                        value={editState.special_abilities[1].name}
+                        onChange={handleSpecialAbilitiesName}
+                        className="mb-2"
+                        /><br /></h4>
                     : ''
                     }
                     {
                     monster.special_abilities?.[1]?.desc
-                    ? <p> {monster.special_abilities[1].desc} <br /> </p>
+                    ? <p> {monster.special_abilities[1].desc} 
+                    <textarea
+                        name='1'
+                        style={{ 'width': 100 + '%', 'height': 100 + 'px' }}
+                        type="text" 
+                        placeholder="Special Abilities?"
+                        value={editState.special_abilities[1].desc}
+                        onChange={handleSpecialAbilitiesDesc}
+                        className="mb-2"
+                        /><br /> </p>
                     : ''
                     }
                     {
                     monster.special_abilities?.[2]?.name
-                    ? <h4> {monster.special_abilities[2].name} </h4>
+                    ? <h4> {monster.special_abilities[2].name} 
+                    <input
+                        name='2'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder="Special Abilities?"
+                        value={editState.special_abilities[2].name}
+                        onChange={handleSpecialAbilitiesName}
+                        className="mb-2"
+                        /><br /></h4>
                     : ''
                     }
                     {
                     monster.special_abilities?.[2]?.desc
-                    ? <p> {monster.special_abilities[2].desc} <br /> </p> 
+                    ? <p> {monster.special_abilities[2].desc} 
+                    <textarea
+                        name='2'
+                        style={{ 'width': 100 + '%', 'height': 100 + 'px' }}
+                        type="text" 
+                        placeholder="Special Abilities?"
+                        value={editState.special_abilities[2].desc}
+                        onChange={handleSpecialAbilitiesDesc}
+                        className="mb-2"
+                        /><br /> </p> 
                     : ''
                     }
                     
                     {
                     monster.special_abilities?.[3]?.name
-                    ? <h4> {monster.special_abilities[3].name} </h4>
+                    ? <h4> {monster.special_abilities[3].name} 
+                    <input
+                        name='3'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder="Special Abilities?"
+                        value={editState.special_abilities[3].name}
+                        onChange={handleSpecialAbilitiesName}
+                        className="mb-2"
+                        /><br /></h4>
                     : ''
                     }
                     {
                     monster.special_abilities?.[3]?.desc
-                    ? <p> {monster.special_abilities[3].desc} <br /> </p>
+                    ? <p> {monster.special_abilities[3].desc} 
+                    <textarea
+                        name='3'
+                        style={{ 'width': 100 + '%', 'height': 100 + 'px' }}
+                        type="text" 
+                        placeholder="Special Abilities?"
+                        value={editState.special_abilities[3].desc}
+                        onChange={handleSpecialAbilitiesDesc}
+                        className="mb-2"
+                        /><br /> </p>
                     : ''
                     }
                 </div> 
@@ -1018,91 +1463,243 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
             </div> 
             <div className="section-right">
                 <div className="actions">
+                {/* <img 
+                    src={BUCKET_START + monster.index + ".png"} 
+                    alt={monster.name} 
+                    // id="monster-card-image"
+                    // id="clean-image"
+                    // className="img-container layerd"
+                    style={{maxWidth: 100 + '%', maxHeight: 75 + '%'}} 
+                /> */}
                     <h3>Actions</h3>
                     <div className="property-block">
                         {
                         monster.actions?.[0]?.name
-                        ? <h4> {monster.actions[0].name} </h4>
+                        ? <h4> {monster.actions[0].name} 
+                        <input
+                        name='0'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder="Actions?"
+                        value={editState.actions[0].name}
+                        onChange={handleActionsName}
+                        className="mb-2"
+                        /> <br /></h4>
                         : ''
                         }
                         {
                         monster.actions?.[0]?.desc
-                        ? <p> {monster.actions[0].desc} <br /> </p>
+                        ? <p> {monster.actions[0].desc} 
+                        <textarea
+                        name='0'
+                        style={{ 'width': 100 + '%', height: 100 + 'px' }}
+                        type="text" 
+                        placeholder="Actions?"
+                        value={editState.actions[0].desc}
+                        onChange={handleActionsDesc}
+                        className="mb-2"
+                        /><br /> </p>
                         : ''
                         }
                         
                         {
                         monster.actions?.[1]?.name
-                        ? <h4> {monster.actions[1].name} </h4>
+                        ? <h4> {monster.actions[1].name} 
+                        <input
+                        name='1'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder="Actions?"
+                        value={editState.actions[1].name}
+                        onChange={handleActionsName}
+                        className="mb-2"
+                        /> <br /></h4>
                         : ''
                         }
                         {
                         monster.actions?.[1]?.desc
-                        ? <p> {monster.actions[1].desc} <br /> </p>
+                        ? <p> {monster.actions[1].desc} 
+                        <textarea
+                        name='1'
+                        style={{ 'width': 100 + '%', height: 100 + 'px' }}
+                        type="text" 
+                        placeholder="Actions?"
+                        value={editState.actions[1].desc}
+                        onChange={handleActionsDesc}
+                        className="mb-2"
+                        /><br /> </p>
                         : ''
                         }
                         
                         {
                         monster.actions?.[2]?.name
-                        ? <h4> {monster.actions[2].name} </h4>
+                        ? <h4> {monster.actions[2].name} 
+                        <input
+                        name='2'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder="Actions?"
+                        value={editState.actions[2].name}
+                        onChange={handleActionsName}
+                        className="mb-2"
+                        /> <br /></h4>
                         : ''
                         }
                         {
                         monster.actions?.[2]?.desc
-                        ? <p> {monster.actions[2].desc} <br /> </p>
+                        ? <p> {monster.actions[2].desc} 
+                        <textarea
+                        name='2'
+                        style={{ 'width': 100 + '%', height: 100 + 'px' }}
+                        type="text" 
+                        placeholder="Actions?"
+                        value={editState.actions[2].desc}
+                        onChange={handleActionsDesc}
+                        className="mb-2"
+                        /><br /> </p>
                         : ''
                         }
                         
                         {
                         monster.actions?.[3]?.name
-                        ? <h4> {monster.actions[3].name} </h4>
+                        ? <h4> {monster.actions[3].name} 
+                        <input
+                        name='3'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder="Actions?"
+                        value={editState.actions[3].name}
+                        onChange={handleActionsName}
+                        className="mb-2"
+                        /> <br /></h4>
                         : ''
                         }
                         {
                         monster.actions?.[3]?.desc
-                        ? <p> {monster.actions[3].desc} <br /> </p>
+                        ? <p> {monster.actions[3].desc} 
+                        <textarea
+                        name='3'
+                        style={{ 'width': 100 + '%', height: 100 + 'px' }}
+                        type="text" 
+                        placeholder="Actions?"
+                        value={editState.actions[3].desc}
+                        onChange={handleActionsDesc}
+                        className="mb-2"
+                        /><br /> </p>
                         : ''
                         }
                         
                         {
                         monster.actions?.[4]?.name
-                        ? <h4> {monster.actions[4].name} </h4>
+                        ? <h4> {monster.actions[4].name} 
+                        <input
+                        name='4'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder="Actions?"
+                        value={editState.actions[4].name}
+                        onChange={handleActionsName}
+                        className="mb-2"
+                        /> <br /></h4>
                         : ''
                         }
                         {
                         monster.actions?.[4]?.desc
-                        ? <p> {monster.actions[4].desc} <br /> </p>
+                        ? <p> {monster.actions[4].desc} 
+                        <textarea
+                        name='4'
+                        style={{ 'width': 100 + '%', height: 100 + 'px' }}
+                        type="text" 
+                        placeholder="Actions?"
+                        value={editState.actions[4].desc}
+                        onChange={handleActionsDesc}
+                        className="mb-2"
+                        /><br /> </p>
                         : ''
                         }
                         
                         {
                         monster.actions?.[5]?.name
-                        ? <h4> {monster.actions[5].name} </h4>
+                        ? <h4> {monster.actions[5].name} 
+                        <input
+                        name='5'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder="Actions?"
+                        value={editState.actions[5].name}
+                        onChange={handleActionsName}
+                        className="mb-2"
+                        /> <br /></h4>
                         : ''
                         }
                         {
                         monster.actions?.[5]?.desc
-                        ? <p> {monster.actions[5].desc} <br /> </p>
+                        ? <p> {monster.actions[5].desc} 
+                        <textarea
+                        name='5'
+                        style={{ 'width': 100 + '%', height: 100 + 'px' }}
+                        type="text" 
+                        placeholder="Actions?"
+                        value={editState.actions[5].desc}
+                        onChange={handleActionsDesc}
+                        className="mb-2"
+                        /><br /> </p>
                         : ''
                         }
                         {
                         monster.actions?.[6]?.name
-                        ? <h4> {monster.actions[6].name} </h4>
+                        ? <h4> {monster.actions[6].name} 
+                        <input
+                        name='6'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder="Actions?"
+                        value={editState.actions[6].name}
+                        onChange={handleActionsName}
+                        className="mb-2"
+                        /> <br /></h4>
                         : ''
                         }
                         {
                         monster.actions?.[6]?.desc
-                        ? <p> {monster.actions[6].desc} <br /> </p>
+                        ? <p> {monster.actions[6].desc} 
+                        <textarea
+                        name='6'
+                        style={{ 'width': 100 + '%', height: 100 + 'px' }}
+                        type="text" 
+                        placeholder="Actions?"
+                        value={editState.actions[6].desc}
+                        onChange={handleActionsDesc}
+                        className="mb-2"
+                        /><br /> </p>
                         : ''
                         }
                         {
                         monster.actions?.[7]?.name
-                        ? <h4> {monster.actions[7].name} </h4>
+                        ? <h4> {monster.actions[7].name} 
+                        <input
+                        name='7'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder="Actions?"
+                        value={editState.actions[7].name}
+                        onChange={handleActionsName}
+                        className="mb-2"
+                        /> <br /></h4>
                         : ''
                         }
                         {
                         monster.actions?.[7]?.desc
-                        ? <p> {monster.actions[7].desc} <br /> </p>
+                        ? <p> {monster.actions[7].desc} 
+                        <textarea
+                        name='7'
+                        style={{ 'width': 100 + '%', height: 100 + 'px' }}
+                        type="text" 
+                        placeholder="Actions?"
+                        value={editState.actions[7].desc}
+                        onChange={handleActionsDesc}
+                        className="mb-2"
+                        /><br /> </p>
                         : ''
                         }
                     </div> 
@@ -1113,48 +1710,152 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                     <div className="property-block">
                         {
                         monster.legendary_actions?.[0]?.name
-                        ? <h4>{monster.legendary_actions[0].name} </h4>
-                        : <h4 className="m-4">"Don't worry fren, you can always make the {monster.name} legendary. Even the Awakened Shrub can be unleashed... ! !"</h4>
+                        ? <h4>{monster.legendary_actions[0].name} 
+                        <input
+                        name='0'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder="Legendary Actions?"
+                        value={editState.legendary_actions[0].name}
+                        onChange={handleLegendaryActionsName}
+                        className="mb-2"
+                        /> <br /></h4>
+                        : <input
+                        name='0'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder="Legendary Actions?"
+                        value={editState.legendary_actions[0].name}
+                        onChange={handleLegendaryActionsName}
+                        className="mb-2"
+                        />
                         }
                         {
                         monster.legendary_actions?.[0]?.desc
-                        ? <p> {monster.legendary_actions[0].desc} <br /> </p>
-                        : <p> - A Silly Goose</p>
+                        ? <p> {monster.legendary_actions[0].desc} <br />
+                        <textarea
+                        name='0'
+                        style={{ 'width': 100 + '%', height: 100 + 'px' }}
+                        type="text" 
+                        placeholder="Legendary Actions?"
+                        value={editState.legendary_actions[0].desc}
+                        onChange={handleLegendaryActionsDesc}
+                        className="mb-2"
+                        /> <br /> 
+                        </p>
+                        : <textarea
+                        name='0'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder="Legendary Actions?"
+                        value={editState.legendary_actions[0].desc}
+                        onChange={handleLegendaryActionsDesc}
+                        className="mb-2"
+                        />
                         }
                         
                         {
                         monster.legendary_actions?.[1]?.name
-                        ? <h4>{monster.legendary_actions[1].name} </h4>
-                        : ''
+                        ? <h4>{monster.legendary_actions[1].name} 
+                        <input
+                        name='1'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder="Legendary Actions?"
+                        value={editState.legendary_actions[1].name}
+                        onChange={handleLegendaryActionsName}
+                        className="mb-2"
+                        /><br /></h4>
+                        : <input
+                        name='1'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder="Legendary Actions?"
+                        value={editState.legendary_actions[1].name}
+                        onChange={handleLegendaryActionsName}
+                        className="mb-2"
+                        />
                         }
                         {
                         monster.legendary_actions?.[1]?.desc
-                        ? <p> {monster.legendary_actions[1].desc} <br /> </p>
-                        : ''
+                        ? <p> {monster.legendary_actions[1].desc} 
+                        <input
+                        name='0'
+                        style={{ 'width': 100 + '%', height: 100 + 'px' }}
+                        type="text" 
+                        placeholder="Legendary Actions?"
+                        value={editState.legendary_actions[0].desc}
+                        onChange={handleLegendaryActionsDesc}
+                        className="mb-2"
+                        /><br /> </p>
+                        : <textarea
+                        name='0'
+                        style={{ 'width': 100 + '%', height: 100 + 'px' }}
+                        type="text" 
+                        placeholder="Legendary Actions?"
+                        value={editState.legendary_actions[0].desc}
+                        onChange={handleLegendaryActionsDesc}
+                        className="mb-2"
+                        />
                         }
                         {
                         monster.legendary_actions?.[2]?.name
-                        ? <h4>{monster.legendary_actions[2].name} </h4>
+                        ? <h4>{monster.legendary_actions[2].name} 
+                        <input
+                        name='2'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder="Legendary Actions?"
+                        value={editState.legendary_actions[2].name}
+                        onChange={handleLegendaryActionsName}
+                        className="mb-2"
+                        /><br /></h4>
                         : ''
                         }
                         {
                         monster.legendary_actions?.[2]?.desc
-                        ? <p> {monster.legendary_actions[2].desc} <br /> </p>
+                        ? <p> {monster.legendary_actions[2].desc} 
+                        <textarea
+                        name='2'
+                        style={{ 'width': 100 + '%', height: 100 + 'px' }}
+                        type="text" 
+                        placeholder="Legendary Actions?"
+                        value={editState.legendary_actions[2].desc}
+                        onChange={handleLegendaryActionsDesc}
+                        className="mb-2"
+                        /><br /> </p>
                         : ''
                         }
                         <br />
                         {
                         monster.legendary_actions?.[3]?.name
-                        ? <h4>{monster.legendary_actions[3].name} </h4>
+                        ? <h4>{monster.legendary_actions[3].name} 
+                        <input
+                        name='3'
+                        style={{ 'marginLeft': 1 + 'vw' }}
+                        type="text" 
+                        placeholder="Legendary Actions?"
+                        value={editState.legendary_actions[3].name}
+                        onChange={handleLegendaryActionsName}
+                        className="mb-2"
+                        /><br /></h4>
                         : ''
                         }
                         {
                         monster.legendary_actions?.[3]?.desc
-                        ? <p> {monster.legendary_actions[3].desc} </p>
+                        ? <p> {monster.legendary_actions[3].desc} 
+                        <textarea
+                        name='3'
+                        style={{ 'width': 100 + '%', height: 100 + 'px' }}
+                        type="text" 
+                        placeholder="Legendary Actions?"
+                        value={editState.legendary_actions[3].desc}
+                        onChange={handleLegendaryActionsDesc}
+                        className="mb-2"
+                        /><br /></p>
                         : ''
                         }
                     </div> 
-                    
                 </div> 
             </div>
             <button type="submit" className="btn btn-lg btn-outline-primary m-1">
