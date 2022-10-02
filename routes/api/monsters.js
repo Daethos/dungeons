@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const monstersCtrl = require('../../controllers/monsters');
+const loggedIn = require('../../config/logged');
 
 // /*---------- Public Routes ----------*/
 

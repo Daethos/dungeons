@@ -722,15 +722,7 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                         onChange={handleProficiencyName}
                         className="mb-2"
                         /></p>
-                        : <input
-                        name='1'
-                        style={{ 'marginLeft': 1 + 'vw' }}
-                        type="text" 
-                        placeholder='Second Proficiency Name?'
-                        value={editState.proficiencies?.[1]?.proficiency.name}
-                        onChange={handleProficiencyName}
-                        className="mb-2"
-                        />
+                        : ''
                         }
                         {
                         monster.proficiencies?.[1]?.value
@@ -744,15 +736,7 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                         onChange={handleProficiencyValue}
                         className="mb-2"
                         /><br /></p>
-                        : <input
-                        name='1'
-                        style={{ 'marginLeft': 1 + 'vw' }}
-                        type="text" 
-                        placeholder='Second Proficiency Value?'
-                        value={editState.proficiencies?.[1]?.value}
-                        onChange={handleProficiencyValue}
-                        className="mb-2"
-                        />
+                        : ''
                         }
                         
                         {
@@ -767,15 +751,7 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                         onChange={handleProficiencyName}
                         className="mb-2"
                         /></p>
-                        : <input
-                        name='2'
-                        style={{ 'marginLeft': 1 + 'vw' }}
-                        type="text" 
-                        placeholder='Third Proficiency Name?'
-                        value={editState.proficiencies?.[2]?.proficiency.name}
-                        onChange={handleProficiencyName}
-                        className="mb-2"
-                        />
+                        : ''
                         }
                         {
                         monster.proficiencies?.[2]?.value
@@ -789,15 +765,7 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                         onChange={handleProficiencyValue}
                         className="mb-2"
                         /><br /></p>
-                        : <input
-                        name='2'
-                        style={{ 'marginLeft': 1 + 'vw' }}
-                        type="text" 
-                        placeholder='Third Proficiency Value?'
-                        value={editState.proficiencies?.[2]?.value}
-                        onChange={handleProficiencyValue}
-                        className="mb-2"
-                        />
+                        : ''
                         }
                         
                         {
@@ -812,15 +780,7 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                         onChange={handleProficiencyName}
                         className="mb-2"
                         /></p>
-                        : <input
-                        name='3'
-                        style={{ 'marginLeft': 1 + 'vw' }}
-                        type="text" 
-                        placeholder='Fourth Proficiency Name?'
-                        value={editState.proficiencies?.[3]?.proficiency.name}
-                        onChange={handleProficiencyName}
-                        className="mb-2"
-                        />
+                        : ''
                         }
                         {
                         monster.proficiencies?.[3]?.value
@@ -834,15 +794,7 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                         onChange={handleProficiencyValue}
                         className="mb-2"
                         /><br /></p>
-                        : <input
-                        name='3'
-                        style={{ 'marginLeft': 1 + 'vw' }}
-                        type="text" 
-                        placeholder='A Fourth Proficiency Value?'
-                        value={editState.proficiencies?.[3]?.value}
-                        onChange={handleProficiencyValue}
-                        className="mb-2"
-                        />
+                        : ''
                         }
                         
                         {
@@ -857,15 +809,7 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                         onChange={handleProficiencyName}
                         className="mb-2"
                         /></p>
-                        : <input
-                        name='4'
-                        style={{ 'marginLeft': 1 + 'vw' }}
-                        type="text" 
-                        placeholder='A Third Proficiency Name?'
-                        value={editState.proficiencies?.[4]?.proficiency.name}
-                        onChange={handleProficiencyName}
-                        className="mb-2"
-                        />
+                        : ''
                         }
                         {
                         monster.proficiencies?.[4]?.value
@@ -879,15 +823,7 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                         onChange={handleProficiencyValue}
                         className="mb-2"
                         /><br /></p>
-                        : <input
-                        name='4'
-                        style={{ 'marginLeft': 1 + 'vw' }}
-                        type="text" 
-                        placeholder='A Fifth Proficiency Value?'
-                        value={editState.proficiencies?.[4]?.value}
-                        onChange={handleProficiencyValue}
-                        className="mb-2"
-                        />
+                        : ''
                         }
                         
                         {
@@ -902,15 +838,7 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                         onChange={handleProficiencyName}
                         className="mb-2"
                         /></p>
-                        : <input
-                        name='5'
-                        style={{ 'marginLeft': 1 + 'vw' }}
-                        type="text" 
-                        placeholder='A Sixth Proficiency Name?'
-                        value={editState.proficiencies?.[5]?.proficiency.name}
-                        onChange={handleProficiencyName}
-                        className="mb-2"
-                        />
+                        : ''
                         }
                         {
                         monster.proficiencies?.[5]?.value
@@ -924,15 +852,7 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                         onChange={handleProficiencyValue}
                         className="mb-2"
                         /><br /></p>
-                        : <input
-                        name='5'
-                        style={{ 'marginLeft': 1 + 'vw' }}
-                        type="text" 
-                        placeholder='A Sixth Proficiency Value?'
-                        value={editState.proficiencies?.[5]?.value}
-                        onChange={handleProficiencyValue}
-                        className="mb-2"
-                        />
+                        : ''
                         }
                         {
                         monster.proficiencies?.[6]?.proficiency.name
@@ -946,15 +866,7 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                         onChange={handleProficiencyName}
                         className="mb-2"
                         /></p>
-                        : <input
-                        name='6'
-                        style={{ 'marginLeft': 1 + 'vw' }}
-                        type="text" 
-                        placeholder='A Seventh Proficiency Name?'
-                        value={editState.proficiencies?.[6]?.proficiency?.name}
-                        onChange={handleProficiencyName}
-                        className="mb-2"
-                        />
+                        : ''
                         }
                         {
                         monster.proficiencies?.[6]?.value
@@ -968,15 +880,7 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                         onChange={handleProficiencyValue}
                         className="mb-2"
                         /><br /></p>
-                        : <input
-                        name='6'
-                        style={{ 'marginLeft': 1 + 'vw' }}
-                        type="text" 
-                        placeholder='A Seventh Proficiency Value?'
-                        value={editState.proficiencies?.[6]?.value}
-                        onChange={handleProficiencyValue}
-                        className="mb-2"
-                        />
+                        : ''
                         }
                         
                         {
@@ -991,15 +895,7 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                         onChange={handleProficiencyName}
                         className="mb-2"
                         /></p>
-                        : <input
-                        name='7'
-                        style={{ 'marginLeft': 1 + 'vw' }}
-                        type="text" 
-                        placeholder='An Eighth Proficiency Name?'
-                        value={editState.proficiencies?.[7]?.proficiency.name}
-                        onChange={handleProficiencyName}
-                        className="mb-2"
-                        />
+                        : ''
                         }
                         {
                         monster.proficiencies?.[7]?.value
@@ -1013,15 +909,7 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                         onChange={handleProficiencyValue}
                         className="mb-2"
                         /><br /></p>
-                        : <input
-                        name='7'
-                        style={{ 'marginLeft': 1 + 'vw' }}
-                        type="text" 
-                        placeholder='An Eighth Proficiency Value?'
-                        value={editState.proficiencies?.[7]?.value}
-                        onChange={handleProficiencyValue}
-                        className="mb-2"
-                        />
+                        : ''
                         }
                     </div> 
                     <svg height="5" width="100%" className="tapered-rule">

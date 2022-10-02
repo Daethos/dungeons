@@ -202,7 +202,7 @@ async function create(req, res) {
                 challenge_rating: req.body.challenge_rating,
                 xp: req.body.xp,
                 special_abilities: 
-                red.body.special_abilities.length > 0
+                req.body.special_abilities.length > 0
                 ?
                 [...req.body.special_abilities]
                 :
@@ -215,7 +215,7 @@ async function create(req, res) {
                 actions: 
                     req.body.actions.length > 0
                     ?
-                    [...req.body.actions]
+                    [...req.body.actions, {name: 'Extra Action', desc: 'Extra Action: +Hit, Reach, Dice, DC, Type'}]
                     :
                     [
                         {name: 'Action Name One', desc: 'Action Desc One: +Hit, Reach, Dice, DC, Type'},
@@ -226,7 +226,7 @@ async function create(req, res) {
                 legendary_actions: 
                     req.body.legendary_actions.length > 0
                     ?
-                    [...req.body.legendary_actions]
+                    [...req.body.legendary_actions, {name: 'Extra Legendary Action', desc: 'Extra Legendary Action: +Hit, Reach, Dice, DC, Type'}]
                     :
                     [
                         {name: 'L-Action Name One', desc: 'L-Action Desc One: +Hit, +Dam, Reach, Dice, DC, Type'},
