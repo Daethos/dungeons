@@ -1,13 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useParams, Navigate, useLocation } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import * as monstersAPI from '../../utils/monsterApi';
 import Loading from "../Loading/Loading";
-import SolaMonstra from "../SolaMonstra/SolaMonstra";
-import MonsterCard from "../MonsterCard/MonsterCard";
-import AddMonster from '../AddMonster/AddMonster';
 import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
 
@@ -1691,8 +1686,9 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                     </div>
                     <h3>Communal Visibility</h3>
                     <select onChange={handleVisibility} name="visibility" className="my-3">
-                        <option value="private" name="private">Private</option>
+                        <option value="public" name="public">Select Preference</option>
                         <option value="public" name="public">Public</option>
+                        <option value="private" name="private">Private</option>
                     </select> 
                 </div> 
             </div>

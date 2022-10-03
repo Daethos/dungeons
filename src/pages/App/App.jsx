@@ -7,15 +7,12 @@ import './App.css';
 import userService from "../../utils/userService";
 import * as monstersAPI from '../../utils/monsterApi';
 import ApiMonsters from "../../components/ApiMonsters/ApiMonsters";
-import UserMonsters from "../../components/UserMonsters/UserMonsters";
 import EditMonster from "../../components/EditMonster/EditMonster";
-// import UserCharacters from '../../components/UserCharacters/UserCharacters'
 import ApiMonsterDetails from "../../components/ApiMonsterDetails/ApiMonsterDetails";
 import ApiMonsterData from "../../components/ApiMonsterData/ApiMonsterData";
 import ApiSpells from "../../components/ApiSpells/ApiSpells";
 import AuthPage from "../AuthPage/AuthPage";
-import ApiCharacters from "../../components/ApiCharacters/ApiCharacters";
-import Container from 'react-bootstrap/Container';
+import ApiCharacters from "../../components/ApiClasses/ApiClasses";
 import Loading from "../../components/Loading/Loading";
 import Community from "../Community/Community";
 import ProfilePage from "../Profile/Profile"
@@ -133,7 +130,6 @@ async function editMonstra(monstra) {
         <Route path="/Monsters" element={<ApiMonsters user={user} handleLogout={handleLogout} />} />
         <Route path="/Monsters/Data" element={<ApiMonsterData user={user} handleLogout={handleLogout} />} />
         <Route path="/Monsters/:monsterName" element={<ApiMonsterDetails user={user} handleLogout={handleLogout} getmonstahurl={getmonstahurl} handleMonster={handleMonster} />} />
-        <Route path="/:id/monster" element={<UserMonsters loggedUser={user} />} />
         <Route path="/Spells" element={<ApiSpells user={user}/>} />
         <Route path="/Characters" element={<ApiCharacters user={user} />} />
         <Route path="/edit/:monsterId" element={<EditMonster user={user} editMonstra={editMonstra} />} />
@@ -150,8 +146,7 @@ async function editMonstra(monstra) {
         backgroundState
         ? { backgroundImage:`url(${backgroundState})` }
         : { backgroundImage: `url(${BUCKET_START}Y4.png)` }
-      } 
-      //style={{ backgroundImage: `url(${BUCKET_START}Y4.png)`}}
+      }
       className="user-background"
       > 
     <Routes>

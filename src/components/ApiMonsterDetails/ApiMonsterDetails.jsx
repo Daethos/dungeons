@@ -1,71 +1,70 @@
 import React, { useState, useEffect } from "react";
 import './ApiMonsterDetails.css';
-import { useParams, Navigate } from 'react-router-dom';
-import * as monstersAPI from '../../utils/monsterApi';
+import { useParams } from 'react-router-dom';
 import SolaMonstra from "../SolaMonstra/SolaMonstra";
-import MonsterCard from "../MonsterCard/MonsterCard";
-import AddMonster from '../AddMonster/AddMonster';
+import * as dndAPI from "../../utils/dndApi"
 import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
+import Loading from '../Loading/Loading'
 
-// Different 'translation' than how the monster model is structured. Patience!
 
-export default function ApiMonsterDetails({ monster, key, getmonstahurl, loggedUser, handleMonster }) {
+export default function ApiMonsterDetails({ getmonstahurl, handleMonster }) {
     const [monstroso, setMonstroso] = useState({});
     const [monsterImage, setMonsterImage] = useState('');
-    const [monstra, setMonstra] = useState([])
+    const [loading, setLoading] = useState(false)
     const [isSaved, setIsSaved] = useState(false)
     const monsterUrl = 'https://www.dnd5eapi.co/api/monsters/'
 
     const { monsterName } = useParams();
-    // getmonstahurl(monsterName); <- This was trying to update state in App.jsx every time
-    // I put this in the useEffect so it does not keep trying to update the App page
-    // Instead it will only setState when it is changint the actualy monsterName parameter
 
     useEffect(() => {
-        const url = `${monsterUrl}${monsterName}`;
+        backendMonster()
+    }, [])
 
-        // TODO: Put API in Backend
-        // FIXME: Put API in Backend
-
-        async function fetchUrls() {
-            getmonstahurl(monsterName);
-            console.log(monsterName, '<- Monster Data in Monster Detail')
-            try {
-                const res = await fetch(url);
-                    console.log(res);
-                    if (res.ok) {
-                        const newData = await res.json();
-                        console.log(newData, '<- What on earth are you?');
-                        console.log(newData.index, '<-Can I use you?')
-                        let monSrc = ''; 
-                        monSrc = '/images/' + newData.index + '.png';
-                        console.log(monSrc, '<-Hopefully the image src')
-                        setMonsterImage(monSrc);
-                        setMonstroso(newData);
-                        console.log(monstroso, '<- the monstroso in question?')
-                    }
-            } catch (err) {
-                console.log(err);
-            }
+    async function backendMonster() {
+        const monster = monsterName;
+        console.log(monster, '<- THe monster name')
+        setLoading(true);
+        try {
+            const response = await dndAPI.target(monster)
+            console.log(response, '<- Response in Backend Endmonster')
+            setMonstroso(response.response)
+            setLoading(false);
+        } catch (err) {
+            console.log(err.message, '<- Error in Backend Monster!')
+            setLoading(false);
         }
-        fetchUrls();
-    }, []);
+    }
 
-    // async function handleMonster(monstroso) {
-    //     try {
-    //         console.log(monstroso, '<- Monstroso in handleMonster start')
-    //         const response = await monstersAPI.create(monstroso);
-    //         console.log(response, '<- Response in handleMonster');
-    //         setMonstra([response.data, ...monstra]);
-    //         // setMonstra([...monstra, response.data]);
-    //     } catch (err) {
-    //         console.log(err.message, '<- This is the error in handleMonster')
+    // useEffect(() => {
+    //     const url = `${monsterUrl}${monsterName}`;
+
+    //     // TODO: Put API in Backend
+    //     // FIXME: Put API in Backend
+
+    //     async function fetchUrls() {
+    //         getmonstahurl(monsterName);
+    //         console.log(monsterName, '<- Monster Data in Monster Detail')
+    //         try {
+    //             const res = await fetch(url);
+    //                 console.log(res);
+    //                 if (res.ok) {
+    //                     const newData = await res.json();
+    //                     console.log(newData, '<- What on earth are you?');
+    //                     console.log(newData.index, '<-Can I use you?')
+    //                     let monSrc = ''; 
+    //                     monSrc = '/images/' + newData.index + '.png';
+    //                     console.log(monSrc, '<-Hopefully the image src')
+    //                     setMonsterImage(monSrc);
+    //                     setMonstroso(newData);
+    //                     console.log(monstroso, '<- the monstroso in question?')
+    //                 }
+    //         } catch (err) {
+    //             console.log(err);
+    //         }
     //     }
-    // }
+    //     fetchUrls();
+    // }, []);
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -82,14 +81,21 @@ export default function ApiMonsterDetails({ monster, key, getmonstahurl, loggedU
                         console.log(
                             formData.forEach((item) => console.log(item)),
                             '<- The current spec of formData');
-                            handleMonster(formData); // formData is the data we want to send to the server!
-                    // }
+                            handleMonster(formData); 
                             setIsSaved(true);
             } catch (err) {
                 console.log(err);
             }
         }
         fetchUrls();
+    }
+
+    if (loading) {
+        return (
+        <>
+            <Loading />
+        </>
+        );
     }
     
     return (
@@ -106,11 +112,6 @@ export default function ApiMonsterDetails({ monster, key, getmonstahurl, loggedU
             </button>
         </Form>
         }
-        {/* <Form onSubmit={handleSubmit}>
-            <button value={monstroso} type="submit" className="btn btn-success">
-            Add {monstroso.name} ?
-            </button>
-        </Form> */}
         </Col>
         <SolaMonstra monster={monstroso} key={monstroso.index} handleSubmit={handleSubmit} isSaved={isSaved} />
     </div>

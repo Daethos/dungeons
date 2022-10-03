@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import './ApiMonsterData.css'
 import { Link } from 'react-router-dom'
 import Form from 'react-bootstrap/Form';
-import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import InputGroup from 'react-bootstrap/InputGroup';
@@ -47,7 +46,6 @@ export default function ApiMonsterData({ monsters }) {
                     <img 
                         src={BUCKET_START + allMonsters[i].index + '.png'} 
                         alt={allMonsters[i].name} 
-                        // id="monster-card-image" 
                         style={{maxWidth: 100 + '%', maxHeight: 75 + '%'}}
                     />
                     </Link>
@@ -95,14 +93,13 @@ export default function ApiMonsterData({ monsters }) {
                     <polyline points="0,0 400,2.5 0,5"></polyline>
                 </svg>
                     <Link 
-                            to={'/Monsters/' + monster.index}
-                            key={monster.index}
-                            monstah={monster}
-                        >
+                        to={'/Monsters/' + monster.index}
+                        key={monster.index}
+                        monstah={monster}
+                    >
                     <img 
                         src={BUCKET_START + monster.index + '.png'} 
                         alt={monster.name} 
-                        // id="monster-card-image" 
                         style={{maxWidth: 100 + '%', maxHeight: 75 + '%'}}
                     />
                     </Link>
@@ -143,17 +140,10 @@ export default function ApiMonsterData({ monsters }) {
         </Col>
         <Col md={{span: 8, offset: 5}} className="my-5" >
             <h1>Results for {searchText}: {allMonsters.length} </h1>
-        {/* <input type="submit" value="Search"></input> */}
         </Col>
         </Form>
         </Row>
-        {/* <Row 
-            className="justify-content-md-center" 
-            style={{maxWidth: 100 + 'vw', maxHeight: 100 + 'vh'}} 
-            xs={3 | 'auto'} sm={4 | 'auto'} md={5 | 'auto'} lg={6 | 'auto'} xl={6 | 'auto'} xxl={6 | 'auto'}
-        > */}
             <Row>
-        
                 {   
                     monsters.length > 0 
                     ? <>
@@ -161,7 +151,6 @@ export default function ApiMonsterData({ monsters }) {
                     </>
                     : <h3>Monsters Not Found</h3>    
                 }
-        
         </Row>
         <Row >
         {fullMonsters}

@@ -1,24 +1,14 @@
 import './Community.css';
 import React, { useEffect, useState } from 'react';
-import MonsterCard from '../../components/MonsterCard/MonsterCard';
-import { Link } from "react-router-dom";
-import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
-import * as monstersAPI from '../../utils/monsterApi';
 import * as communityAPI from '../../utils/communityApi'
-import UserMonsters from '../../components/UserMonsters/UserMonsters';
-// import NavBar from '../../components/NavBar/NavBar';
-import Container from 'react-bootstrap/Container';
 import SolaMonstra from '../../components/SolaMonstra/SolaMonstra';
-import EditMonster from '../../components/EditMonster/EditMonster';
 
 
 export default function Community({ loggedUser, handleLogout, setUser }) {
     const [monsters, setMonsters] = useState([]);
-    // const [error, setError] = useState('');
     const [searchText, setSearchText] = useState('');
     const [allMonsters, setAllMonsters] = useState(monsters);
     const [isSaved, setIsSaved] = useState(true)
