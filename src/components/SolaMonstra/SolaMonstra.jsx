@@ -55,7 +55,19 @@ export default function SolaMonstra({ monster, deleteMonster, editMonster, isSav
                 <div className="creature-heading">
                 {
                 inCommunity
-                ? <Link to={`/${monster.user.username}`}><h1><img src={monster.user.photoUrl ? monster.user.photoUrl : ''} id="user-pic" style={{ maxWidth: 6.5 + '%', maxHeight: 6.5 + '%' }}  />{monster.user.username}</h1></Link>
+                ? 
+                <div className="actions">
+                <Link to={`/${monster.user.username}`} style={{ 'textDecoration': 'none' }}>
+                    <h3>
+                        <img src={monster.user.photoUrl ? monster.user.photoUrl : ''} id="profile-pic"  /> 
+                           {monster.user.username}
+                    </h3>
+                    
+                    {/* <svg height="5" width="100%" className="tapered-rule my-2">
+                        <polyline points="0,0 400,2.5 0,5"></polyline>
+                    </svg> */}
+                </Link>
+                    </div> 
                 : ''
             }
                     <h1>{monster.name}</h1>
@@ -102,8 +114,8 @@ export default function SolaMonstra({ monster, deleteMonster, editMonster, isSav
                         }
                     </div> 
                     <svg height="5" width="100%" className="tapered-rule">
-                <polyline points="0,0 400,2.5 0,5"></polyline>
-            </svg>
+                        <polyline points="0,0 400,2.5 0,5"></polyline>
+                    </svg>
                     <div className="abilities">
                         <div className="ability-strength">
                             <h4>STR</h4>

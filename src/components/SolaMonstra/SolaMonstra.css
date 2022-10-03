@@ -11,6 +11,13 @@
     max-height: 3vh;
     
 }
+#profile-pic {
+    border-radius: 5px;
+    max-width: 5vw;
+    max-height: 5vh;
+    margin-right: 1.5vw;
+    
+}
 
 
 

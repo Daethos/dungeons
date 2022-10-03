@@ -117,8 +117,8 @@ export default function ApiMonsterData({ monsters }) {
         <React.Fragment>
         <Row>
         <Form className="searchForm" >
-        <Col md={{offset: 4}} className="my-5" >
-            <h1>Search for any Monster From the SRD</h1>
+        <Col md={{span: 4, offset: 4}} style={{ 'textAlign': 'center' }} className="my-5" >
+            <h1 bg="black" className="text-warning bg-black p-3" style={{ 'borderRadius': 10 + 'px' }}>Search For Any Monster</h1>
         </Col>
         <Col md={{}} className="my-5" >
 
@@ -132,14 +132,14 @@ export default function ApiMonsterData({ monsters }) {
                 </InputGroup.Text>
                 <Form.Control 
                     className="headerSearchInput bg-black text-white" 
-                    placeholder="What Monster are you looking for?" 
+                    placeholder="What Monster are you looking for? Perhaps an Elemental, or a Giant?" 
                     type="text" value={searchText} 
                     onChange={handleChange}
                 />
             </InputGroup>
         </Col>
-        <Col md={{span: 8, offset: 5}} className="my-5" >
-            <h1>Results for {searchText}: {allMonsters.length} </h1>
+        <Col md={{span: 4, offset: 4}} className="my-5" >
+            <h1 bg="black" className="text-warning bg-black p-3" style={{ 'borderRadius': 10 + 'px' }}>Results for {searchText}: {allMonsters.length} </h1>
         </Col>
         </Form>
         </Row>
