@@ -174,6 +174,49 @@ export default function ProfilePage({ user, handleLogout, setUser }) {
 
     return (
         <div>
+            <Row 
+                    className="justify-content-md-center" 
+                    // style={{maxWidth: 100 + 'vw', maxHeight: 100 + 'vh'}} 
+                    xs={1 | 'auto'} sm={1 | 'auto'} md={2 | 'auto'} lg={2 | 'auto'} xl={2 | 'auto'} xxl={3 | 'auto'}
+                >
+            <Col className="stat-block wide">
+            <hr className="orange-border" />
+            
+            <div className="section-left">
+                <div className="creature-heading">
+                <svg height="5" width="100%" className="tapered-rule my-3">
+                <polyline points="0,0 400,2.5 0,5"></polyline>
+                </svg>
+                <img src={profileUser.photoUrl} id="user-pic" />
+                    <h1></h1>
+                    <h2></h2>
+                </div> 
+                <svg height="5" width="100%" className="tapered-rule">
+                <polyline points="0,0 400,2.5 0,5"></polyline>
+                </svg>
+            
+                
+                </div> 
+                <div className="section-right">
+                    <div className="actions">
+                        <h3>{profileUser.username}</h3>
+                        <div className="property-block">
+                        <h4 className="m-4">{profileUser.bio}</h4>
+                        </div> 
+                        
+                    </div> 
+                    {/* <div className="actions">
+                        <h3>player bio</h3>
+                        <div className="property-block">
+                            <h4 className="m-4">{user.bio}</h4>
+                        </div> 
+                        
+                    </div>  */}
+                </div>
+                <hr className="orange-border bottom" />
+            
+            </Col>
+            </Row>
             {/* <input className="headerSearchInput" placeholder="Type Here!" type="text" value={searchText} onChange={handleChange} /> */}
             {/* <Col md={{span: 8, offset: 2}} className="my-5">
             <InputGroup className="bg-black">

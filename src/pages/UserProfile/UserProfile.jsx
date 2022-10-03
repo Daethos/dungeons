@@ -128,6 +128,7 @@ export default function UserProfile({ loggedUser, handleLogout, setUser }) {
 
     return (
         <div>
+            
             {/* <input className="headerSearchInput" placeholder="Type Here!" type="text" value={searchText} onChange={handleChange} /> */}
             <Col md={{span: 8, offset: 2}} className="my-5">
             <InputGroup className="bg-black">
