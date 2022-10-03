@@ -57,7 +57,18 @@ export default function ProfilePage({ user, handleLogout, setUser }) {
         getProfile();
     }, [username, getProfile]);
 
+    useEffect(() => {
+        setAllMonsters([]);
+        if (searchText == '') {
+            setAllMonsters([]);
+            return
+        }
 
+        const filteredResults = monsters.filter(m => m['index'].includes(searchText))        
+        filterMonsters(filteredResults)
+        console.log(searchText, '<- the changing search text')
+        return filteredResults
+    }, [searchText, monsters])
 
 
     if (loading) {
@@ -123,10 +134,10 @@ export default function ProfilePage({ user, handleLogout, setUser }) {
     //     })
     // }
 
-    // function handleChange(event) {
-    //     event.preventDefault()
-    //     setSearchText(event.target.value.toLowerCase().split(' ').join('-'));
-    // }
+    function handleChange(event) {
+        event.preventDefault()
+        setSearchText(event.target.value.toLowerCase().split(' ').join('-'));
+    }
 
     // useEffect(() => {
     //     setAllMonsters([]);
@@ -218,7 +229,9 @@ export default function ProfilePage({ user, handleLogout, setUser }) {
             </Col>
             </Row>
             {/* <input className="headerSearchInput" placeholder="Type Here!" type="text" value={searchText} onChange={handleChange} /> */}
-            {/* <Col md={{span: 8, offset: 2}} className="my-5">
+            
+            
+            <Col md={{span: 8, offset: 2}} className="my-5">
             <InputGroup className="bg-black">
                 <InputGroup.Text className="bg-black">
                 <img 
@@ -241,7 +254,9 @@ export default function ProfilePage({ user, handleLogout, setUser }) {
                         {displayResults()} 
                 </>
                 : ''   
-            } */}
+            }
+
+
             {monsters.map((monster) => {
                 return (
                     <SolaMonstra
