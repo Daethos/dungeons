@@ -18,7 +18,12 @@
     margin-right: 1.5vw;
     
 }
-
+#community-pic{
+    border-radius: 5px;
+    max-width: 5vw;
+    max-height: 5vh;
+    margin-right: 1.5vw;
+}
 
 
 .stat-block { text-align: left; margin: 20px; display: inline-block; vertical-align: top; width: 17%; min-width:280px; background: #FDF1DC; padding: 5px 10px 20px; box-shadow: 0 0 1.5em #867453; }

@@ -118,6 +118,7 @@ async function editMonstra(monstra) {
         backgroundState
         ? { backgroundImage:`url(${backgroundState})` }
         : { backgroundImage: `url(${BUCKET_START}Y4.png)` }
+        // { backgroundImage: `url(${process.env.PUBLIC_URL}/fantasy-arena-4.png)` }
       } 
       //style={{ backgroundImage: `url(${BUCKET_START}Y4.png)`}}
       className="user-background"

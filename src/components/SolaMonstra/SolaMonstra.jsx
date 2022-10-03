@@ -4,12 +4,13 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Link } from "react-router-dom";
 // import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Loading from '../Loading/Loading';
 import EditMonster from '../EditMonster/EditMonster';
 
-export default function SolaMonstra({ monster, deleteMonster, editMonster, isSaved, onProfile, user, inCommunity }) {
+export default function SolaMonstra({ monster, deleteMonster, editMonster, isSaved, onProfile, user, inCommunity, apiMonster, handleSubmit }) {
     const BUCKET_START = 'https://collectionbucketman.s3.amazonaws.com/dungeons/';
     // const [userCharactersState, setUserCharactersState] = useState(null);
     // style={{maxWidth: 50 + 'vw'}}
@@ -59,7 +60,7 @@ export default function SolaMonstra({ monster, deleteMonster, editMonster, isSav
                 <div className="actions">
                 <Link to={`/${monster.user.username}`} style={{ 'textDecoration': 'none' }}>
                     <h3>
-                        <img src={monster.user.photoUrl ? monster.user.photoUrl : ''} id="profile-pic"  /> 
+                        <img src={monster.user.photoUrl ? monster.user.photoUrl : ''} id="community-pic"  /> 
                            {monster.user.username}
                     </h3>
                     
@@ -584,6 +585,21 @@ export default function SolaMonstra({ monster, deleteMonster, editMonster, isSav
                     </button>
                     
                 </>
+                : ''
+            }
+            {
+                apiMonster
+                ? 
+                    isSaved
+                    ? <button value={monster} type="submit" className="btn btn-danger my-3" disabled>
+                    {monster.name} Is Yours Now!
+                    </button>
+                    : <Form onSubmit={handleSubmit}>
+                    <button value={monster} type="submit" className="btn btn-success my-3">
+                    Add {monster.name} ?
+                    </button>
+                </Form>
+                
                 : ''
             }
             {/* <button className="btn btn-outline-danger" value={monster._id} onClick={deleteMonster}>Delete Monster</button> */}

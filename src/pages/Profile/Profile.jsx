@@ -108,7 +108,7 @@ export default function ProfilePage({ user, handleLogout }) {
                 <svg height="5" width="100%" className="tapered-rule my-3">
                 <polyline points="0,0 400,2.5 0,5"></polyline>
                 </svg>
-                <img src={profileUser.photoUrl} id="user-pic" />
+                <img src={profileUser.photoUrl} id="profile-pic" />
                     <h1></h1>
                     <h2></h2>
                 </div> 

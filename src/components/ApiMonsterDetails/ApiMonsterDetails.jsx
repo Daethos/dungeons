@@ -13,6 +13,7 @@ export default function ApiMonsterDetails({ getmonstahurl, handleMonster }) {
     const [monsterImage, setMonsterImage] = useState('');
     const [loading, setLoading] = useState(false)
     const [isSaved, setIsSaved] = useState(false)
+    const [apiMonster, setApiMonster] = useState(true)
     const monsterUrl = 'https://www.dnd5eapi.co/api/monsters/'
 
     const { monsterName } = useParams();
@@ -100,8 +101,8 @@ export default function ApiMonsterDetails({ getmonstahurl, handleMonster }) {
     
     return (
     <div>
-        <Col md={{span: 6, offset: 5}}>
-        {
+        <Col md={{span: 6, offset: 5}} className="my-5">
+        {/* {
             isSaved
             ? <button value={monstroso} type="submit" className="btn btn-danger my-3" disabled>
             {monstroso.name} Is Yours Now!
@@ -111,9 +112,10 @@ export default function ApiMonsterDetails({ getmonstahurl, handleMonster }) {
             Add {monstroso.name} ?
             </button>
         </Form>
-        }
+        } */}
         </Col>
-        <SolaMonstra monster={monstroso} key={monstroso.index} handleSubmit={handleSubmit} isSaved={isSaved} />
+        <SolaMonstra monster={monstroso} key={monstroso.index} handleSubmit={handleSubmit} apiMonster={apiMonster} isSaved={isSaved} />
+        <Col className="my-5"></Col>
     </div>
     );
 }
