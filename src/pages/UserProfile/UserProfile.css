@@ -3,3 +3,6 @@
     max-width: 30vw;
     max-height: 30vh;
 }
+#car-cap {
+    border-radius: 5px;
+}
