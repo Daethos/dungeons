@@ -18,6 +18,7 @@ async function editMonster(req, res) {
         const monster = await Monster.findByIdAndUpdate(req.params.id, {
             user: req.user,
             index: req.body.index,
+            visibility: req.body.visibility,
             key: req.body.name,
             name: req.body.name,
             size: req.body.size,

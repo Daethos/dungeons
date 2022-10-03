@@ -4,6 +4,11 @@ const Schema = mongoose.Schema;
 const monsterSchema = new Schema(
     {
         user: {type: Schema.Types.ObjectId, ref: 'User'},
+        visibility: {
+            type: String,
+            enum : ["public", "private"],
+            default: "public"
+        },
         index: {type: String, required: true},
         key: {type: String, required: true},
         name: {type: String, required: true},

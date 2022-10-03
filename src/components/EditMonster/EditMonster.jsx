@@ -169,80 +169,18 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
             console.log(err.message);
         }
     }
-    // const [editState, setEditState] = useState({
-    //     name: monster.name,
-    //     size: monster.size,
-    //     type: monster.type,
-    //     alignment: monster.alignment,
-    //     armor_class: monster.armor_class,
-    //     hit_points: monster.hit_points,
-    //     hit_dice: monster.hit_dice,
-    //     hit_points_roll: monster.hit_points_roll,
-    //     speed: {
-    //         burrow: monster.speed?.burrow,
-    //         climb: monster.speed?.climb,
-    //         fly: monster.speed?.fly,
-    //         swim: monster.speed?.swim,
-    //         walk: monster.speed?.walk
-    //     },
-    //     strength: monster.strength,
-    //     dexterity: monster.dexterity,
-    //     constitution: monster.constitution,
-    //     intelligence: monster.intelligence,
-    //     wisdom: monster.wisdom,
-    //     charisma: monster.charisma,
-    //     {
-    //     [monster.proficiencies]
-    //     ? proficiencies: [...monster.proficiencies]
-    //     : ''
-    //     }
-        
-    //     proficiencies: [...monster.proficiencies]
-        
-    //     ,
-    //     damage_vulnerabilities: {
-    //         type: [...monster.damage_vulnerabilities],
-    //         default: null
-    //     },
-    //     damage_resistances: {
-    //         type: [...monster.damage_resistances],
-    //         default: null
-    //     },
-    //     damage_immunities: {
-    //         type: [...monster.damage_immunities],
-    //         default: null
-    //     },
-    //     condition_immunities: {
-    //         type: [monster.condition_immunities],
-    //         default: null
-    //     },
-    //     senses: {
-    //         blindsight: monster.senses.blindsight,
-    //         darkvision: monster.senses.darkvision,
-    //         passive_perception: monster.senses.passive_perception,
-    //         truesight: monster.senses.truesight,
-    //         tremorsense: monster.senses.tremorsense
-    //     },
-    //     languages: [...monster.languages],
-    //     challenge_rating: monster.challenge_rating,
-    //     xp: monster.xp,
-    //     special_abilities: [...monster.special_abilities],
-    //     actions: [...monster.actions],
-    //     legendary_actions: [...monster.legendary_actions]
-    // });
 
     function handleChange(e) {
         // const { name, value }  = e.target;
         // editState[name] = value;
+        console.log(e.target.name, '<- Name', e.target.value, '<- Value')
         setEditState({
         ...editState
         ,
         [e.target.name]: e.target.value,
         });
+        console.log(editState.visibility, '<- And what are you currently?')
     }
-    // TODO: May need to refactor model, did not anticipate issue of editing embedded
-    // FIXME: object data, i.e. nested field data. Look into this tomorrow.
-    
     function handleSpeed(e) {
         const { name, value }  = e.target;
         editState.speed[name] = value;
@@ -329,6 +267,13 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
     function handleLegendaryActionsDesc(e) {
         const { name, value }  = e.target;
         editState.legendary_actions[name].desc = value;
+        setEditState({...editState})
+    }
+
+    function handleVisibility(e) {
+        const { name, value }  = e.target;
+        console.log(name, value, '<- Name and Value in Visibility Handler')
+        editState[name] = value;
         setEditState({...editState})
     }
 
@@ -1743,7 +1688,12 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                         /><br /></p>
                         : ''
                         }
-                    </div> 
+                    </div>
+                    <h3>Communal Visibility</h3>
+                    <select onChange={handleVisibility} name="visibility" className="my-3">
+                        <option value="private" name="private">Private</option>
+                        <option value="public" name="public">Public</option>
+                    </select> 
                 </div> 
             </div>
             <button type="submit" className="btn btn-lg btn-outline-primary m-1">
