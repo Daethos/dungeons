@@ -8,7 +8,7 @@ import Col from 'react-bootstrap/Col';
 export default function AuthPage({ setUser, handleSignUpOrLogin }) {
   const [showSignUp, setShowSignUp]  = useState(false);
   return (
-    <Row className="auth my-5 justify-content-md-center" xs={1 | 'auto'} sm={1 | 'auto'} md={2 | 'auto'} 
+    <Row className="auth my-5 justify-content-sm-center" xs={1 | 'auto'} sm={1 | 'auto'} md={2 | 'auto'} 
     lg={2 | 'auto'} xl={2 | 'auto'} xxl={3 | 'auto'}>
       {/* <Button variant="danger" className="btn-lg text-white" onClick={() => setShowSignUp(!showSignUp)}>{showSignUp ? 'Need to Log In?' : 'Need to Sign Up?'}</Button> */}
       { showSignUp ?

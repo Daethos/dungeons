@@ -45,7 +45,7 @@ export default function SolaMonstra({ monster, deleteMonster, editMonster, isSav
                 monster
                 ?
                 <Row 
-                    className="justify-content-md-center" 
+                    className="justify-content-sm-center" 
                     // style={{maxWidth: 100 + 'vw', maxHeight: 100 + 'vh'}} 
                     xs={1 | 'auto'} sm={1 | 'auto'} md={2 | 'auto'} lg={2 | 'auto'} xl={2 | 'auto'} xxl={3 | 'auto'}
                 >

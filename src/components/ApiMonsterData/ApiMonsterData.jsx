@@ -152,7 +152,7 @@ export default function ApiMonsterData({ monsters }) {
                     : <h3>Monsters Not Found</h3>    
                 }
         </Row>
-        <Row >
+        <Row>
         {fullMonsters}
         
         </Row>

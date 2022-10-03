@@ -253,9 +253,6 @@ async function create(req, res) {
 
 async function index(req, res) {
     try {
-        // this populates the user when you find the posts
-        // so you'll have access to the users information
-        // when you fetch teh posts
         console.log(req.user._id, '<- User ID in Monster Index Controller')
         const monsters = await Monster.find({ user: req.user._id }).populate("user").exec();
         res.status(200).json({ data: monsters });
@@ -266,9 +263,6 @@ async function index(req, res) {
 
 async function getOne(req, res) {
     try {
-        // this populates the user when you find the posts
-        // so you'll have access to the users information
-        // when you fetch teh posts
         const monster = await Monster.findById({ _id: req.params.id})
         res.status(200).json({ data: monster });
     } catch (err) {

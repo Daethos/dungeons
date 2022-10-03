@@ -97,7 +97,7 @@ export default function ProfilePage({ user, handleLogout }) {
     return (
         <div>
             <Row 
-                className="justify-content-md-center" 
+                className="justify-content-sm-center" 
                 xs={1 | 'auto'} sm={1 | 'auto'} md={2 | 'auto'} lg={2 | 'auto'} xl={2 | 'auto'} xxl={3 | 'auto'}
             >
             <Col className="stat-block wide">
