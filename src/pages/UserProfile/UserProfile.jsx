@@ -156,7 +156,8 @@ export default function UserProfile({ loggedUser, handleLogout, setUser }) {
                 />
                     <Carousel.Caption>
                     <h3 className="text-black">So You Have No Monsters?</h3>
-                    <p id="car-cap" border="warning" className="text-warning bg-black p-3">Never fear! Simply reach above and click on 
+                    <p id="car-cap" border="warning" className="text-warning bg-black p-3">
+                        Never fear! Simply reach above and click on 
                     Monsters to start your journey.</p>
                     </Carousel.Caption>
                 </Carousel.Item>

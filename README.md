@@ -8,92 +8,106 @@
 <br />
 
 <details>
-    <summary>Google Login</summary>
+    <summary>Signup / Login</summary>
 
-## At the opening of the app, you'll be prompted to login with Google credentials. It simply is going to share what is listed on the screen and nothing more, this is absolutely not photoshopped to misinform you in any way.
-![App Start](https://i.imgur.com/pglJG8W.png)
+## At the opening of the app, you'll be prompted to login or signup. From here, you may toggle to your necessary solution and either fill in your credentials or at first sign up with some.
+![App Start](https://i.imgur.com/DgQkYV6.png)
 </details>
 <br /><br /><br />
 
 <details>
-    <summary>Profile Creation</summary>
+    <summary>So You Have No Monsters?</summary>
 
-## From Here, we're asked to create a profile if we are not in possession. All that's needed is a name. Yep, that's just it. In the words of the Immortal Todd Howard, ['It just works.'][Todd!].
-![Profile New](https://i.imgur.com/kziAHXh.png)
+## From here, we land at your main page, the profile. As you can see, not a lot happening what with you just signing up. Here's the part where you may feel free to [jump][jump] into the app as the rest of the readme is built into a slide show for your viewing pleasure. If not, please continue. Never fear! Simply reach above and click on Monsters to start your journey.
+![Profile New](https://i.imgur.com/Z1FajP7.jpg)
 </details>
 <br /><br /><br />
 
 <details>
-    <summary>Profile Page (Initial)</summary>
+    <summary>Monster Retrieval</summary>
 
-## Phew, made it to our profile. But no characters? Whomst would hope to defeat the Black Swordsman, or Prince Dorien? It's good I'm here to show you how to use this that I am selling to you now. What impeccable luck!
-![Profile Create](https://i.imgur.com/jLb4nDC.png)
+## And voila! Hot, delicious monsters served right to you!
+![Profile Create](https://i.imgur.com/iMh0xk1.png)
 </details>
 <br /><br /><br />
 
 <details>
-    <summary>Character Creation (Initial)</summary>
+    <summary>Monster Scroll</summary>
 
-## And now we can settle on the matter of what you believe it is best to wear to a sudden and proper death in front of an adoring crowd, of course we are antiquitous in nature, and are not prone toward bothering to cheer for anyone but the proper favorites, of which you cannot hope to be--not yet, that is!
-![Character New](https://i.imgur.com/eFT3tgV.png)
+## Scrolling is the default option at hand, granting every monster available with effort, but...
+![Character New](https://i.imgur.com/2laNHYW.png)
 </details>
 <br /><br /><br />
 
 <details>
-    <summary>Character Creation (Final)</summary>
+    <summary>Monster Search</summary>
 
-## Well look at you, I cannot attest for that cursed and maddening weapon you've chosen, but the beautiful attire you've selected to wear to battle is a sight to behold, it reminds me of our standard issue Licivitan equipment for soldiers, though the Daethic Knights tend to look a bit too Northren--yet I am a worldy man of course, and see no issue in such matters.
-![Character Create](https://i.imgur.com/pgNIwU9.png?1)
+## Simply type any part of the name in question and it ought to bring you to your desired result.
+![Character Create](https://i.imgur.com/d7aKecw.png)
 </details>
 <br /><br /><br />
 
 <details>
-    <summary>Profile Page (Final)</summary>
+    <summary>Monster Detail</summary>
 
-## Now that we can hope back into our profile and see with whom we've designed your next hail mary. And not a bad sort overall, but let's get a closer look real quick at this forsure champion.
-![Profile Show](https://i.imgur.com/XjEYHJw.png)
+## And here grants a significantly better view on the Monster or otherwise has to offer.
+![Profile Show](https://i.imgur.com/YPIjw4s.png)
 </details>
 <br /><br /><br />
 
 <details>
-    <summary>Character Show Page</summary>
+    <summary>Monster Saved</summary>
 
-## Ahh, that's better! Just about everything you need to know to be dangerous, hopefully to others; lord knows your lifethread needs no gnawing.
-![Profile Show](https://i.imgur.com/8Hqzqi6.png)
+## With the click of a button it's that easy. Clicking on your Photo Icon above will bring you back to your home page and allow you to update and customize your monster of choice.
+![Profile Show](https://i.imgur.com/JrMCgLg.png)
 </details>
 <br /><br /><br />
 
-# Sorceries Conjured
+<details>
+    <summary>Monster in Profile</summary>
+
+## Back at the profile, you can see a monster you've saved with increased capabilities, and options to update and delete.
+![Profile Show](https://i.imgur.com/XJTzHqy.png)
+</details>
+<br /><br /><br />
+
+<details>
+    <summary>Monster Edit</summary>
+
+## Everything you see the monster possessing if available for augmentation. Have fun!
+![Profile Show](https://i.imgur.com/qHZvt6n.png)
+</details>
+<br /><br /><br />
+
+# Technologies Used
 <br />
 
-## HTML, CSS, Javascript, Bootstrap, [Whimsical][whimsical], [Trello][trello], Node.js, Express, MongoDB, Mongoose, Passport.
-<br /><br /><br />
+## MERN-Stack API w/ HTML, CSS, Javascript, Bootstrap, [Whimsical][whimsical], [Trello][trello], DnD5eAPI, AWS, DnD5e Visualizer Demo.
+<br /><br />
 
 # How to Survive Without Me
 <br />
 
-## This companion has quite a high ease of use, and a straightforward way to navigate between options of profile use, character creation, and viewing options, with an allowance to collect and hold different concepts to compare and contrast at your leisure.
-    Google Login
-    Profile Creation
-    Character Creation
-    Charater Linking
-    Profile Viewing
-    Character Viewing
+## This companion has quite a high ease of use, and a straightforward way to navigate between options of profile use, monster search, and viewing options, with an allowance to collect and hold different concepts to compare and contrast at your leisure.
+    Signup
+    Monsters
+    Choose your Favorite
+    Save - Augment - Display - Delete
+    Community Feed
+    Profile Pages
 ## With much of this being able to be performed on the navigation bar, and multiple options granting proper direction in what you're trying to aim for.
 <br /><br />
 
-## From smaller yet [higher reaching beginnings][whimsical] and a rough but shaping [framework in mind][trello], this will continue to become a deeper resource as redesign of P1 seeks to give this a higher purpose.
-<br /><br /><br />
-
 # Iceboxing
-### * Dynamic tables granting built-in modifiers based on attack, damage, and defense type elemenets [SUCCESS]
-### * Implement the viewing of special weapon, shield, and armor properties and have built-in calculators to test highest damage and defensive potentials. 
-### * Once characters within game are more permanent, the ability to sync and update characters. [SUCCESS]
+### * Classes implemented with the same in-depth experience as can be had with Monsters
+### * Secondly goes for Spells. 
+### * In-depth community, commentary, threads, friends etc...
+### * Update the monster image
 
 [A First Place]: https://mighty-scrubland-61350.herokuapp.com/
-[don't look]: https://www.youtube.com/watch?v=2nXGPZaTKik
+[jump]: https://mighty-scrubland-61350.herokuapp.com/
 [best not look]: https://www.youtube.com/watch?v=zfy5dFhw3ik
 [Another place]: https://daethos.github.io/Arena
 [Todd!]: https://www.youtube.com/watch?v=hFcLyDb6niA
-[whimsical]: https://whimsical.com/ascea-app-VQpx4xRUaDqvSwFeFnfw1h
-[trello]: https://trello.com/b/NpV2wLHw/ascea-app
+[whimsical]: https://whimsical.com/dungeons-and-dragons-SLFK2zGqkEr11ztgzuypSj
+[trello]: https://trello.com/b/ApR9UJvr/dungeons-and-dragons
