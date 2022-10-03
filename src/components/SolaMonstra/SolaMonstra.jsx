@@ -9,7 +9,7 @@ import Container from 'react-bootstrap/Container';
 import Loading from '../Loading/Loading';
 import EditMonster from '../EditMonster/EditMonster';
 
-export default function SolaMonstra({ monster, deleteMonster, editMonster, isSaved, onProfile }) {
+export default function SolaMonstra({ monster, deleteMonster, editMonster, isSaved, onProfile, user, inCommunity }) {
     const BUCKET_START = 'https://collectionbucketman.s3.amazonaws.com/dungeons/';
     // const [userCharactersState, setUserCharactersState] = useState(null);
     // style={{maxWidth: 50 + 'vw'}}
@@ -50,8 +50,14 @@ export default function SolaMonstra({ monster, deleteMonster, editMonster, isSav
                 >
             <Col className="stat-block wide">
             <hr className="orange-border" />
+            
             <div className="section-left">
                 <div className="creature-heading">
+                {
+                inCommunity
+                ? <Link to={`/${monster.user.username}`}><h1><img src={monster.user.photoUrl ? monster.user.photoUrl : ''} id="user-pic" style={{ maxWidth: 6.5 + '%', maxHeight: 6.5 + '%' }}  />{monster.user.username}</h1></Link>
+                : ''
+            }
                     <h1>{monster.name}</h1>
                     <h2>{monster.size} {monster.type}, {monster.alignment}</h2>
                 </div> 

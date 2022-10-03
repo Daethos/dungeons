@@ -3,6 +3,20 @@ import tokenService from './tokenService';
 const BASE_URL = '/api/users/';
 
 
+function getProfile(username){
+  console.log('getProfile calling')
+  return fetch(BASE_URL + username, {
+    headers: {
+      Authorization: "Bearer " + tokenService.getToken(), // <- since this will be called when we're logged in, send over the jwt token
+      // so the server knows who's making the request from the client
+    }
+  }).then(res => {
+    // This function happens when the browser recieves a response from the express server
+    if(res.ok) return res.json();
+    throw new Error('Error from getProfile Request, check the server terminal!')
+  })
+}
+
 // NOTE THIS IS configured to send of a multi/part form request
 // aka photo 
 function signup(user) {
@@ -61,5 +75,6 @@ export default {
   signup, 
   logout,
   login,
-  getUser
+  getUser,
+  getProfile
 };

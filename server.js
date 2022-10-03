@@ -25,7 +25,7 @@ app.use(require('./config/auth'));
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/monsters', require('./routes/api/monsters'));
 app.use('/api/dndapi', require('./routes/api/dndapi'));
-app.use('/api/deepai', require('./routes/api/deepai'));
+app.use('/api/community', require('./routes/api/community'));
 
 // "catch all" route
 app.get('/*', function(req, res) {

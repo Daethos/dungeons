@@ -136,7 +136,17 @@ async function create(req, res) {
                 proficiencies: 
                     req.body.proficiencies.length > 0
                     ?
-                    [...req.body.proficiencies]
+                    [...req.body.proficiencies, {
+                        value: 'Extra Proficiency Value', 
+                        proficiency: {
+                            name: 'Extra Proficiency Name'
+                        }
+                    },{
+                        value: 'Second Extra Proficiency Value', 
+                        proficiency: {
+                            name: 'Second Extra Proficiency Name'
+                        }
+                    }]
                     :
                     [
                         {
@@ -204,7 +214,7 @@ async function create(req, res) {
                 special_abilities: 
                 req.body.special_abilities.length > 0
                 ?
-                [...req.body.special_abilities]
+                [...req.body.special_abilities, {name: 'Extra Special Ability Name', desc: 'Extra Special Ability Desc: Use Your Imagination!'}, {name: 'Second Extra Special Ability Name', desc: 'Second Extra Special Ability Desc: Use Your Imagination!'}]
                 :
                 [
                     {name: 'Special Ability Name One', desc: 'Special Ability Desc One: Use Your Imagination!'},
@@ -215,7 +225,7 @@ async function create(req, res) {
                 actions: 
                     req.body.actions.length > 0
                     ?
-                    [...req.body.actions, {name: 'Extra Action', desc: 'Extra Action: +Hit, Reach, Dice, DC, Type'}]
+                    [...req.body.actions, {name: 'Extra Action', desc: 'Extra Action: +Hit, Reach, Dice, DC, Type'}, {name: 'Second Extra Action', desc: 'Second Extra Action: +Hit, Reach, Dice, DC, Type'}]
                     :
                     [
                         {name: 'Action Name One', desc: 'Action Desc One: +Hit, Reach, Dice, DC, Type'},
@@ -226,7 +236,7 @@ async function create(req, res) {
                 legendary_actions: 
                     req.body.legendary_actions.length > 0
                     ?
-                    [...req.body.legendary_actions, {name: 'Extra Legendary Action', desc: 'Extra Legendary Action: +Hit, Reach, Dice, DC, Type'}]
+                    [...req.body.legendary_actions, {name: 'Extra Legendary Action', desc: 'Extra Legendary Action: +Hit, Reach, Dice, DC, Type'}, {name: 'Second Extra Legendary Action', desc: 'Second Extra Legendary Action: +Hit, Reach, Dice, DC, Type'}]
                     :
                     [
                         {name: 'L-Action Name One', desc: 'L-Action Desc One: +Hit, +Dam, Reach, Dice, DC, Type'},

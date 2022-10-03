@@ -31,6 +31,8 @@ export default function NavBar({ user, setUser, handleLogOut, handleColor }) {
         &nbsp;&nbsp;
         <Link to="/Spells" className="text-info btn btn-lg btn-outline-black">Spells</Link>
         &nbsp;&nbsp;
+        <Link to="/Community" className="text-info btn btn-lg btn-outline-black">Community</Link>
+        &nbsp;&nbsp;
         <NavDropdown title="Background" className="text-info btn btn-lg btn-outline-black" id="basic-nav-dropdown">
             <NavDropdown.Item type="submit" onClick={handleColor} name="B4" value="B4" className="text-primary btn btn-lg">Blue - Smooth</NavDropdown.Item>
             <NavDropdown.Item type="submit" onClick={handleColor} name="B13" value="B13" className="text-primary btn btn-lg">Blue - Stressed</NavDropdown.Item>

@@ -7,11 +7,11 @@ const loggedIn = require('../../config/logged');
 
 router.get('/', monstersCtrl.index);
 // GET ONE /api/monsters
-router.get('/:id', monstersCtrl.getOne);
+router.get('/:id', loggedIn, monstersCtrl.getOne);
 // UPDATE /api/monsters
-router.put('/:id', monstersCtrl.editMonster);
+router.put('/:id', loggedIn, monstersCtrl.editMonster);
 
-router.post('/', monstersCtrl.create);
+router.post('/', loggedIn, monstersCtrl.create);
 // GET /api/monsters
 // DELTE /api/monsters
 router.delete('/:id', monstersCtrl.delete);

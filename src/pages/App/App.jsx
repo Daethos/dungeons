@@ -17,6 +17,8 @@ import AuthPage from "../AuthPage/AuthPage";
 import ApiCharacters from "../../components/ApiCharacters/ApiCharacters";
 import Container from 'react-bootstrap/Container';
 import Loading from "../../components/Loading/Loading";
+import Community from "../Community/Community";
+import ProfilePage from "../Profile/Profile"
 
 function App() {
   const [user, setUser] = useState(userService.getUser()); // getUser decodes our JWT token, into a javascript object
@@ -111,7 +113,6 @@ async function editMonstra(monstra) {
         <Loading user={user} handleLogout={handleLogout} />
     );
 }
-  console.log(process.env.PUBLIC_URL + "/images/dungeon-background.png")
 
   if (user) {
     return (
@@ -127,6 +128,8 @@ async function editMonstra(monstra) {
       <NavBar user={user} setUser={setUser} handleLogout={handleLogout} getmonstahurl={getmonstahurl} handleColor={handleColor} />
       <Routes>
         <Route path="/" element={<UserProfile loggedUser={user} monstra={monstra} setMonstra={setMonstra} setUser={setUser} handleSignUpOrLogin={handleSignUpOrLogin} handleLogout={handleLogout} />} />
+        <Route path="/Community" element={<Community loggedUser={user} monstra={monstra} setMonstra={setMonstra} setUser={setUser} handleSignUpOrLogin={handleSignUpOrLogin} handleLogout={handleLogout} />} />
+        <Route path="/:username" element={<ProfilePage user={user} monstra={monstra} setMonstra={setMonstra} setUser={setUser} handleSignUpOrLogin={handleSignUpOrLogin} handleLogout={handleLogout} />} />
         <Route path="/Monsters" element={<ApiMonsters user={user} handleLogout={handleLogout} />} />
         <Route path="/Monsters/Data" element={<ApiMonsterData user={user} handleLogout={handleLogout} />} />
         <Route path="/Monsters/:monsterName" element={<ApiMonsterDetails user={user} handleLogout={handleLogout} getmonstahurl={getmonstahurl} handleMonster={handleMonster} />} />

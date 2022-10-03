@@ -1668,11 +1668,11 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                         monster.legendary_actions?.[1]?.desc
                         ? <p> {monster.legendary_actions[1].desc} 
                         <input
-                        name='0'
+                        name='1'
                         style={{ 'width': 100 + '%', height: 100 + 'px' }}
                         type="text" 
                         placeholder="Legendary Actions?"
-                        value={editState.legendary_actions[0].desc}
+                        value={editState.legendary_actions[1].desc}
                         onChange={handleLegendaryActionsDesc}
                         className="mb-2"
                         /><br /> </p>

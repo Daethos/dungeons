@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const Monster = require('../models/monster')
 const jwt = require('jsonwebtoken');
 const S3 = require("aws-sdk/clients/s3");
 const s3 = new S3(); // initate the S3 constructor which can talk to aws/s3 our bucket!
@@ -11,8 +12,32 @@ const SECRET = process.env.SECRET;
 
 module.exports = {
   signup,
-  login
+  login,
+  profile
 };
+
+async function profile(req, res) {
+  try {
+    // find the user!
+    const user = await User.findOne({ username: req.params.username });
+    // if the user is undefined, that means the database couldn't find this user lets send an error back
+    if (!user) return res.status(404).json({ error: "User not found" });
+
+    // Find the Post's by the user
+    //.populate('user') <- user comes from the key on the post model 
+    //   user: { type: mongoose.Schema.Types.ObjectId, ref: 'User'}, // referencing a model < which replaces the id with the userdocument
+    const monsters = await Monster.find({ user: user._id }).populate("user").exec();
+    res.status(200).json({
+      data: {
+        user: user,
+        monsters: monsters,
+      }
+    });
+  } catch (err) {
+    console.log(err.message, " <- profile controller");
+    res.status(400).json({ error: "Something went wrong" });
+  }
+}
 
 async function signup(req, res) {
   console.log(req.body, " req.body in signup", req.file);
