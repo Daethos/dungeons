@@ -102,6 +102,7 @@ export default function ApiMonsters({ user, handleLogout }) {
             {
             monsterData 
             ? 
+            
             <ApiMonsterData monsters={monsterData} 
             key=
             {
@@ -112,7 +113,7 @@ export default function ApiMonsters({ user, handleLogout }) {
                 })
             } 
             />
-
+            
         
             :
             <React.Fragment>

@@ -46,7 +46,7 @@ export default function ApiMonsterData({ monsters }) {
                     <img 
                         src={BUCKET_START + allMonsters[i].index + '.png'} 
                         alt={allMonsters[i].name} 
-                        style={{maxWidth: 100 + '%', maxHeight: 75 + '%'}}
+                        style={{maxWidth: 100 + '%'}}
                     />
                     </Link>
                 </div> 
@@ -67,7 +67,7 @@ export default function ApiMonsterData({ monsters }) {
 
     useEffect(() => {
         setAllMonsters([]);
-        if (searchText == '') {
+        if (searchText === '') {
             setAllMonsters([]);
             return
         }
@@ -82,8 +82,8 @@ export default function ApiMonsterData({ monsters }) {
         return (
 
             <React.Fragment>
-                <Col>
-                <div className="stat-block wide">
+                <Col className="stat-block wide" >
+                {/* <div className="stat-block wide"> */}
                 <hr className="orange-border" />
                 <div className="section-left">
                     <div className="creature-heading">
@@ -106,7 +106,7 @@ export default function ApiMonsterData({ monsters }) {
                 </div> 
                 
                 <hr className="orange-border bottom" />
-                </div>
+                {/* </div> */}
                 </Col>
             </React.Fragment>
             );
@@ -152,7 +152,10 @@ export default function ApiMonsterData({ monsters }) {
                     : <h3>Monsters Not Found</h3>    
                 }
         </Row>
-        <Row>
+        <Row className="justify-content-center"
+        // xs={1 | 'auto'} sm={1 | 'auto'} md={1 | 'auto'} lg={2 | 'auto'} xl={2 | 'auto'} xxl={3 | 'auto'}
+       
+        >
         {fullMonsters}
         
         </Row>

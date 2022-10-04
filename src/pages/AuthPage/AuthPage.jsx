@@ -8,7 +8,7 @@ import Col from 'react-bootstrap/Col';
 export default function AuthPage({ setUser, handleSignUpOrLogin }) {
   const [showSignUp, setShowSignUp]  = useState(false);
   return (
-    <Row className="auth my-5 justify-content-sm-center" xs={1 | 'auto'} sm={1 | 'auto'} md={2 | 'auto'} 
+    <Row className="auth my-5 justify-content-center" xs={1 | 'auto'} sm={1 | 'auto'} md={2 | 'auto'} 
     lg={2 | 'auto'} xl={2 | 'auto'} xxl={3 | 'auto'}>
       {/* <Button variant="danger" className="btn-lg text-white" onClick={() => setShowSignUp(!showSignUp)}>{showSignUp ? 'Need to Log In?' : 'Need to Sign Up?'}</Button> */}
       { showSignUp ?
@@ -20,12 +20,16 @@ export default function AuthPage({ setUser, handleSignUpOrLogin }) {
         <svg height="5" width="100%" className="tapered-rule my-3">
                 <polyline points="0,0 400,2.5 0,5"></polyline>
             </svg> */}
+            <>
         <Button variant="danger" className="btn-lg text-white" onClick={() => setShowSignUp(!showSignUp)}>{showSignUp ? 'Need to Log In?' : 'Need to Sign Up?'}</Button>
+        </>
         <SignUpForm setUser={setUser} handleSignUpOrLogin={handleSignUpOrLogin} />
         </>
         :
         <>
+        
         <Button variant="danger" className="btn-lg text-white" onClick={() => setShowSignUp(!showSignUp)}>{showSignUp ? 'Need to Log In?' : 'Need to Sign Up?'}</Button>
+        
         <LoginForm setUser={setUser} handleSignUpOrLogin={handleSignUpOrLogin} />
         </>
       }

@@ -52,7 +52,7 @@ export default function Community({ loggedUser, handleLogout, setUser }) {
 
     useEffect(() => {
         setAllMonsters([]);
-        if (searchText == '') {
+        if (searchText === '') {
             setAllMonsters([]);
             return
         }

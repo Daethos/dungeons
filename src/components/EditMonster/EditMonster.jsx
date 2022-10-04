@@ -312,7 +312,7 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
     }
     
     return (
-    <Row className="justify-content-sm-center" xs={1 | 'auto'} sm={1 | 'auto'} md={2 | 'auto'} lg={2 | 'auto'} xl={2 | 'auto'} xxl={2 | 'auto'}>
+    <Row className="justify-content-center" xs={1 | 'auto'} sm={1 | 'auto'} md={2 | 'auto'} lg={2 | 'auto'} xl={2 | 'auto'} xxl={2 | 'auto'}>
         
         <Col className="stat-block wide">
         <Form onSubmit={handleSubmit}>
