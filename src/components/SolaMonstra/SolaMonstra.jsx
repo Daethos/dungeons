@@ -68,7 +68,7 @@ export default function SolaMonstra({ monster, deleteMonster, editMonster, isSav
                         <polyline points="0,0 400,2.5 0,5"></polyline>
                     </svg> */}
                 </Link>
-                    </div> 
+                </div> 
                 : ''
             }
                     <h1>{monster.name}</h1>
