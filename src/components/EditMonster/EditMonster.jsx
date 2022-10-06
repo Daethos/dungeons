@@ -1686,7 +1686,7 @@ export default function EditMonster({ getmonstahurl, user, editMonstra }) {
                     </div>
                     <h3>Communal Visibility</h3>
                     <select onChange={handleVisibility} name="visibility" className="my-3">
-                        <option value="public" name="public">Select Preference</option>
+                        <option value={editState.visibility} name="public">Select Preference</option>
                         <option value="public" name="public">Public</option>
                         <option value="private" name="private">Private</option>
                     </select> 

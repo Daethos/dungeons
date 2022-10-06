@@ -26,10 +26,9 @@ export default function ApiMonsterData({ monsters }) {
         let views = [];
         for (let i = 0; i < allMonsters.length; i++) {
             views.push(
-                
-
-                <Col className="results">
-                <div className="stat-block wide">
+                // <Col className="results">
+                <>
+                <Col className="stat-block wide">
                 <hr className="orange-border" />
                 <div className="section-left">
                     <div className="creature-heading">
@@ -38,23 +37,22 @@ export default function ApiMonsterData({ monsters }) {
                     <svg height="5" width="100%" className="tapered-rule">
                     <polyline points="0,0 400,2.5 0,5"></polyline>
                 </svg>
-                    <Link 
-                            to={'/Monsters/' + allMonsters[i].index}
+                    <Link to={'/Monsters/' + allMonsters[i].index}
                             key={allMonsters[i].index}
-                            monstah={allMonsters[i]}
-                        >
+                            monstah={allMonsters[i]}>
                     <img 
                         src={BUCKET_START + allMonsters[i].index + '.png'} 
-                        alt={allMonsters[i].name} 
-                        style={{maxWidth: 100 + '%'}}
+                        alt={allMonsters[i].name}
+                        style={{maxWidth: 100 + '%', maxHeight: 75 + '%'}} 
+                        // style={{maxWidth: 100 + '%'}}
                     />
                     </Link>
                 </div> 
-
                 <hr className="orange-border bottom" />
-                </div>
                 </Col>
-
+                
+                </>
+                // </Col>
             )
         }
         return (views)
@@ -71,7 +69,6 @@ export default function ApiMonsterData({ monsters }) {
             setAllMonsters([]);
             return
         }
-
         const filteredResults = monsters.filter(m => m['index'].includes(searchText))        
         filterMonsters(filteredResults)
         console.log(searchText, '<- the changing search text')
@@ -80,10 +77,7 @@ export default function ApiMonsterData({ monsters }) {
 
     const fullMonsters = monsters.map((monster) => {
         return (
-
-            <React.Fragment>
-                <Col className="stat-block wide" >
-                {/* <div className="stat-block wide"> */}
+                <Col className="stat-block wide">
                 <hr className="orange-border" />
                 <div className="section-left">
                     <div className="creature-heading">
@@ -91,7 +85,7 @@ export default function ApiMonsterData({ monsters }) {
                     </div> 
                     <svg height="5" width="100%" className="tapered-rule">
                     <polyline points="0,0 400,2.5 0,5"></polyline>
-                </svg>
+                    </svg>
                     <Link 
                         to={'/Monsters/' + monster.index}
                         key={monster.index}
@@ -104,14 +98,10 @@ export default function ApiMonsterData({ monsters }) {
                     />
                     </Link>
                 </div> 
-                
                 <hr className="orange-border bottom" />
-                {/* </div> */}
                 </Col>
-            </React.Fragment>
             );
     }) 
-
 
     return (
         <React.Fragment>
@@ -143,19 +133,19 @@ export default function ApiMonsterData({ monsters }) {
         </Col>
         </Form>
         </Row>
-            <Row>
+            <Row className="justify-content-center"
+            //xs={1 | 'auto'} sm={1 | 'auto'} md={2 | 'auto'} lg={3 | 'auto'} xl={3 | 'auto'} xxl={4 | 'auto'}
+             >
                 {   
                     monsters.length > 0 
-                    ? <>
-                            {displayResults()} 
-                    </>
+                    ? <>{displayResults()}</>
                     : <h3>Monsters Not Found</h3>    
                 }
         </Row>
         <Row className="justify-content-center"
         // xs={1 | 'auto'} sm={1 | 'auto'} md={1 | 'auto'} lg={2 | 'auto'} xl={2 | 'auto'} xxl={3 | 'auto'}
-       
         >
+            
         {fullMonsters}
         
         </Row>
